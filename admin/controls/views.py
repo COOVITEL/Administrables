@@ -13,6 +13,7 @@ from django.contrib.auth import authenticate, login, logout
 def Index(request):
     return render(request, 'authentication/index.html')
 
+# Register new user with the permissions
 def Register(request):
 
     form = CreateUserForm()
@@ -27,6 +28,7 @@ def Register(request):
 
     return render(request, 'authentication/register.html', context=context)
 
+# Login sesion with the users
 def login(request):
     
     form = LoginForm()
@@ -47,22 +49,76 @@ def login(request):
     
     return render(request, 'authentication/login.html', context=context)
 
+# Close sesion
 def user_logout(request):
     auth.logout(request)
     return redirect('index')
 
+# Render the options controls
 @login_required(login_url="login")
 def Admin(request):
     return render(request, 'options.html')
 
+# Return the all Cdats controls
 @login_required(login_url="login")
 def Cdat(request):
     cdats = TasasCDAT.objects.all()
     return render(request, 'cdat.html', {'cdats': cdats})
 
+# Create new control cdat
+def createCdat(request):
+    if request.method == 'POST':
+        since = request.POST['since']
+        until = request.POST['until']
+        amountsince = request.POST['amountsince']
+        amountuntil = request.POST['amountuntil']
+        tasa = request.POST['tasa']
 
+        create = TasasCDAT(since=since, until=until, amountsince=amountsince, amountuntil=amountuntil, tasa=tasa)
+        create.save()
+        redirect('cdats')
+    return render(request, 'createcdat.html')
+
+# Get cdat
+def getcdat(request, id):
+    cdat = TasasCDAT.objects.get(id=id)
+    return render(request, 'getcdat.html', {"cdat": cdat})
+
+# Update cdat
+def updatecdat(request, id):
+    if request.method == 'PUT':
+        cdat = TasasCDAT.objects.get(id=id)
+        cdat.since = request.PUT['since']
+        since = request.POST['since']
+        until = request.POST['until']
+        amountsince = request.POST['amountsince']
+        amountuntil = request.POST['amountuntil']
+        tasa = request.POST['tasa']
+
+        create = TasasCDAT(since=since, until=until, amountsince=amountsince, amountuntil=amountuntil, tasa=tasa)
+        create.save()
+        redirect('cdats')
+    return render(request, 'getcdat.html')
+
+# Return all Cooviahorros controls
 @login_required(login_url="login")
 def Cooviahorro(request):
     ahorros = TasasCooviahorro.objects.all()
     return render(request, 'ahorros.html', {'ahorros': ahorros})
 
+def createCooviahorro(request):
+    if request.method == 'POST':
+        type = request.POST['type']
+        amountMin = request.POST['amountMin']
+        termMin = request.POST['termMin']
+        tasa = request.POST['tasa']
+        
+        create = TasasCooviahorro(type=type, amountMin=amountMin, termMin=termMin, tasa=tasa)
+        create.save()
+        redirect('cooviahorro')
+    return render(request, 'createcooviahorro.html')
+
+# Get cooviahorro
+def getcooviahorro(request, id):
+    cooviahorro = TasasCooviahorro.objects.get(id=id)
+    return render(request, 'getcooviahorro.html', {'cooviahorro': cooviahorro})

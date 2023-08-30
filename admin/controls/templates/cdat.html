@@ -2,16 +2,19 @@
 
 {% block content %}
     <h1>Tasas de CDATS</h1>
+    <a href="{% url 'createcdat' %}"><h4>Crear</h4></a>
 
     <div>
         {% for cdat in cdats %}
             <div>
                 <p>Montos desde {{ cdat.since }} hasta {{ cdat.until }}, Plazos desde {{ cdat.amountsince }} hasta {{ cdat.amountuntil }} </p>
+                <a href="{% url 'getcdat' cdat.id %}"><h4>Actualizar</h4></a>
             </div>
         {% endfor %}
     </div>
 
     <div>
+        <a href="{% url 'admin' %}"><h5>Volver</h5></a>
         <a href="{% url 'user-logout' %}"><h4>Cerrar Sesion</h4></a>
     </div>
 {% endblock %} 
