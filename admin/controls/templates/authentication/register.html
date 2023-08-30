@@ -1,1 +1,11 @@
-<h1>Register</h1>
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h1>Register now!</h1>
+    <form method="POST" autocomplete="off">
+        {% csrf_token %}
+        {{registerform.as_p}}
+
+        <input type="submit" value="Register"/>
+    </form>
+{% endblock %}

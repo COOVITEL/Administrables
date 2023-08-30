@@ -1,19 +1,17 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
-</head>
-<body>
+{% extends 'layout.html' %}
+
+{% block content %}
+
+    <h1>Tasas de Cooviahorro</h1>
+
     {% for ahorro in ahorros %}
-        <div>
-            <h1>{{ ahorro.type }}</h1>
-            <h1>{{ ahorro.aumontmin }}</h1>
-            <h1>{{ ahorro.termMin }}</h1>
-            <h1>{{ ahorro.tasa }}</h1>
-        </div>
+    <div>
+        <p>Ahorro {{ ahorro.type }}: Monto desde {{ ahorro.aumontmin }} hasta {{ ahorro.termMin }}</p>
+        <p>Tasa {{ ahorro.tasa }}</p>
+    </div>
     {% endfor %}
-</body>
-</html>
+
+    <div>
+        <a href="{% url 'user-logout' %}"><h4>Cerrar Sesion</h4></a>
+    </div>
+{% endblock %}

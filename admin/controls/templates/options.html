@@ -1,0 +1,8 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h1>Administrables</h1>
+    <a href="{% url 'cdats' %}"><h2>CDATS</h2></a>
+    <a href="{% url 'cooviahorro' %}"><h2>Cooviahorro</h2></a>
+    <a href="{% url 'user-logout' %}"><h4>Cerrar Sesion</h4></a>
+{% endblock %}

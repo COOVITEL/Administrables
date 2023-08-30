@@ -1,19 +1,17 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
-</head>
-<body>
-    {% for cdat in cdats %}
-        <div>
-            <h1>{{ cdat.since }}</h1>
-            <h1>{{ cdat.until }}</h1>
-            <h1>{{ cdat.amountsince }}</h1>
-            <h1>{{ cdat.amountuntil }}</h1>
-        </div>
-    {% endfor %}
-</body>
-</html>
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h1>Tasas de CDATS</h1>
+
+    <div>
+        {% for cdat in cdats %}
+            <div>
+                <p>Montos desde {{ cdat.since }} hasta {{ cdat.until }}, Plazos desde {{ cdat.amountsince }} hasta {{ cdat.amountuntil }} </p>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div>
+        <a href="{% url 'user-logout' %}"><h4>Cerrar Sesion</h4></a>
+    </div>
+{% endblock %} 
