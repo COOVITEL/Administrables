@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
-    <form action="cdatupdate cdat.id" method="PUT">
+    <form action="cdatupdate cdat.id" method="POST">
         {% csrf_token %}
         <div>
             <label for="since">Monto desde</label>

@@ -9,6 +9,7 @@ urlpatterns = [
     path("cdats", views.Cdat, name="cdats"),
     path("createcdat", views.createCdat, name="createcdat"),
     path("getcdat/<int:id>", views.getcdat, name="getcdat"),
+    path("cdatupdate/<int:id>", views.updatecdat, name="cdatupdate"),
     path("cooviahorro", views.Cooviahorro, name="cooviahorro"),
     path("createcooviahorro", views.createCooviahorro, name="createcooviahorro"),
     path("getcooviahorro/<int:id>", views.getcooviahorro, name="getcooviahorro"),

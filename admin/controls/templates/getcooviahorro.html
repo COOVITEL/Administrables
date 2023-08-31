@@ -1,9 +1,21 @@
 {% extends "layout.html" %}
 {% block content %}
-    <div>
-        <h1>{{cooviahorro.type}}</h1>
-        <h3>{{cooviahorro.amountMin}}</h3>
-        <h3>{{cooviahorro.termMin}}</h3>
-        <h3>{{cooviahorro.tasa}}</h3>
-    </div>
+    <h1>{{cooviahorro.type}}</h1>
+    <form action="cooviahorroupdate cooviahorro.id" method="PUT">
+        {% csrf_token %}
+        <div>
+            <label for="amountMin">Monto minimo:</label>
+            <input id="amountMin" type="number" name="amountMin" placeholder={{cooviahorro.amountMin}}></input>
+        </div>
+        <div>
+            <label for="termMin">Tiempo minimo:</label>
+            <input id="termMin" type="number" name="termMin" placeholder={{cooviahorro.termMin}}></input>
+        </div>
+        <div>
+            <label for="tasa-c">Tasa:</label>
+            <input id="tasa-c" type="number" name="tasa" step="0.01" placeholder={{cooviahorro.tasa}}></input>
+        </div>
+        <input type="submit" value="Actualizar"/>
+    </fomr>
+    <a href="{% url 'cooviahorro' %}"><h5>Volver</h5></a>
 {% endblock %}

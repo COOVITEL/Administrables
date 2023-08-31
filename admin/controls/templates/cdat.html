@@ -5,12 +5,26 @@
     <a href="{% url 'createcdat' %}"><h4>Crear</h4></a>
 
     <div>
-        {% for cdat in cdats %}
-            <div>
-                <p>Montos desde {{ cdat.since }} hasta {{ cdat.until }}, Plazos desde {{ cdat.amountsince }} hasta {{ cdat.amountuntil }} </p>
-                <a href="{% url 'getcdat' cdat.id %}"><h4>Actualizar</h4></a>
-            </div>
-        {% endfor %}
+        <table>
+            <tr>
+                <td>Monto Minimo</td>
+                <td>Monto Maximo</td>
+                <td>Plazo Minimo</td>
+                <td>Plazo Maximo</td>
+                <td>Tasa</td>
+                <td></td>
+            </tr>
+            {% for cdat in cdats%}
+                <tr>
+                    <td>{{cdat.amountsince}}</td>
+                    <td>{{cdat.amountuntil}}</td>
+                    <td>{{cdat.since}}</td>
+                    <td>{{cdat.until}}</td>
+                    <td>{{cdat.tasa}}</td>
+                    <td><a href="{% url 'getcdat' cdat.id %}"><h4>Actualizar</h4></a></td>
+                </tr>
+            {% endfor %}
+        </table>
     </div>
 
     <div>

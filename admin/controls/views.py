@@ -86,17 +86,15 @@ def getcdat(request, id):
 
 # Update cdat
 def updatecdat(request, id):
-    if request.method == 'PUT':
+    if request.method == 'POST':
         cdat = TasasCDAT.objects.get(id=id)
         cdat.since = request.PUT['since']
-        since = request.POST['since']
-        until = request.POST['until']
-        amountsince = request.POST['amountsince']
-        amountuntil = request.POST['amountuntil']
-        tasa = request.POST['tasa']
+        cdat.until = request.PUT['until']
+        cdat.amountsince = request.PUT['amountsince']
+        cdat.amountuntil = request.PUT['amountuntil']
+        cdat.tasa = request.PUT['tasa']
 
-        create = TasasCDAT(since=since, until=until, amountsince=amountsince, amountuntil=amountuntil, tasa=tasa)
-        create.save()
+        cdat.save()
         redirect('cdats')
     return render(request, 'getcdat.html')
 
