@@ -8,10 +8,9 @@ urlpatterns = [
     path("user-logout", views.user_logout, name="user-logout"),
     path("cdats", views.Cdat, name="cdats"),
     path("createcdat", views.createCdat, name="createcdat"),
-    path("getcdat/<int:id>", views.getcdat, name="getcdat"),
-    path("cdatupdate/<int:id>", views.updatecdat, name="cdatupdate"),
+    path("cdats/updatecdat/<int:id>", views.updatecdat, name="updatecdat"),
     path("cooviahorro", views.Cooviahorro, name="cooviahorro"),
     path("createcooviahorro", views.createCooviahorro, name="createcooviahorro"),
-    path("getcooviahorro/<int:id>", views.getcooviahorro, name="getcooviahorro"),
+    path("cooviahorro/updatecooviahorro/<int:id>", views.updatecooviahorro, name="updatecooviahorro"),
     path("administrables", views.Admin, name="admin"),
 ]

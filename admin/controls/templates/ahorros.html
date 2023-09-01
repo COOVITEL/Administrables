@@ -6,13 +6,24 @@
 
     <a href="{% url 'createcooviahorro' %}"><h5>Crear</h5></a>
 
-    {% for ahorro in ahorros %}
-        <div>
-            <p>Ahorro {{ ahorro.type }}: Monto desde {{ ahorro.aumontmin }} hasta {{ ahorro.termMin }}</p>
-            <p>Tasa {{ ahorro.tasa }}</p>
-            <a href="{% url 'getcooviahorro' ahorro.id %}"><h4>Actualizar</h4></a>
-        </div>
-    {% endfor %}
+    <table>
+        <tr>
+            <td>Tipo</td>
+            <td>Plazo desde</td>
+            <td>Monto desde</td>
+            <td>tasa</td>
+            <td></td>
+        </tr>
+        {% for ahorro in ahorros %}
+            <tr>
+                <td>{{ahorro.type}}</td>
+                <td>{{ahorro.amountMin}}</td>
+                <td>{{ahorro.termMin}}</td>
+                <td>{{ahorro.tasa}}</td>
+                <td><a href="#">Actualizar</a>
+            </tr>
+        {% endfor %}
+    </table>
 
     <div>
         <a href="{% url 'admin' %}"><h5>Volver</h5></a>

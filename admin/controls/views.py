@@ -76,27 +76,22 @@ def createCdat(request):
 
         create = TasasCDAT(since=since, until=until, amountsince=amountsince, amountuntil=amountuntil, tasa=tasa)
         create.save()
-        redirect('cdats')
+        return redirect('cdats')
     return render(request, 'createcdat.html')
 
-# Get cdat
-def getcdat(request, id):
-    cdat = TasasCDAT.objects.get(id=id)
-    return render(request, 'getcdat.html', {"cdat": cdat})
-
-# Update cdat
 def updatecdat(request, id):
-    if request.method == 'POST':
-        cdat = TasasCDAT.objects.get(id=id)
-        cdat.since = request.PUT['since']
-        cdat.until = request.PUT['until']
-        cdat.amountsince = request.PUT['amountsince']
-        cdat.amountuntil = request.PUT['amountuntil']
-        cdat.tasa = request.PUT['tasa']
-
+    cdat = TasasCDAT.objects.get(id=id)
+    context = {"cdat": cdat}
+    if request.method == 'POST':        
+        cdat.since = request.POST['since']
+        cdat.until = request.POST['until']
+        cdat.amountsince = request.POST['amountsince']
+        cdat.amountuntil = request.POST['amountuntil']
+        cdat.tasa = request.POST['tasa']
         cdat.save()
-        redirect('cdats')
-    return render(request, 'getcdat.html')
+        return redirect('cdats')
+    return render(request, 'updatecdat.html', context)
+        
 
 # Return all Cooviahorros controls
 @login_required(login_url="login")
@@ -113,10 +108,17 @@ def createCooviahorro(request):
         
         create = TasasCooviahorro(type=type, amountMin=amountMin, termMin=termMin, tasa=tasa)
         create.save()
-        redirect('cooviahorro')
+        return redirect('cooviahorro')
     return render(request, 'createcooviahorro.html')
 
 # Get cooviahorro
-def getcooviahorro(request, id):
+def updatecooviahorro(request, id):
     cooviahorro = TasasCooviahorro.objects.get(id=id)
-    return render(request, 'getcooviahorro.html', {'cooviahorro': cooviahorro})
+    context = cooviahorro
+    if request.method == 'POST':
+        cooviahorro.amountMin = request.POST['amountMin']
+        cooviahorro.termMin = request.POST['termMin']
+        cooviahorro.tasa = request.POST['tasa']
+        cooviahorro.save()
+        return redirect('cooviahorro')      
+    return render(request, 'updatecooviahorro.html', {'cooviahorro': context})

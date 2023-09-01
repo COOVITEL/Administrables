@@ -21,7 +21,7 @@
                     <td>{{cdat.since}}</td>
                     <td>{{cdat.until}}</td>
                     <td>{{cdat.tasa}}</td>
-                    <td><a href="{% url 'getcdat' cdat.id %}"><h4>Actualizar</h4></a></td>
+                    <td><a href="{% url 'updatecdat' cdat.id%}"><h4>Actualizar</h4></a></td>
                 </tr>
             {% endfor %}
         </table>
