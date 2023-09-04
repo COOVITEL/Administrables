@@ -7,21 +7,21 @@
     <div>
         <table>
             <tr>
-                <td>Monto Minimo</td>
-                <td>Monto Maximo</td>
-                <td>Plazo Minimo</td>
-                <td>Plazo Maximo</td>
+                <td>Tipo</td>
+                <td>Monto</td>
+                <td>Plazo</td>
                 <td>Tasa</td>
+                <td></td>
                 <td></td>
             </tr>
             {% for cdat in cdats%}
                 <tr>
-                    <td>{{cdat.amountsince}}</td>
-                    <td>{{cdat.amountuntil}}</td>
-                    <td>{{cdat.since}}</td>
-                    <td>{{cdat.until}}</td>
+                    <td>{{cdat.type}}</td>
+                    <td>{{cdat.since}} a {{cdat.until}}</td>
+                    <td>{{cdat.amountsince}} a {{cdat.amountuntil}}</td>
                     <td>{{cdat.tasa}}</td>
                     <td><a href="{% url 'updatecdat' cdat.id%}"><h4>Actualizar</h4></a></td>
+                    <td><a href="{% url 'deletecdat' cdat.id %}">Borrar</a></td>
                 </tr>
             {% endfor %}
         </table>

@@ -1,6 +1,7 @@
 from django.db import models
 
 class TasasCDAT(models.Model):
+    type = models.CharField(max_length=100)
     since = models.IntegerField()
     until = models.IntegerField()
     amountsince = models.IntegerField()

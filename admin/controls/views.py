@@ -9,32 +9,13 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate, login, logout
 
-
-def Index(request):
-    return render(request, 'authentication/index.html')
-
-# Register new user with the permissions
-def Register(request):
-
-    form = CreateUserForm()
-    
-    if request.method == "POST":
-        form = CreateUserForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('login')
-    
-    context = {'registerform': form}
-
-    return render(request, 'authentication/register.html', context=context)
-
 # Login sesion with the users
 def login(request):
     
-    form = LoginForm()
+    form1 = LoginForm()
     if request.method == 'POST':
-        form = LoginForm(request, data=request.POST)
-        if form.is_valid():
+        form1 = LoginForm(request, data=request.POST)
+        if form1.is_valid():
             username = request.POST.get('username')
             password = request.POST.get('password')
             
@@ -44,15 +25,24 @@ def login(request):
                 auth.login(request, user)
                 
                 return redirect("admin")
-            
-    context = {'loginform': form}
+
+
+    form2 = CreateUserForm() 
+    if request.method == "POST":
+        form2 = CreateUserForm(request.POST)
+        if form2.is_valid():
+            form2.save()
+            return redirect('login')
+    
+    context = {'loginform': form1,
+               'registerform': form2}
     
     return render(request, 'authentication/login.html', context=context)
 
 # Close sesion
 def user_logout(request):
     auth.logout(request)
-    return redirect('index')
+    return redirect('login')
 
 # Render the options controls
 @login_required(login_url="login")
@@ -68,13 +58,14 @@ def Cdat(request):
 # Create new control cdat
 def createCdat(request):
     if request.method == 'POST':
+        type = request.POST['type']
         since = request.POST['since']
         until = request.POST['until']
         amountsince = request.POST['amountsince']
         amountuntil = request.POST['amountuntil']
         tasa = request.POST['tasa']
 
-        create = TasasCDAT(since=since, until=until, amountsince=amountsince, amountuntil=amountuntil, tasa=tasa)
+        create = TasasCDAT(type=type, since=since, until=until, amountsince=amountsince, amountuntil=amountuntil, tasa=tasa)
         create.save()
         return redirect('cdats')
     return render(request, 'createcdat.html')
@@ -91,13 +82,18 @@ def updatecdat(request, id):
         cdat.save()
         return redirect('cdats')
     return render(request, 'updatecdat.html', context)
+
+def deletecdat(request, id):
+    cdat = TasasCDAT.objects.get(id=id)
+    cdat.delete()
+    return redirect('cdats')
         
 
 # Return all Cooviahorros controls
 @login_required(login_url="login")
 def Cooviahorro(request):
     ahorros = TasasCooviahorro.objects.all()
-    return render(request, 'ahorros.html', {'ahorros': ahorros})
+    return render(request, 'cooviahorro.html', {'ahorros': ahorros})
 
 def createCooviahorro(request):
     if request.method == 'POST':
@@ -122,3 +118,8 @@ def updatecooviahorro(request, id):
         cooviahorro.save()
         return redirect('cooviahorro')      
     return render(request, 'updatecooviahorro.html', {'cooviahorro': context})
+
+def deletecooviahorro(request, id):
+    cooviahoroo = TasasCooviahorro.objects.get(id=id)
+    cooviahoroo.delete()
+    return redirect("cooviahorro")

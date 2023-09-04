@@ -1,12 +1,34 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-    <h1>Iniciar Sesion</h1>
-    <form method="POST" autocomplete="off">
-        {% csrf_token %}
+    <main>
+        <div class="start">
+            <button class="bt1 act">INICIAR SESION</button>
+            <button class="bt2">REGISTRARSE</button>
+        </div>
+        <div class="contain">
+            <div class="logo"></div>
+            <div class="login see">
+                <h1 class="title">Iniciar Sesion</h1>
+                <form method="POST" autocomplete="off">
+                    {% csrf_token %}
 
-        {{loginform.as_p}}
+                    {{loginform.as_p}}
 
-        <input type="submit" value="Login"/>
-    </form>
+                    <input type="submit" value="Login"/>
+                </form>
+            </div>
+
+            <div class="register">
+                <h1 class="title">Registrase</h1>
+                <form method="POST" autocomplete="off">
+                    {% csrf_token %}
+
+                    {{registerform.as_p}}
+
+                    <input type="submit" value="Register"/>
+                </form>
+            </div>
+        </div>
+    </main>
 {% endblock %}

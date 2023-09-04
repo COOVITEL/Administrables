@@ -13,6 +13,7 @@
             <td>Monto desde</td>
             <td>tasa</td>
             <td></td>
+            <td></td>
         </tr>
         {% for ahorro in ahorros %}
             <tr>
@@ -20,7 +21,8 @@
                 <td>{{ahorro.amountMin}}</td>
                 <td>{{ahorro.termMin}}</td>
                 <td>{{ahorro.tasa}}</td>
-                <td><a href="#">Actualizar</a>
+                <td><a href="{% url 'updatecooviahorro' ahorro.id %}">Actualizar</a></td>
+                <td><a href="{% url 'deletecooviahorro' ahorro.id %}">Borrar</a></td>
             </tr>
         {% endfor %}
     </table>

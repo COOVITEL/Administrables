@@ -3,6 +3,11 @@
 {% block content %}
     <form action="createcdat" method="POST">
         {% csrf_token %}
+        <select name="type">
+            <option value="">Seleccione tipo</option>
+            <option value="NATURAL">NATURAL</option>
+            <option value="JURIDICA">JURIDICA</option>
+        </select>
         <div>
             <label for="since">Monto desde</label>
             <input id="since" type="number" name="since"/>

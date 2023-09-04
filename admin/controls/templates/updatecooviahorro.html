@@ -1,19 +1,19 @@
 {% extends "layout.html" %}
 {% block content %}
     <h1>{{cooviahorro.type}}</h1>
-    <form method="PUT">
+    <form method="POST">
         {% csrf_token %}
         <div>
             <label for="amountMin">Monto minimo:</label>
-            <input id="amountMin" type="number" name="amountMin" placeholder={{cooviahorro.amountMin}}></input>
+            <input id="amountMin" type="number" name="amountMin" value={{cooviahorro.amountMin}}></input>
         </div>
         <div>
             <label for="termMin">Tiempo minimo:</label>
-            <input id="termMin" type="number" name="termMin" placeholder={{cooviahorro.termMin}}></input>
+            <input id="termMin" type="number" name="termMin" value={{cooviahorro.termMin}}></input>
         </div>
         <div>
             <label for="tasa-c">Tasa:</label>
-            <input id="tasa-c" type="number" name="tasa" step="0.01" placeholder={{cooviahorro.tasa}}></input>
+            <input id="tasa-c" type="number" name="tasa" step="0.01" value={{cooviahorro.tasa}}></input>
         </div>
         <input type="submit" value="Actualizar"/>
     </fomr>
