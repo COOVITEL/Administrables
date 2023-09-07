@@ -1,34 +1,52 @@
 {% extends 'layout.html' %}
+{% load humanize %}
+
+{% block header %}
+    <header>
+        <div class="logo-admin"></div>
+        <nav class="menu">
+            <input class="menu-btn" type="checkbox" name="menu-btn" id="menu-btn">
+            <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+            <ul class="menu-links">
+                <li class="link"><a href="{% url 'admin' %}">Inicio</a></li>
+                <li class="link"><a href="{% url 'cdats' %}">Cdas</a></li>
+                <li class="link"><a href="{% url 'cooviahorro' %}">Coociahorro</a></li>
+                <li class="link"><a href="#">Credito</a></li>
+                <li class="link"><a href="{% url 'user-logout' %}">Cerrar Sesion</a></li>
+            </ul>
+        </nav>
+    </header>
+{% endblock%}
 
 {% block content %}
-    <h1>Tasas de CDATS</h1>
-    <a href="{% url 'createcdat' %}"><h4>Crear</h4></a>
 
-    <div>
-        <table>
-            <tr>
-                <td>Tipo</td>
-                <td>Monto</td>
-                <td>Plazo</td>
-                <td>Tasa</td>
-                <td></td>
-                <td></td>
-            </tr>
-            {% for cdat in cdats%}
+    <div class="cdats">
+        <h1 class="title">Tasas de CDATS</h1>
+        <div>
+            <table>
                 <tr>
-                    <td>{{cdat.type}}</td>
-                    <td>{{cdat.since}} a {{cdat.until}}</td>
-                    <td>{{cdat.amountsince}} a {{cdat.amountuntil}}</td>
-                    <td>{{cdat.tasa}}</td>
-                    <td><a href="{% url 'updatecdat' cdat.id%}"><h4>Actualizar</h4></a></td>
-                    <td><a href="{% url 'deletecdat' cdat.id %}">Borrar</a></td>
+                    <td class="ttb">Tipo</td>
+                    <td class="ttb">Monto</td>
+                    <td class="ttb">Plazo</td>
+                    <td class="ttb">Tasa</td>
+                    <td class="icon"></td>
+                    <td class="icon"></td>
                 </tr>
-            {% endfor %}
-        </table>
-    </div>
-
-    <div>
-        <a href="{% url 'admin' %}"><h5>Volver</h5></a>
-        <a href="{% url 'user-logout' %}"><h4>Cerrar Sesion</h4></a>
+                {% for cdat in cdats%}
+                    <tr>
+                        <td class="tb data">{{cdat.type}}</td>
+                        <td class="tb data">{{cdat.since|intcomma}} / {{ cdat.until|intcomma }}</td>
+                        <td class="tb data">{{cdat.amountsince|intcomma}} / {{cdat.amountuntil}}</td>
+                        <td class="tb data">{{cdat.tasa}}</td>
+                        <td class="tb"><a href="{% url 'updatecdat' cdat.id%}"><img class="image" src="static/images/lapiz.png"/></a></td>
+                        <td class="tb"><a href="{% url 'deletecdat' cdat.id %}"><img class="image" src="static/images/basura.png"/></a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <a class="create" href="{% url 'createcdat' %}"><img class="image" src="static/images/agregar.png"/></a>
+        <div class="cont-back">
+            <a class="back" href="{% url 'admin' %}">Volver</a>
+        </div>
     </div>
 {% endblock %} 

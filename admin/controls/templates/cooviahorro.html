@@ -1,34 +1,49 @@
 {% extends 'layout.html' %}
+{% load humanize %}
+
+{% block header %}
+    <header>
+        <div class="logo-admin"></div>
+        <nav class="menu">
+            <input class="menu-btn" type="checkbox" name="menu-btn" id="menu-btn">
+            <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+            <ul class="menu-links">
+                <li class="link"><a href="{% url 'admin' %}">Inicio</a></li>
+                <li class="link"><a href="{% url 'cdats' %}">Cdas</a></li>
+                <li class="link"><a href="{% url 'cooviahorro' %}">Coociahorro</a></li>
+                <li class="link"><a href="#">Credito</a></li>
+                <li class="link"><a href="{% url 'user-logout' %}">Cerrar Sesion</a></li>
+            </ul>
+        </nav>
+    </header>
+{% endblock%}
 
 {% block content %}
-
-    <h1>Tasas de Cooviahorro</h1>
-
-    <a href="{% url 'createcooviahorro' %}"><h5>Crear</h5></a>
-
-    <table>
-        <tr>
-            <td>Tipo</td>
-            <td>Plazo desde</td>
-            <td>Monto desde</td>
-            <td>tasa</td>
-            <td></td>
-            <td></td>
-        </tr>
-        {% for ahorro in ahorros %}
+    <div class="cdats">
+        <h1 class="title">Tasas de Cooviahorro</h1>
+        <table>
             <tr>
-                <td>{{ahorro.type}}</td>
-                <td>{{ahorro.amountMin}}</td>
-                <td>{{ahorro.termMin}}</td>
-                <td>{{ahorro.tasa}}</td>
-                <td><a href="{% url 'updatecooviahorro' ahorro.id %}">Actualizar</a></td>
-                <td><a href="{% url 'deletecooviahorro' ahorro.id %}">Borrar</a></td>
+                <td class="ttb">Tipo</td>
+                <td class="ttb">Monto</td>
+                <td class="ttb">Plazo</td>
+                <td class="ttb">Tasa</td>
+                <td class="icon"></td>
+                <td class="icon"></td>
             </tr>
-        {% endfor %}
-    </table>
-
-    <div>
-        <a href="{% url 'admin' %}"><h5>Volver</h5></a>
-        <a href="{% url 'user-logout' %}"><h4>Cerrar Sesion</h4></a>
+            {% for ahorro in ahorros %}
+                <tr>
+                    <td class="tb data">{{ahorro.type}}</td>
+                    <td class="tb data">{{ahorro.amountMin|intcomma}}</td>
+                    <td class="tb data">{{ahorro.termMin|intcomma}}</td>
+                    <td class="tb data">{{ahorro.tasa}}</td>
+                    <td class="tb"><a href="{% url 'updatecooviahorro' ahorro.id %}"><img class="image" src="static/images/lapiz.png"/></a></a></td>
+                    <td class="tb"><a href="{% url 'deletecooviahorro' ahorro.id %}"><img class="image" src="static/images/basura.png"/></a></a></td>
+                </tr>
+            {% endfor %}
+        </table>
+        <a href="{% url 'createcooviahorro' %}"><img class="image" src="static/images/agregar.png"/></a>
+        <div class="cont-back">
+            <a class="back" href="{% url 'admin' %}"><h5>Volver</h5></a>
+        </div>
     </div>
 {% endblock %}

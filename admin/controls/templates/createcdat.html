@@ -1,36 +1,56 @@
 {% extends "layout.html" %}
 
+{% block header %}
+    <header>
+        <div class="logo-admin"></div>
+        <nav class="menu">
+            <input class="menu-btn" type="checkbox" name="menu-btn" id="menu-btn">
+            <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+            <ul class="menu-links">
+                <li class="link"><a href="{% url 'admin' %}">Inicio</a></li>
+                <li class="link"><a href="{% url 'cdats' %}">Cdas</a></li>
+                <li class="link"><a href="{% url 'cooviahorro' %}">Coociahorro</a></li>
+                <li class="link"><a href="#">Credito</a></li>
+                <li class="link"><a href="{% url 'user-logout' %}">Cerrar Sesion</a></li>
+            </ul>
+        </nav>
+    </header>
+{% endblock%}
+
 {% block content %}
-    <form action="createcdat" method="POST">
-        {% csrf_token %}
-        <select name="type">
-            <option value="">Seleccione tipo</option>
-            <option value="NATURAL">NATURAL</option>
-            <option value="JURIDICA">JURIDICA</option>
-        </select>
-        <div>
-            <label for="since">Monto desde</label>
-            <input id="since" type="number" name="since"/>
-            <label for="until">hasta</label>
-            <input id="until" type="number" name="until"/>
-        </div>
-        <div>
-            
-        </div>
-        <div>
-            <label for="since-amount">Periodo desde</label>
-            <input id="since-amount" type="number" name="amountsince"/>
-            <label for="until-amount">hasta</label>
-            <input id="until-amount" type="number" name="amountuntil"/>
-        </div>
-        <div>
-            
-        </div>
-        <div>
-            <label for="tasa">Tasa</label>
-            <input id="tasa" type="numeric" name="tasa" step="0.01"/>
-        </div>
-        <input type="submit" value="Crear" href="{% url 'cdats' %}"/>
-    </form>
-    <a href="{% url 'cdats' %}"><h5>Volver</h5></a>
+    <div class="cdats">
+        <h1 class="title">Nuevo Cdat</h1>
+        <form class="form" action="createcdat" method="POST">
+            {% csrf_token %}
+            <select name="type" class="types">
+                <option value="">Seleccione tipo</option>
+                <option value="NATURAL">NATURAL</option>
+                <option value="JURIDICA">JURIDICA</option>
+            </select>
+            <div>
+                <label for="since">Monto desde</label>
+                <input id="since" type="number" name="since"/>
+                <label for="until">hasta</label>
+                <input id="until" type="number" name="until"/>
+            </div>
+            <div>
+                
+            </div>
+            <div>
+                <label for="since-amount">Periodo desde</label>
+                <input id="since-amount" type="number" name="amountsince"/>
+                <label for="until-amount">hasta</label>
+                <input id="until-amount" type="number" name="amountuntil"/>
+            </div>
+            <div>
+                
+            </div>
+            <div>
+                <label for="tasa">Tasa</label>
+                <input id="tasa" type="numeric" name="tasa" step="0.01"/>
+            </div>
+            <input type="submit" value="Crear" href="{% url 'cdats' %}"/>
+        </form>
+        <a href="{% url 'cdats' %}"><h5>Volver</h5></a>
+    </div>
 {% endblock %}

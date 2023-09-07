@@ -1,4 +1,22 @@
 {% extends "layout.html" %}
+
+{% block header %}
+    <header>
+        <div class="logo-admin"></div>
+        <nav class="menu">
+            <input class="menu-btn" type="checkbox" name="menu-btn" id="menu-btn">
+            <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+            <ul class="menu-links">
+                <li class="link"><a href="{% url 'admin' %}">Inicio</a></li>
+                <li class="link"><a href="{% url 'cdats' %}">Cdas</a></li>
+                <li class="link"><a href="{% url 'cooviahorro' %}">Coociahorro</a></li>
+                <li class="link"><a href="#">Credito</a></li>
+                <li class="link"><a href="{% url 'user-logout' %}">Cerrar Sesion</a></li>
+            </ul>
+        </nav>
+    </header>
+{% endblock%}
+
 {% block content %}
     <h1>{{cooviahorro.type}}</h1>
     <form method="POST">
