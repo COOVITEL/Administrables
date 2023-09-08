@@ -18,36 +18,32 @@
 {% endblock%}
 
 {% block content %}
-    <form method="POST">
-        {% csrf_token %}
-        <div>
-            <label for="since">Monto desde</label>
-            <input id="since" type="number" name="since" value={{cdat.since}}></input>
+    <div class="cdats">
+        <h1 class="title">Actualizacion Cdat</h1>
+        <form method="POST" class="form">
+            {% csrf_token %}
+            <div class="input-datas">
+                <label for="since">Monto desde</label>
+                <input class="input"  id="since" type="number" name="since" value={{cdat.since}}></input>
+                <label for="until">hasta</label>
+                <input class="input"  id="until" type="number" name="until" value={{cdat.until}}></input>
+            </div>
+            <div class="input-datas">
+                <label for="since-amount">Periodo desde</label>
+                <input class="input"  id="since-amount" type="number" name="amountsince" value={{cdat.amountsince}}></input>
+                <label for="until-amount">hasta</label>
+                <input class="input"  id="until-amount" type="number" name="amountuntil" value={{cdat.amountuntil}}></input>
+            </div>
+            <div class="input-datas down">
+                <label for="tasa">Tasa</label>
+                <input class="input"  id="tasa" type="numeric" name="tasa" step="0.01" value={{cdat.tasa}}></input>
+            </div>
+            <input class="create" type="submit" value="Actualizar" href="{% url 'cdats' %}"/>
+        </form>
+        <div class="cont-back">
+            <a class="back" href="{% url 'cdats' %}"><h5>Volver</h5></a>
         </div>
-        <div>
-            <label for="until">hasta</label>
-            <input id="until" type="number" name="until" value={{cdat.until}}></input>
-        </div>
-        <div>
-        </div>
-        <div>
-            <label for="since-amount">Periodo desde</label>
-            <input id="since-amount" type="number" name="amountsince" value={{cdat.amountsince}}></input>
-        </div>
-        <div>
-            <label for="until-amount">hasta</label>
-            <input id="until-amount" type="number" name="amountuntil" value={{cdat.amountuntil}}></input>
-        </div>
-        <div>      
-        </div>
-        <div>
-            <label for="tasa">Tasa</label>
-            <input id="tasa" type="numeric" name="tasa" step="0.01" value={{cdat.tasa}}></input>
-        </div>
-        <input type="submit" value="Actualizar" href="{% url 'cdats' %}"/>
-    </form>
-
-    <a href="{% url 'cdats' %}"><h5>Volver</h5></a>
+    </div>
 
     
 {% endblock %}

@@ -15,7 +15,7 @@ class TasasCooviahorro(models.Model):
     type = models.CharField(max_length=100)
     amountMin = models.IntegerField()
     termMin = models.IntegerField()
-    tasa = models.FloatField()
+    tasa = models.FloatField(max_length=20)
     
     def __str__(self):
         return self.type

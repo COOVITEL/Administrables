@@ -27,30 +27,30 @@
                 <option value="NATURAL">NATURAL</option>
                 <option value="JURIDICA">JURIDICA</option>
             </select>
-            <div>
+            <div class="input-datas">
                 <label for="since">Monto desde</label>
-                <input id="since" type="number" name="since"/>
+                <input class="input" id="since" type="number" name="since" required/>
                 <label for="until">hasta</label>
-                <input id="until" type="number" name="until"/>
+                <input class="input"  id="until" type="number" name="until" required/>
             </div>
-            <div>
                 
-            </div>
-            <div>
+            <div class="input-datas">
                 <label for="since-amount">Periodo desde</label>
-                <input id="since-amount" type="number" name="amountsince"/>
+                <input class="input"  id="since-amount" type="number" name="amountsince" required/>
                 <label for="until-amount">hasta</label>
-                <input id="until-amount" type="number" name="amountuntil"/>
+                <input class="input"  id="until-amount" type="number" name="amountuntil" required/>
             </div>
             <div>
                 
             </div>
-            <div>
+            <div class="input-datas down">
                 <label for="tasa">Tasa</label>
-                <input id="tasa" type="numeric" name="tasa" step="0.01"/>
+                <input class="input"  id="tasa" type="numeric" name="tasa" step="0.01" required/>
             </div>
-            <input type="submit" value="Crear" href="{% url 'cdats' %}"/>
+            <input class="create" type="submit" value="Crear" href="{% url 'cdats' %}"/>
         </form>
-        <a href="{% url 'cdats' %}"><h5>Volver</h5></a>
+        <div class="cont-back">
+            <a class="back" href="{% url 'cdats' %}"><h5>Volver</h5></a>
+        </div>
     </div>
 {% endblock %}

@@ -18,22 +18,28 @@
 {% endblock%}
 
 {% block content %}
-    <h1>{{cooviahorro.type}}</h1>
-    <form method="POST">
-        {% csrf_token %}
-        <div>
-            <label for="amountMin">Monto minimo:</label>
-            <input id="amountMin" type="number" name="amountMin" value={{cooviahorro.amountMin}}></input>
+    <div class="cdats">
+        <h1 class="title">Actualizacion Cooviahorro</h1>
+        <form method="POST" class="form">
+            <h2 class="title-sm">{{cooviahorro.type}}</h2>
+            {% csrf_token %}
+            <div class="input-datas">
+                <label for="amountMin">Monto minimo:</label>
+                <input class="input" id="amountMin" type="number" name="amountMin" value={{cooviahorro.amountMin}}></input>
+            </div>
+            <div class="input-datas">
+                <label for="termMin">Tiempo minimo:</label>
+                <input class="input" id="termMin" type="number" name="termMin" value={{cooviahorro.termMin}}></input>
+            </div>
+            <div class="input-datas down">
+                <label for="tasa">Tasa:</label>
+                <input class="input"  id="tasa" type="numeric" name="tasa" step="0.01" value={{cooviahorro.tasa}}></input>
+            </div>
+            <input class="create" type="submit" value="Actualizar"/>
+        </form>
+        <div class="cont-back">
+            <a class="back" href="{% url 'cooviahorro' %}"><h5>Volver</h5></a>
         </div>
-        <div>
-            <label for="termMin">Tiempo minimo:</label>
-            <input id="termMin" type="number" name="termMin" value={{cooviahorro.termMin}}></input>
-        </div>
-        <div>
-            <label for="tasa-c">Tasa:</label>
-            <input id="tasa-c" type="number" name="tasa" step="0.01" value={{cooviahorro.tasa}}></input>
-        </div>
-        <input type="submit" value="Actualizar"/>
-    </fomr>
-    <a href="{% url 'cooviahorro' %}"><h5>Volver</h5></a>
+    </div>
+
 {% endblock %}

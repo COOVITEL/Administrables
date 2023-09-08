@@ -35,7 +35,7 @@
                     <td class="tb data">{{ahorro.type}}</td>
                     <td class="tb data">{{ahorro.amountMin|intcomma}}</td>
                     <td class="tb data">{{ahorro.termMin|intcomma}}</td>
-                    <td class="tb data">{{ahorro.tasa}}</td>
+                    <td class="tb data">{{ahorro.tasa|intcomma}}</td>
                     <td class="tb"><a href="{% url 'updatecooviahorro' ahorro.id %}"><img class="image" src="static/images/lapiz.png"/></a></a></td>
                     <td class="tb"><a href="{% url 'deletecooviahorro' ahorro.id %}"><img class="image" src="static/images/basura.png"/></a></a></td>
                 </tr>

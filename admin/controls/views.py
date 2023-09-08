@@ -114,7 +114,7 @@ def updatecooviahorro(request, id):
     if request.method == 'POST':
         cooviahorro.amountMin = request.POST['amountMin']
         cooviahorro.termMin = request.POST['termMin']
-        cooviahorro.tasa = request.POST['tasa']
+        cooviahorro.tasa = request.POST['tasa']        
         cooviahorro.save()
         return redirect('cooviahorro')      
     return render(request, 'updatecooviahorro.html', {'cooviahorro': context})

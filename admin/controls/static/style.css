@@ -92,7 +92,7 @@ main {
     font-size: 2.5rem;
     color: #2c3870;
     font-family: 'sans-bold';
-    margin-top: 0px;
+    margin-top: 30px;
 }
 
 
@@ -419,6 +419,7 @@ td {
 
 .cont-back {
     width: 100%;
+    height: 50px;
 }
 .back {
     font-size: 1.5rem;
@@ -427,6 +428,9 @@ td {
     color: #2c3870;
     margin-left: 20px;
     margin-bottom: 50px;
+}
+.back h5 {
+    margin: 0;
 }
 
 @media screen and (max-width:500px) {
@@ -462,6 +466,12 @@ td {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border: 1px solid #2c3870;
+    padding: 20px;
+    border-radius: 20px;
+    -webkit-box-shadow: 0px 0px 4px 3px rgba(0,0,0,0.45);
+    -moz-box-shadow: 0px 0px 4px 3px rgba(0,0,0,0.45);
+    box-shadow: 0px 0px 4px 3px rgba(0,0,0,0.45);
 }
 
 .types {
@@ -471,4 +481,51 @@ td {
     border: 2px solid #2c3870;
     border-radius: 20px;
     margin: 10px;
+}
+
+.input-datas {
+    padding: 20px;
+    border-bottom: 1px solid #2c38703f;
+}
+
+.form label {
+    color: #2c3870;
+    font-size: 1.5rem;
+}
+
+.down {
+    border: 0;
+}
+
+.input {
+    height: 20px;
+    border: 0;
+    border-bottom: 1px solid #2c3870;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.create {
+    background-color: #2c3870;
+    height: 40px;
+    width: 90px;
+    margin: 0;
+    border: 0;
+    color: white;
+    border-radius: 20px;
+    -webkit-box-shadow: 0px 0px 4px 3px rgba(0,0,0,0.45);
+    -moz-box-shadow: 0px 0px 4px 3px rgba(0,0,0,0.45);
+    box-shadow: 0px 0px 4px 3px rgba(0,0,0,0.45);
+}
+
+.create:hover {
+    transform: scale(1.05);
+    -webkit-box-shadow: 0px 0px 4px 3px rgba(1, 96, 160, 0.45);
+    -moz-box-shadow: 0px 0px 4px 3px rgba(3, 126, 163, 0.45);
+    box-shadow: 0px 0px 4px 3px rgba(2, 163, 168, 0.45);
+}
+
+.title-sm {
+    margin:0;
+    color: #2c3870;
 }
