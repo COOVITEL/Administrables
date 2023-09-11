@@ -9,7 +9,7 @@
             <ul class="menu-links">
                 <li class="link"><a href="{% url 'admin' %}">Inicio</a></li>
                 <li class="link"><a href="{% url 'cdats' %}">Cdas</a></li>
-                <li class="link"><a href="{% url 'cooviahorro' %}">Coociahorro</a></li>
+                <li class="link"><a href="{% url 'cooviahorro' %}">Cooviahorro</a></li>
                 <li class="link"><a href="#">Credito</a></li>
                 <li class="link"><a href="{% url 'user-logout' %}">Cerrar Sesion</a></li>
             </ul>
@@ -25,7 +25,7 @@
             {% csrf_token %}
             <div class="input-datas">
                 <label for="amountMin">Monto minimo:</label>
-                <input class="input" id="amountMin" type="number" name="amountMin" value={{cooviahorro.amountMin}}></input>
+                <input class="input" id="amountMin" type="text" name="amountMin" value={{cooviahorro.amountMin}} oninput="formatNumber(this)"></input>
             </div>
             <div class="input-datas">
                 <label for="termMin">Tiempo minimo:</label>
@@ -33,7 +33,7 @@
             </div>
             <div class="input-datas down">
                 <label for="tasa">Tasa:</label>
-                <input class="input"  id="tasa" type="numeric" name="tasa" step="0.01" value={{cooviahorro.tasa}}></input>
+                <input class="input"  id="tasa" type="text" name="tasa" step="0.01" value={{cooviahorro.tasa}}></input>
             </div>
             <input class="create" type="submit" value="Actualizar"/>
         </form>

@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import TasasCDAT, TasasCooviahorro
 from .forms import CreateUserForm, LoginForm
+from rest_framework import viewsets
+from .serializer import CdatSerializer, CooviahorroSerializer
 
 from django.contrib.auth.decorators import login_required
 
@@ -123,3 +125,12 @@ def deletecooviahorro(request, id):
     cooviahoroo = TasasCooviahorro.objects.get(id=id)
     cooviahoroo.delete()
     return redirect("cooviahorro")
+
+class ApiCdat(viewsets.ModelViewSet):
+    serializer_class =  CdatSerializer
+    queryset = TasasCDAT.objects.all()
+    
+
+class ApiCooviahorro(viewsets.ModelViewSet):
+    serializer_class =  CooviahorroSerializer
+    queryset = TasasCooviahorro.objects.all()

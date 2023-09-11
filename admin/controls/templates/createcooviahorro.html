@@ -9,7 +9,7 @@
             <ul class="menu-links">
                 <li class="link"><a href="{% url 'admin' %}">Inicio</a></li>
                 <li class="link"><a href="{% url 'cdats' %}">Cdas</a></li>
-                <li class="link"><a href="{% url 'cooviahorro' %}">Coociahorro</a></li>
+                <li class="link"><a href="{% url 'cooviahorro' %}">Cooviahorro</a></li>
                 <li class="link"><a href="#">Credito</a></li>
                 <li class="link"><a href="{% url 'user-logout' %}">Cerrar Sesion</a></li>
             </ul>
@@ -31,7 +31,7 @@
                 </select>
                 <div class="input-datas">
                     <label for="amountMin">Monto minimo:</label>
-                    <input class="input" id="amountMin" type="number" name="amountMin"/ required>
+                    <input class="input" id="amountMin" type="text" name="amountMin" required oninput="formatNumber(this)"/>
                 </div>
                 <div class="input-datas">
                     <label for="termMin">Tiempo minimo:</label>

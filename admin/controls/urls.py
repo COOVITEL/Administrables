@@ -1,5 +1,10 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register(r'apicdats', views.ApiCdat, 'apicdats')
+router.register(r'apicooviahorro', views.ApiCooviahorro, 'apicooviahorro')
 
 urlpatterns = [
     path("", views.login, name="login"),
@@ -14,4 +19,5 @@ urlpatterns = [
     path("deletecooviahorro/<int:id>", views.deletecooviahorro, name="deletecooviahorro"),
     path("cooviahorro/updatecooviahorro/<int:id>", views.updatecooviahorro, name="updatecooviahorro"),
     path("administrables", views.Admin, name="admin"),
+    path("api/", include(router.urls))
 ]

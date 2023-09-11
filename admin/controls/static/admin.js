@@ -16,3 +16,23 @@ button2.addEventListener("click", function() {
     register.classList.add("see")
     login.classList.remove("see")
 })
+
+
+function formatNumber(input) {
+    // Obtener el valor del campo de entrada
+    var value = input.value;
+    //var val = value.replace(",", "")
+    var rev = reverseString(value)
+    var setVal = rev.replace(/\D/g, '')
+    var formatVal = setVal.replace(/(\d{3})/g, '\$1.')
+    var newVla = reverseString(formatVal)
+    if (newVla[0] == "."){
+      newVla = newVla.slice(1)
+    }
+    console.log(newVla)
+    input.value = newVla;
+}
+
+function reverseString(str) {
+    return str.split('').reverse().join('')
+}
