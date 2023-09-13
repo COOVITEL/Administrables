@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import TasasCDAT, TasasCooviahorro
 from .forms import CreateUserForm, LoginForm
 from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
 from .serializer import CdatSerializer, CooviahorroSerializer
 
 from django.contrib.auth.decorators import login_required
@@ -58,6 +59,7 @@ def Cdat(request):
     return render(request, 'cdat.html', {'cdats': cdats})
 
 # Create new control cdat
+@login_required(login_url="login")
 def createCdat(request):
     if request.method == 'POST':
         type = request.POST['type']
@@ -71,7 +73,8 @@ def createCdat(request):
         create.save()
         return redirect('cdats')
     return render(request, 'createcdat.html')
-
+# Update cdat
+@login_required(login_url="login")
 def updatecdat(request, id):
     cdat = TasasCDAT.objects.get(id=id)
     context = {"cdat": cdat}
@@ -85,6 +88,7 @@ def updatecdat(request, id):
         return redirect('cdats')
     return render(request, 'updatecdat.html', context)
 
+@login_required(login_url="login")
 def deletecdat(request, id):
     cdat = TasasCDAT.objects.get(id=id)
     cdat.delete()
@@ -97,6 +101,7 @@ def Cooviahorro(request):
     ahorros = TasasCooviahorro.objects.all()
     return render(request, 'cooviahorro.html', {'ahorros': ahorros})
 
+@login_required(login_url="login")
 def createCooviahorro(request):
     if request.method == 'POST':
         type = request.POST['type']
@@ -110,6 +115,7 @@ def createCooviahorro(request):
     return render(request, 'createcooviahorro.html')
 
 # Get cooviahorro
+@login_required(login_url="login")
 def updatecooviahorro(request, id):
     cooviahorro = TasasCooviahorro.objects.get(id=id)
     context = cooviahorro
@@ -121,16 +127,19 @@ def updatecooviahorro(request, id):
         return redirect('cooviahorro')      
     return render(request, 'updatecooviahorro.html', {'cooviahorro': context})
 
+@login_required(login_url="login")
 def deletecooviahorro(request, id):
     cooviahoroo = TasasCooviahorro.objects.get(id=id)
     cooviahoroo.delete()
     return redirect("cooviahorro")
 
 class ApiCdat(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
     serializer_class =  CdatSerializer
     queryset = TasasCDAT.objects.all()
     
 
 class ApiCooviahorro(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
     serializer_class =  CooviahorroSerializer
     queryset = TasasCooviahorro.objects.all()

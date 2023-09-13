@@ -430,7 +430,7 @@ td {
     margin-bottom: 50px;
 }
 .back h5 {
-    margin: 0;
+    margin-bottom: 20px;
 }
 
 @media screen and (max-width:500px) {
