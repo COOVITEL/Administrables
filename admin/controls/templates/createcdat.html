@@ -8,10 +8,10 @@
             <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
             <ul class="menu-links">
                 <li class="link"><a href="{% url 'admin' %}">Inicio</a></li>
-                <li class="link"><a href="{% url 'cdats' %}">Cdat</a></li>
-                <li class="link"><a href="{% url 'cooviahorro' %}">Cooviahorro</a></li>
-                <li class="link"><a href="#">Credito</a></li>
-                <li class="link"><a href="{% url 'user-logout' %}">Cerrar Sesion</a></li>
+                <li class="link"><a href="{% url 'cdats' %}">Cdats</a></li>
+                <li class="link"><a href="{% url 'cooviahorro' %}">Cooviahorros</a></li>
+                <li class="link"><a href="#">Créditos</a></li>
+                <li class="link"><a href="{% url 'user-logout' %}">Cerrar Sesión</a></li>
             </ul>
         </nav>
     </header>
@@ -22,10 +22,14 @@
         <h1 class="title">Nuevo Cdat</h1>
         <form class="form" action="createcdat" method="POST">
             {% csrf_token %}
-            <select name="type" class="types" required>
-                <option value="">Seleccione tipo</option>
+            <select name="person" class="types" required>
+                <option value="">Seleccione tipo de persona</option>
                 <option value="NATURAL">NATURAL</option>
                 <option value="JURIDICA">JURIDICA</option>
+            </select>
+            <select name="type" class="types" required>
+                <option value="">Selecciones tipo de tasa</option>
+                <option value="ACTUAL">ACTUAL</option>
                 <option value="CAMPAÑA">CAMPAÑA</option>
             </select>
             <div class="input-datas">

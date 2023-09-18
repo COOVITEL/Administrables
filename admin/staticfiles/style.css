@@ -139,6 +139,7 @@ form p input:focus {
     border-radius: 20px;
     position: relative;
     left: 80px;
+    text-align: center;
 }
 
 .button:hover {

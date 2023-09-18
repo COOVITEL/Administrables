@@ -62,6 +62,7 @@ def Cdat(request):
 @login_required(login_url="login")
 def createCdat(request):
     if request.method == 'POST':
+        person = request.POST['person']
         type = request.POST['type']
         since = request.POST['since']
         until = request.POST['until']
@@ -69,7 +70,7 @@ def createCdat(request):
         amountuntil = request.POST['amountuntil']
         tasa = request.POST['tasa']
 
-        create = TasasCDAT(type=type, since=since, until=until, amountsince=amountsince, amountuntil=amountuntil, tasa=tasa)
+        create = TasasCDAT(person=person,  type=type, since=since, until=until, amountsince=amountsince, amountuntil=amountuntil, tasa=tasa)
         create.save()
         return redirect('cdats')
     return render(request, 'createcdat.html')

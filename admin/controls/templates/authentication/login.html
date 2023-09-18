@@ -3,31 +3,31 @@
 {% block content %}
     <main>
         <div class="start">
-            <button class="bt1 act">INICIAR SESION</button>
+            <button class="bt1 act">INICIAR SESIÓN</button>
             <button class="bt2">REGISTRARSE</button>
         </div>
         <div class="contain">
             <div class="logo"></div>
             <div class="login see">
-                <h1 class="title tlsmall">Iniciar Sesion</h1>
+                <h1 class="title tlsmall">Iniciar Sesión</h1>
                 <form method="POST" autocomplete="off">
                     {% csrf_token %}
 
                     {{loginform.as_p}}
 
-                    <input class="button lg"type="submit" value="Iniciar Sesion"/>
+                    <input class="button lg" type="submit" value="Iniciar Sesión"/>
                 </form>
                 <p class="remember"><a href="#">Recuperar contraseña!</a></p>
             </div>
 
             <div class="register">
-                <h1 class="title tlsmall">Registrase</h1>
+                <h1 class="title tlsmall">Registrarse</h1>
                 <form method="POST" autocomplete="off">
                     {% csrf_token %}
 
                     {{registerform.as_p}}
 
-                    <input class="button rg" type="submit" value="Registrase"/>
+                    <input class="button rg" type="submit" value="Registrarse"/>
                 </form>
             </div>
         </div>

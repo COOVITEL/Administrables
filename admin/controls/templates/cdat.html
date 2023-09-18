@@ -9,10 +9,10 @@
             <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
             <ul class="menu-links">
                 <li class="link"><a href="{% url 'admin' %}">Inicio</a></li>
-                <li class="link"><a href="{% url 'cdats' %}">Cdas</a></li>
-                <li class="link"><a href="{% url 'cooviahorro' %}">Cooviahorro</a></li>
-                <li class="link"><a href="#">Credito</a></li>
-                <li class="link"><a href="{% url 'user-logout' %}">Cerrar Sesion</a></li>
+                <li class="link"><a href="{% url 'cdats' %}">Cdats</a></li>
+                <li class="link"><a href="{% url 'cooviahorro' %}">Cooviahorros</a></li>
+                <li class="link"><a href="#">Créditos</a></li>
+                <li class="link"><a href="{% url 'user-logout' %}">Cerrar Sesión</a></li>
             </ul>
         </nav>
     </header>
@@ -25,6 +25,7 @@
         <div>
             <table>
                 <tr>
+                    <td class="ttb">Persona</td>
                     <td class="ttb">Tipo</td>
                     <td class="ttb">Monto</td>
                     <td class="ttb">Plazo</td>
@@ -34,6 +35,7 @@
                 </tr>
                 {% for cdat in cdats%}
                     <tr>
+                        <td class="tb data">{{cdat.person}}</td>
                         <td class="tb data">{{cdat.type}}</td>
                         <td class="tb data">{{cdat.since|intcomma}} / {{ cdat.until|intcomma }}</td>
                         <td class="tb data">{{cdat.amountsince|intcomma}} / {{cdat.amountuntil}}</td>

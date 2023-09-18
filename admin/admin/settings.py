@@ -132,8 +132,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Cors authoriation
-CORS_ALLOWED_ORIGINS = []
-
+CORS_ALLOWED_ORIGINS = ['http://localhost:5173', 'https://cooviahorro.coovitel.coop', 'https://cdat.coovitel.coop']
+# 'https://cooviahorro.coovitel.coop/', 'https://cdat.coovitel.coop/'
 
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
