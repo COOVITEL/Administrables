@@ -19,5 +19,6 @@ urlpatterns = [
     path("deletecooviahorro/<int:id>", views.deletecooviahorro, name="deletecooviahorro"),
     path("cooviahorro/updatecooviahorro/<int:id>", views.updatecooviahorro, name="updatecooviahorro"),
     path("administrables", views.Admin, name="admin"),
+    path("dates_digiturns", views.downloadDigiTurn, name="dates"),
     path("api/", include(router.urls))
 ]

@@ -1,3 +1,7 @@
+import requests
+import pandas as pd
+from datetime import datetime
+from django.http import FileResponse
 from django.shortcuts import render, redirect
 from .models import TasasCDAT, TasasCooviahorro
 from .forms import CreateUserForm, LoginForm
@@ -128,11 +132,48 @@ def updatecooviahorro(request, id):
         return redirect('cooviahorro')      
     return render(request, 'updatecooviahorro.html', {'cooviahorro': context})
 
+
 @login_required(login_url="login")
 def deletecooviahorro(request, id):
     cooviahoroo = TasasCooviahorro.objects.get(id=id)
     cooviahoroo.delete()
     return redirect("cooviahorro")
+
+
+
+
+@login_required(login_url="login")
+def downloadDigiTurn(request):
+    response = requests.get("http://192.168.1.16:8005/turns/api/v1/turns/")
+    list_dates = response.json()
+
+    list_dates = [item for item in list_dates if item.get("score_time") == "empty"]
+
+    city = request.GET.get("city")
+    date = request.GET.get("fecha")
+    now = datetime.now()
+    day = now.day
+    
+    if city is not None:
+        list_dates = [item for item in list_dates if item.get("city") == city]
+    if date == "1":
+        list_dates = [item for item in list_dates if str(item.get("date")[-2:]) == str(day)]
+    if date == "3":
+        list_dates = [item for item in list_dates if int(item.get("date")[-2:]) >= int(day - 3)]
+    if date == "7":
+        list_dates = [item for item in list_dates if int(item.get("date")[-2:]) >= int(day - 7)]
+
+    # Convertir los datos JSON en un DataFrame de pandas
+    df = pd.DataFrame(list_dates)
+
+    # Guardar el DataFrame en un archivo de Excel
+    df.to_excel('controls/static/datos.xlsx', index=False)
+
+    return render(request, "dates.html", {"dates": list_dates, "date": day})
+
+
+
+    
 
 class ApiCdat(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]

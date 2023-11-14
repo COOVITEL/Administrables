@@ -1,4 +1,5 @@
-{% extends 'layout.html' %}
+{% extends 'index.html' %}
+{% load static %}
 
 {% block header %}
     <header>
@@ -24,6 +25,10 @@
             <a class="links-admin" href="{% url 'cdats' %}"><h2>Cdats</h2></a>
             <a class="links-admin" href="{% url 'cooviahorro' %}"><h2>Cooviahorros</h2></a>
             <a class="links-admin" href="#"><h2>Crédito</h2></a>
+            <a class="links-admin" href="{% url 'dates' %}"><h2>Digi Turno</h2></a>
+            <a class="links-admin" href="{% static 'datos.xlsx' %}" target="_black"><h2>Download Dates Digiturn</h2></a>
+            <a class="links-admin" href="#"><h2>Simulador Cdat</h2></a>
+            <a class="links-admin" href="#"><h2>Simulador Cooviahorro</h2></a>
         </div>
     </div>
 {% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'index.html' %}
+{% load humanize %}
+
+{% block header %}
+    <header>
+        <div class="logo-admin"></div>
+        <nav class="menu">
+            <input class="menu-btn" type="checkbox" name="menu-btn" id="menu-btn">
+            <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+            <ul class="menu-links">
+                <li class="link"><a href="{% url 'admin' %}">Inicio</a></li>
+                <li class="link"><a href="{% url 'cdats' %}">Cdats</a></li>
+                <li class="link"><a href="{% url 'cooviahorro' %}">Cooviahorros</a></li>
+                <li class="link"><a href="#">Créditos</a></li>
+                <li class="link"><a href="{% url 'user-logout' %}">Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+{% endblock%}
+
+{% block content %}
+    <div class="cdats">
+        <h1 class="title">Digi Turno</h1>
+        <form action="">
+                <div>
+                    <div>
+                        <label for="cityBogota">Bogotá</label>
+                        <input type="checkbox" id="cityBogota" name="city" value="Bogotá">
+                        <label for="cityTunja">Tunja</label>
+                        <input type="checkbox" id="cityTunja" name="city" value="Tunja">
+                    </div>
+                    <div>
+                        <label for="fechaHoy">Hoy</label>
+                        <input type="checkbox" id="fechaHoy" name="fecha" value="1">
+                        <label for="fecha3dias">3 días</label>
+                        <input type="checkbox" id="fecha3dias" name="fecha" value="3">
+                        <label for="fecha7dias">7 días</label>
+                        <input type="checkbox" id="fecha7dias" name="fecha" value="7">
+                    </div>
+                </div>
+                <input type="submit" value="Buscar">
+        </form>
+
+        <table id="myTable">
+            <tr>
+                <td>Nombre</td>
+                <td>Cedula</td>
+                <td>Telefono</td>
+                <td>Ciudad</td>
+                <td>Tiempo</td>
+                <td>Servicio</td>
+                <td>Atenction</td>
+                <td>Recomendacion</td>
+            </tr>
+            {% for date in dates %}
+                {% if date.name|length > 12 %}
+                    <tr>
+                        <td>{{date.name}}</td>
+                        <td>{{date.c_number}}</td>
+                        <td>{{date.phone}}</td>
+                        <td>{{date.city}}</td>
+                        <td>{{date.score_time}}</td>
+                        <td>{{date.score_service}}</td>
+                        <td>{{date.score_att}}</td>
+                        <td>{{date.score_recommen}}</td>
+                        <td>{{date.date}}</td>
+                    </tr>
+                {% else %}
+                {% endif %}
+
+            {% endfor %} 
+        </table>     
+    </div>
+{% endblock %}
