@@ -7,13 +7,15 @@
     <title>Administrables</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
-    {% block header %}
-    {% endblock %}
 <body>
+    {% block header%}
+    {% endblock %}
     {% block content %}
     {% endblock %}
     <script src="{% static 'functions/admin.js' %}"></script>
+    <script src="{% static 'functions/updateTurn.js' %}"></script>
 </body>
 <footer></footer>
 </html>

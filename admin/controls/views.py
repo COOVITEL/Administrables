@@ -172,8 +172,11 @@ def downloadDigiTurn(request):
     return render(request, "dates.html", {"dates": list_dates, "date": day})
 
 
-
-    
+def updateTurn(request, id):
+    """"""
+    response = requests.get(f"http://192.168.1.16:8005/turns/api/v1/turns/{id}")
+    turn = response.json()
+    return render(request, "updatescore.html", {"turn": turn})
 
 class ApiCdat(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]

@@ -1,7 +1,7 @@
-var button1 = document.querySelector('.bt1');
-var button2 = document.querySelector('.bt2');
-var login = document.querySelector('.login');
-var register = document.querySelector('.register');
+let button1 = document.querySelector('.bt1');
+let button2 = document.querySelector('.bt2');
+let login = document.querySelector('.login');
+let register = document.querySelector('.register');
 
 button1.addEventListener("click", function() {
     button1.classList.add("act")
@@ -20,12 +20,12 @@ button2.addEventListener("click", function() {
 
 function formatNumber(input) {
     // Obtener el valor del campo de entrada
-    var value = input.value;
-    //var val = value.replace(",", "")
-    var rev = reverseString(value)
-    var setVal = rev.replace(/\D/g, '')
-    var formatVal = setVal.replace(/(\d{3})/g, '\$1.')
-    var newVla = reverseString(formatVal)
+    let value = input.value;
+    //let val = value.replace(",", "")
+    let rev = reverseString(value)
+    let setVal = rev.replace(/\D/g, '')
+    let formatVal = setVal.replace(/(\d{3})/g, '\$1.')
+    let newVla = reverseString(formatVal)
     if (newVla[0] == "."){
       newVla = newVla.slice(1)
     }

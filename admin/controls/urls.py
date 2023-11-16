@@ -20,5 +20,6 @@ urlpatterns = [
     path("cooviahorro/updatecooviahorro/<int:id>", views.updatecooviahorro, name="updatecooviahorro"),
     path("administrables", views.Admin, name="admin"),
     path("dates_digiturns", views.downloadDigiTurn, name="dates"),
+    path("updateTurn/<int:id>", views.updateTurn, name="updateTurn"),
     path("api/", include(router.urls))
 ]

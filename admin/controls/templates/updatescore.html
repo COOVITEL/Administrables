@@ -1,0 +1,20 @@
+{% extends "header.html" %}
+
+{% block content %}
+    <h1>Calificar Turno</h1>
+    <h2>{{turn.name}}</h2>
+    <div>
+        <h4>Tiempo de espera:</h4>
+        <div>
+            <label for="time">Rápido</label>
+            <input type="checkbox" id="time" name="time" value="Rápido">
+            <label for="time">Bogotá</label>
+            <input type="checkbox" id="time" name="city" value="Bogotá">
+            <label for="time">Bogotá</label>
+            <input type="checkbox" id="time" name="city" value="Bogotá">
+            <label for="time">Bogotá</label>
+            <input type="checkbox" id="time" name="city" value="Bogotá">
+        </div>
+        <input type="checkbox">
+    </div>
+{% endblock content %}
