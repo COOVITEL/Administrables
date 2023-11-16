@@ -30,10 +30,6 @@
                 <td>Cedula</td>
                 <td>Telefono</td>
                 <td>Ciudad</td>
-                <td>Tiempo</td>
-                <td>Servicio</td>
-                <td>Atenction</td>
-                <td>Recomendacion</td>
                 <td></td>
             </tr>
             {% for date in dates %}
@@ -43,46 +39,8 @@
                     <td>{{date.c_number}}</td>
                     <td>{{date.phone}}</td>
                     <td>{{date.city}}</td>
-                    <td>{{date.score_time}}</td>
-                    <td>{{date.score_service}}</td>
-                    <td>{{date.score_att}}</td>
-                    <td>{{date.score_recommen}}</td>
                     <td>{{date.date}}</td>
-                    <td><button class="update_turn" data-id="{{ forloop.counter0 }}">Actualizar</button></td>
-                    <div id="modal_turn_{{ forloop.counter0 }}" class="w3-modal modal_turn">
-                        <div class="w3-modal-content">
-                            <div class="w3-container">
-                                <span data-id="{{ forloop.counter0 }}" class="close-modal w3-button w3-display-topright">&times;</span>
-                                <p>{{date.name}}</p>
-                                <p>{{date.phone}}</p>
-                                <p>{{date.city}}</p>
-                                <select name="" id="">
-                                    <option value=""></option>
-                                    <option value=""></option>
-                                    <option value=""></option>
-                                    <option value=""></option>
-                                </select>
-                                <select name="" id="">
-                                    <option value=""></option>
-                                    <option value=""></option>
-                                    <option value=""></option>
-                                    <option value=""></option>
-                                </select>
-                                <select name="" id="">
-                                    <option value=""></option>
-                                    <option value=""></option>
-                                    <option value=""></option>
-                                    <option value=""></option>
-                                </select>
-                                <select name="" id="">
-                                    <option value=""></option>
-                                    <option value=""></option>
-                                    <option value=""></option>
-                                    <option value=""></option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+                    <td><a href="{% url 'updateTurn' date.id%}">Actializar</a></td>
                 </tr>
             {% endif %}
 

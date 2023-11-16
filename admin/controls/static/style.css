@@ -24,6 +24,12 @@ header {
 main {
     width: 100%;
     height: 100%;
+    display: block;
+}
+
+.cont {
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: row;
 }
@@ -33,7 +39,7 @@ main {
     background-repeat: no-repeat;
     background-size: cover;
     width: 33%;
-    height: auto;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -529,4 +535,16 @@ td {
 .title-sm {
     margin:0;
     color: #2c3870;
+}
+
+.modal {
+    height: 400px;
+    width: 100%;
+    border-radius: 10px;
+    background-color: #d3d3d3;
+}
+
+.scores {
+    display: flex;
+    flex-direction: column;
 }

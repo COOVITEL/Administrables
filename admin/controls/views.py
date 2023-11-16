@@ -1,10 +1,10 @@
 import requests
 import pandas as pd
+import os
 from datetime import datetime
-from django.http import FileResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from .models import TasasCDAT, TasasCooviahorro
-from .forms import CreateUserForm, LoginForm
+from .forms import CreateUserForm, LoginForm, Scores
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 from .serializer import CdatSerializer, CooviahorroSerializer
@@ -104,6 +104,7 @@ def deletecdat(request, id):
 @login_required(login_url="login")
 def Cooviahorro(request):
     ahorros = TasasCooviahorro.objects.all()
+    
     return render(request, 'cooviahorro.html', {'ahorros': ahorros})
 
 @login_required(login_url="login")
@@ -118,6 +119,7 @@ def createCooviahorro(request):
         create.save()
         return redirect('cooviahorro')
     return render(request, 'createcooviahorro.html')
+
 
 # Get cooviahorro
 @login_required(login_url="login")
@@ -140,10 +142,26 @@ def deletecooviahorro(request, id):
     return redirect("cooviahorro")
 
 
+@login_required(login_url="login")
+def downloadDates(request):
+    response = requests.get("http://192.168.1.16:8005/turns/api/v1/turns/")
+    dates = response.json()
+    
+    df = pd.DataFrame(dates)
+    df.to_excel('controls/static/datos.xlsx', index=False)
+
+    file_path = os.path.join('controls/static/', 'datos.xlsx')
+    if os.path.exists(file_path):
+        with open(file_path, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+            return response
+    else:
+        return redirect("admin")
 
 
 @login_required(login_url="login")
-def downloadDigiTurn(request):
+def DatesDigiTurn(request):
     response = requests.get("http://192.168.1.16:8005/turns/api/v1/turns/")
     list_dates = response.json()
 
@@ -162,21 +180,33 @@ def downloadDigiTurn(request):
         list_dates = [item for item in list_dates if int(item.get("date")[-2:]) >= int(day - 3)]
     if date == "7":
         list_dates = [item for item in list_dates if int(item.get("date")[-2:]) >= int(day - 7)]
+    
+    context = {
+        "dates": list_dates,
+        "date": day
+    }        
 
-    # Convertir los datos JSON en un DataFrame de pandas
-    df = pd.DataFrame(list_dates)
-
-    # Guardar el DataFrame en un archivo de Excel
-    df.to_excel('controls/static/datos.xlsx', index=False)
-
-    return render(request, "dates.html", {"dates": list_dates, "date": day})
+    return render(request, "dates.html", context=context)
 
 
 def updateTurn(request, id):
     """"""
-    response = requests.get(f"http://192.168.1.16:8005/turns/api/v1/turns/{id}")
+    response = requests.get(f"http://192.168.1.16:8005/turns/api/v1/turns/{id}/")
     turn = response.json()
-    return render(request, "updatescore.html", {"turn": turn})
+    copy = turn
+    form = Scores()
+    if request.method == "POST":
+        form = Scores(request.POST)
+        if form.is_valid():
+            copy["score_time"] = request.POST.get('time')
+            copy["score_service"] = request.POST.get('attention')
+            copy["score_att"] = request.POST.get('service')
+            copy["score_recommen"] = request.POST.get('recomment')
+            requests.put(f"http://192.168.1.16:8005/turns/api/v1/turns/{id}/", data=copy)
+            return redirect("dates")
+            
+    
+    return render(request, "updatescore.html", {"turn": turn, "scores": form})
 
 class ApiCdat(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
