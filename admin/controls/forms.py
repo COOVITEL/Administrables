@@ -50,7 +50,13 @@ class Scores(forms.Form):
         ('No', 'No'),
     ]
 
-    time = forms.ChoiceField(choices=CHOICES_TIME, label="Tiempo espera?")
-    attention = forms.ChoiceField(choices=CHOICES_ATT, label="Servicio brindado?")
-    service = forms.ChoiceField(choices=CHOICES_SERVICE, label="Solicitud atendida?")
-    recomment = forms.ChoiceField(choices=CHOICES_REC, label="Recomendaria Coovitel?")
+    time = forms.ChoiceField(choices=CHOICES_TIME, label="Tiempo espera?", widget=forms.Select(attrs={'class': 'scores-select'}))
+    attention = forms.ChoiceField(choices=CHOICES_ATT, label="Servicio brindado?", widget=forms.Select(attrs={'class': 'scores-select'}))
+    service = forms.ChoiceField(choices=CHOICES_SERVICE, label="Solicitud atendida?", widget=forms.Select(attrs={'class': 'scores-select'}))
+    recomment = forms.ChoiceField(choices=CHOICES_REC, label="Recomendaria Coovitel?", widget=forms.Select(attrs={'class': 'scores-select'}))
+    
+    def __init__(self, *args, **kwargs):
+        """"""
+        super(Scores, self).__init__(*args, **kwargs)
+        for filed in self.fields.values():
+            filed.widget.attrs.update({'class': 'scores_date'})

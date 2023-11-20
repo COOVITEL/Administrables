@@ -8,6 +8,7 @@ from .forms import CreateUserForm, LoginForm, Scores
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 from .serializer import CdatSerializer, CooviahorroSerializer
+from django.contrib import messages
 
 from django.contrib.auth.decorators import login_required
 
@@ -188,7 +189,7 @@ def DatesDigiTurn(request):
 
     return render(request, "dates.html", context=context)
 
-
+@login_required(login_url="login")
 def updateTurn(request, id):
     """"""
     response = requests.get(f"http://192.168.1.16:8005/turns/api/v1/turns/{id}/")
@@ -202,7 +203,9 @@ def updateTurn(request, id):
             copy["score_service"] = request.POST.get('attention')
             copy["score_att"] = request.POST.get('service')
             copy["score_recommen"] = request.POST.get('recomment')
+            copy["state"] = "by_call"
             requests.put(f"http://192.168.1.16:8005/turns/api/v1/turns/{id}/", data=copy)
+            messages.success(request, "Las calificaciones se actualizaron de forma correcta!")
             return redirect("dates")
             
     

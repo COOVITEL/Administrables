@@ -4,15 +4,11 @@
 
 {% block content %}
     <div class="contain-admin">
-        <h1 class="title">Administrables</h1>
-        <div class="options">
-            <a class="links-admin" href="{% url 'cdats' %}"><h2>Cdats</h2></a>
-            <a class="links-admin" href="{% url 'cooviahorro' %}"><h2>Cooviahorros</h2></a>
-            <a class="links-admin" href="#"><h2>Crédito</h2></a>
-            <a class="links-admin" href="{% url 'dates' %}"><h2>Digi Turno</h2></a>
-            <a class="links-admin" href="{% url 'download' %}"><h2>Download Dates Digiturn</h2></a>
-            <a class="links-admin" href="#"><h2>Simulador Cdat</h2></a>
-            <a class="links-admin" href="#"><h2>Simulador Cooviahorro</h2></a>
-        </div>
+        <a class="links-admin" href="{% url 'cdats' %}"><h2>Tasas Cdats</h2></a>
+        <a class="links-admin" href="{% url 'cooviahorro' %}"><h2>Tasas Cooviahorros</h2></a>
+        <a class="links-admin" href="{% url 'dates' %}"><h2>Calificaciones Digiturno</h2></a>
+        <a class="links-admin" href="{% url 'download' %}"><h2>Descargar base Digiturno</h2></a>
+        <a class="links-admin" href="https://cdat.coovitel.coop/" target="_blank"><h2>Simulador Cdat</h2></a>
+        <a class="links-admin" href="https://cooviahorro.coovitel.coop/" target="_blank"><h2>Simulador Cooviahorro</h2></a>
     </div>
 {% endblock %}

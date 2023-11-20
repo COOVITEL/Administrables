@@ -1,15 +1,23 @@
 {% extends "header.html" %}
 
 {% block content %}
-    <h1>{{turn.name}}</h1>
-    <h5>Cedula:{{turn.c_number}}&nbsp&nbsp&nbspTelefono:{{turn.phone}}</h5>
-    <h5>{{turn.city}}</h5>
-    <div>
-        <form method="POST" autocomplete="off">
-            
-            {% csrf_token %}
-            {{ scores.as_p}}
-            <input type="submit" value="Actualizar"/>
-        </form>
+<div class="scores-turns">
+    <h1 class="name">{{turn.name}}</h1>
+    <h5 class="user-date">Cedula: {{turn.c_number}}&nbsp&nbsp&nbspTelefono: {{turn.phone}}&nbsp&nbsp&nbspCiudad: {{turn.city}}&nbsp&nbsp&nbspFecha: {{turn.date}}</h5>
+    <form method="POST" autocomplete="off" class="form_scores">
+        
+        {% csrf_token %}
+        {% for field in scores %}
+        <div class="form-group">
+            <label for="{{ field.id_for_label }}" class="label_scores">{{ field.label }}</label>
+            {{ field }}
+        </div>
+        {% endfor %}
+        <input class="update-score" id="update-score" type="submit" value="Actualizar"/>
+    </form>
+    <div class="cont-back">
+        <a class="back bk" href="{% url 'dates' %}">Volver</a>
     </div>
+</div>
+
 {% endblock content %}
