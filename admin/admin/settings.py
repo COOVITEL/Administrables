@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-w4rmw15ys0ss6q-)@a2q+&%p64x4@6!=9bg3x3)-)b(+5n%6#t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -132,7 +132,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Cors authoriation
-CORS_ALLOWED_ORIGINS = ['http://localhost:5173', 'https://cooviahorro.coovitel.coop', 'https://cdat.coovitel.coop']
+CORS_ALLOWED_ORIGINS = ['http://localhost:5173', 'https://cooviahorro.coovitel.coop', 'https://cdat.coovitel.coop', 'https://simuladorcdat.coovitel.coop']
 # 'https://cooviahorro.coovitel.coop/', 'https://cdat.coovitel.coop/'
 
 REST_FRAMEWORK = {

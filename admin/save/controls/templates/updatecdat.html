@@ -1,0 +1,34 @@
+{% extends "header.html" %}
+{% load humanize %}
+
+
+{% block content %}
+    <div class="cdats">
+        <h1 class="title">Actualizacion Cdat</h1>
+        <form method="POST" class="form">
+            {% csrf_token %}
+            <div class="input-datas">
+                <label for="since">Monto desde</label>
+                <input class="input"  id="since" type="text" name="since" value={{cdat.since}} required oninput="formatNumber(this)"></input>
+                <label for="until">hasta</label>
+                <input class="input"  id="until" type="text" name="until" value={{cdat.until}} required></input>
+            </div>
+            <div class="input-datas">
+                <label for="since-amount">Periodo desde</label>
+                <input class="input"  id="since-amount" type="number" name="amountsince" value={{cdat.amountsince}} required></input>
+                <label for="until-amount">hasta</label>
+                <input class="input"  id="until-amount" type="number" name="amountuntil" value={{cdat.amountuntil}} required></input>
+            </div>
+            <div class="input-datas down">
+                <label for="tasa">Tasa</label>
+                <input class="input"  id="tasa" type="number" name="tasa" step="0.01" value={{cdat.tasa}} placeholder={{cdat.tasa}} required></input>
+            </div>
+            <input class="create" type="submit" value="Actualizar" href="{% url 'cdats' %}"/>
+        </form>
+        <div class="cont-back">
+            <a class="back" href="{% url 'cdats' %}"><h5>Volver</h5></a>
+        </div>
+    </div>
+
+    
+{% endblock %}

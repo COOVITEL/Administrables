@@ -25,7 +25,7 @@
                         <td class="tb data">{{cdat.amountsince|intcomma}} / {{cdat.amountuntil}}</td>
                         <td class="tb data">{{cdat.tasa}}</td>
                         <td class="tb"><a href="{% url 'updatecdat' cdat.id%}"><img class="image" src="static/images/lapiz.png"/></a></td>
-                        <td class="tb"><a href="{% url 'deletecdat' cdat.id %}"><img class="image" src="static/images/basura.png"/></a></td>
+                        <td class="tb"><a onclick="return confirm('Esta seguro de eliminar este rango de cdat?')" href="{% url 'deletecdat' cdat.id %}"><img class="image" src="static/images/basura.png"/></a></td>
                     </tr>
                 {% endfor %}
             </table>

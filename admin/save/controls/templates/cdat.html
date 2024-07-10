@@ -1,0 +1,38 @@
+{% extends 'header.html' %}
+{% load humanize %}
+
+
+{% block content %}
+
+    <div class="cdats">
+        <h1 class="title">Tasas de CDATS</h1>
+        <div>
+            <table>
+                <tr>
+                    <td class="ttb">Persona</td>
+                    <td class="ttb">Tipo</td>
+                    <td class="ttb">Monto</td>
+                    <td class="ttb">Plazo</td>
+                    <td class="ttb">Tasa</td>
+                    <td class="icon"></td>
+                    <td class="icon"></td>
+                </tr>
+                {% for cdat in cdats%}
+                    <tr>
+                        <td class="tb data">{{cdat.person}}</td>
+                        <td class="tb data">{{cdat.type}}</td>
+                        <td class="tb data">{{cdat.since|intcomma}} / {{ cdat.until|intcomma }}</td>
+                        <td class="tb data">{{cdat.amountsince|intcomma}} / {{cdat.amountuntil}}</td>
+                        <td class="tb data">{{cdat.tasa}}</td>
+                        <td class="tb"><a href="{% url 'updatecdat' cdat.id%}"><img class="image" src="static/images/lapiz.png"/></a></td>
+                        <td class="tb"><a href="{% url 'deletecdat' cdat.id %}"><img class="image" src="static/images/basura.png"/></a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <a href="{% url 'createcdat' %}"><img class="image" src="static/images/agregar.png"/></a>
+        <div class="cont-back">
+            <a class="back" href="{% url 'admin' %}">Volver</a>
+        </div>
+    </div>
+{% endblock %} 

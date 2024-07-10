@@ -23,7 +23,7 @@
                 <label for="tasa">Tasa</label>
                 <input class="input"  id="tasa" type="number" name="tasa" step="0.01" value={{cdat.tasa}} placeholder={{cdat.tasa}} required></input>
             </div>
-            <input class="create" type="submit" value="Actualizar" href="{% url 'cdats' %}"/>
+            <input  class="create" onclick="return confirm('Esta seguro de actualiar este rango de CDAT?')" type="submit" value="Actualizar" href="{% url 'cdats' %}"/>
         </form>
         <div class="cont-back">
             <a class="back" href="{% url 'cdats' %}"><h5>Volver</h5></a>

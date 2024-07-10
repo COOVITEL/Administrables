@@ -15,12 +15,8 @@ urlpatterns = [
     path("deletecdat/<int:id>", views.deletecdat, name="deletecdat"),
     path("cooviahorro", views.Cooviahorro, name="cooviahorro"),
     path("createcooviahorro", views.createCooviahorro, name="createcooviahorro"),
-    path("cooviahorro/update/<int:id>", views.updatecooviahorro, name="updatecooviahorro"),
     path("deletecooviahorro/<int:id>", views.deletecooviahorro, name="deletecooviahorro"),
     path("cooviahorro/updatecooviahorro/<int:id>", views.updatecooviahorro, name="updatecooviahorro"),
     path("administrables", views.Admin, name="admin"),
-    path("dates_digiturns", views.DatesDigiTurn, name="dates"),
-    path("download_dates", views.downloadDates, name="download"),
-    path("update_date_digiturn/<int:id>", views.updateTurn, name="updateTurn"),
     path("api/", include(router.urls))
 ]

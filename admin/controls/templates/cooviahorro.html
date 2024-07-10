@@ -5,31 +5,29 @@
 {% block content %}
     <div class="cdats">
         <h1 class="title">Tasas de Cooviahorro</h1>
-        <div>
-            <table>
+        <table>
+            <tr>
+                <td class="ttb">Tipo</td>
+                <td class="ttb">Monto</td>
+                <td class="ttb">Plazo</td>
+                <td class="ttb">Tasa</td>
+                <td class="icon"></td>
+                <td class="icon"></td>
+            </tr>
+            {% for ahorro in ahorros %}
                 <tr>
-                    <td class="ttb">Tipo</td>
-                    <td class="ttb">Monto</td>
-                    <td class="ttb">Plazo</td>
-                    <td class="ttb">Tasa</td>
-                    <td class="icon"></td>
-                    <td class="icon"></td>
+                    <td class="tb data">{{ahorro.type}}</td>
+                    <td class="tb data">{{ahorro.amountMin|intcomma}}</td>
+                    <td class="tb data">{{ahorro.termMin|intcomma}}</td>
+                    <td class="tb data">{{ahorro.tasa|intcomma}}</td>
+                    <td class="tb"><a href="{% url 'updatecooviahorro' ahorro.id %}"><img class="image" src="static/images/lapiz.png"/></a></a></td>
+                    <td class="tb"><a onclick="return confirm('Esta seguro de eliminar este rango de Cooviahorro?')" href="{% url 'deletecooviahorro' ahorro.id %}"><img class="image" src="static/images/basura.png"/></a></a></td>
                 </tr>
-                {% for ahorro in ahorros %}
-                    <tr>
-                        <td class="tb data">{{ahorro.type}}</td>
-                        <td class="tb data">{{ahorro.amountMin|intcomma}}</td>
-                        <td class="tb data">{{ahorro.termMin|intcomma}}</td>
-                        <td class="tb data">{{ahorro.tasa|intcomma}}</td>
-                        <td class="tb"><a href="{% url 'updatecooviahorro' ahorro.id %}"><img class="image" src="static/images/lapiz.png"/></a></a></td>
-                        <td class="tb"><a href="{% url 'deletecooviahorro' ahorro.id %}"><img class="image" src="static/images/basura.png"/></a></a></td>
-                    </tr>
-                {% endfor %}
-            </table>
-        </div>
+            {% endfor %}
+        </table>
         <a href="{% url 'createcooviahorro' %}"><img class="image" src="static/images/agregar.png"/></a>
         <div class="cont-back">
-            <a class="back" href="{% url 'admin' %}">Volver</a>
+            <a class="back" href="{% url 'admin' %}"><h5>Volver</h5></a>
         </div>
     </div>
 {% endblock %}

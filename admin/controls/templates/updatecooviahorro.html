@@ -17,9 +17,9 @@
             </div>
             <div class="input-datas down">
                 <label for="tasa">Tasa:</label>
-                <input class="input"  id="tasa" type="text" name="tasa" step="0.01" value={{cooviahorro.tasa}}></input>
+                <input class="input" id="tasa" type="text" name="tasa" step="0.01" value={{cooviahorro.tasa}}></input>
             </div>
-            <input class="create" type="submit" value="Actualizar"/>
+            <input class="create" onclick="return confirm('Esta seguro de actualizar este rango de Cooviahorro?')" type="submit" value="Actualizar"/>
         </form>
         <div class="cont-back">
             <a class="back" href="{% url 'cooviahorro' %}"><h5>Volver</h5></a>
