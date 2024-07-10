@@ -9,43 +9,40 @@ from django.contrib.auth.decorators import login_required
 
 # Authetication models and functions
 
-from django.contrib.auth.models import auth
-from django.contrib.auth import authenticate, login, logout
-
 # Login sesion with the users
-def login(request):
+# def login(request):
     
-    form1 = LoginForm()
-    if request.method == 'POST':
-        form1 = LoginForm(request, data=request.POST)
-        if form1.is_valid():
-            username = request.POST.get('username')
-            password = request.POST.get('password')
+#     form1 = LoginForm()
+#     if request.method == 'POST':
+#         form1 = LoginForm(request, data=request.POST)
+#         if form1.is_valid():
+#             username = request.POST.get('username')
+#             password = request.POST.get('password')
             
-            user = authenticate(request, username=username, password=password)
+#             user = authenticate(request, username=username, password=password)
             
-            if user is not None:
-                auth.login(request, user)
+#             if user is not None:
+#                 auth.login(request, user)
                 
-                return redirect("admin")
+#                 return redirect("admin")
 
 
-    form2 = CreateUserForm() 
-    if request.method == "POST":
-        form2 = CreateUserForm(request.POST)
-        if form2.is_valid():
-            form2.save()
-            return redirect('login')
+#     form2 = CreateUserForm() 
+#     if request.method == "POST":
+#         form2 = CreateUserForm(request.POST)
+#         if form2.is_valid():
+#             form2.save()
+#             return redirect('login')
     
-    context = {'loginform': form1,
-               'registerform': form2}
+#     context = {'loginform': form1,
+#                'registerform': form2}
     
-    return render(request, 'authentication/login.html', context=context)
+#     return render(request, 'authentication/login.html', context=context)
 
-# Close sesion
-def user_logout(request):
-    auth.logout(request)
-    return redirect('login')
+# # Close sesion
+# def user_logout(request):
+#     auth.logout(request)
+#     return redirect('login')
 
 # Render the options controls
 @login_required(login_url="login")
@@ -74,6 +71,7 @@ def createCdat(request):
         create.save()
         return redirect('cdats')
     return render(request, 'createcdat.html')
+
 # Update cdat
 @login_required(login_url="login")
 def updatecdat(request, id):

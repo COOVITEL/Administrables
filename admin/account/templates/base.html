@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>
+            {% block title %}
+            {% endblock title %}
+        </title>
+        {% block styles %}
+        {% endblock styles %}
+        {% load static %}
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+    </head>
+    <body>
+        <aside>
+            <a href="">
+                <picture>
+                    <source media="(min-width: 540px)" srcset="{% static 'images/logoColor.webp' %}">
+                    <img class="logo" src="{% static 'images/logoColorSmall.webp' %}" alt="logo coovitel">
+                </picture>                
+            </a>
+            <nav>
+                <ul class="menu">
+                    <li>
+                        <a class="links" href="{% url 'admin' %}">
+                            <p>
+                                Inicio
+                            </p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="links" href="{% url 'cdats' %}">
+                            <p>
+                                Cdats
+                            </p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="links" href="{% url 'cooviahorro' %}">
+                            <p>
+                                Cooviahorro
+                            </p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="links" href="">
+                            <p>
+                                Credito
+                            </p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="out">
+                {% if request.user.is_authenticated %}
+                    <a class="link" href="{% url "logout" %}">
+                        <p>
+                            Cerrar Sesión
+                        </p>
+                    </a>
+                {% else %}
+                    <a class="link" href="{% url "login" %}">
+                        <p>
+                            Iniciar Sesión
+                        </p>
+                    </a>
+                {% endif %}
+            </div>
+        </aside>
+        
+        <main>
+
+            <div class="content">
+                {% block content %}        
+                {% endblock content %}
+            </div>
+        </main>
+        {% load static %}
+        <script src="{% static 'scripts/script.js' %}"></script>
+
+    </body>
+</html>

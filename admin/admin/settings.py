@@ -26,12 +26,17 @@ SECRET_KEY = 'django-insecure-w4rmw15ys0ss6q-)@a2q+&%p64x4@6!=9bg3x3)-)b(+5n%6#t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+LOGIN_REDIRECT_URL = 'admin'
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+
 ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'account.apps.AccountConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -125,6 +130,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
