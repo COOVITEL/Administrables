@@ -7,7 +7,7 @@ class TasasCDAT(models.Model):
     until = models.CharField(max_length=100)
     amountsince = models.IntegerField()
     amountuntil = models.IntegerField()
-    tasa = models.CharField(max_length=100)
+    tasa = models.FloatField()
     
     def __str__(self):
         return f"Monto desde {self.since} hasta {self.until}, periodo entre {self.amountsince} y {self.amountuntil}"
@@ -16,7 +16,7 @@ class TasasCooviahorro(models.Model):
     type = models.CharField(max_length=100)
     amountMin = models.CharField(max_length=100)
     termMin = models.IntegerField()
-    tasa = models.CharField(max_length=100)
+    tasa = models.FloatField()
     
     def __str__(self):
         return self.type

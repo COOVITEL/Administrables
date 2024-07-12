@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load humanize %}
+
+
+{% block content %}
+    <div class="types">
+        <h1 class="title-type">Actualizacion Cdat</h1>
+        <div class="buttons">
+            <a class="bts" href="{% url 'cdats' %}"><h5>Volver</h5></a>
+        </div>
+        <form method="POST" class="form form2">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button onclick="return confirm('Esta seguro de actualiar este rango de CDAT?')" class="save" type="submit">
+                Actualizar
+            </button>
+        </form>
+    </div>
+    <script>
+        function handleChange(idName) {
+            var inputElement = document.getElementById(idName);
+            inputElement.value = inputElement.value.replace(/\D/g, ''); // Elimina caracteres no numéricos
+            var inputValue = inputElement.value.replace('.', '').split("").reverse(); // Reversa el valor para facilitar la inserción de puntos
+            var newValue = '';
+            for (var i = 0; i < inputValue.length; i++) {
+                if (i % 3 == 0 && i!= 0) { // Agrega un punto cada tres dígitos, excepto al inicio
+                    newValue += '.';
+                }
+                newValue += inputValue[i];
+            }
+            inputElement.value = newValue.split("").reverse().join(""); // Revierte el valor y lo establece en el input
+        }
+    </script>
+
+    
+{% endblock %}

@@ -3,13 +3,57 @@
 
 
 {% block content %}
-    <div class="contain-admin">
-        <h1 class="title">Administrables</h1>
-        <div class="options">
-            <a class="links-admin" href="{% url 'cdats' %}"><h2>Cdats</h2></a>
-            <a class="links-admin" href="{% url 'cooviahorro' %}"><h2>Cooviahorros</h2></a>
-            <a class="links-admin" href="https://cdat.coovitel.coop" target="_blank"><h2>Simulador Cdat</h2></a>
-            <a class="links-admin" href="#"><h2>Simulador Cooviahorro</h2></a>
+        <h1 class="title-type">Administrable</h1>
+        <div class="opt">
+            <div class="content-option">
+                <h3>Control de Tasas y Parametros</h3>
+                <div>
+                    <ul class="links-opt">
+                        <a href="{% url 'cdats' %}">
+                            <li class="cta">
+                                <span>Cdats</span>
+                                <svg width="15px" height="10px" viewBox="0 0 13 10">
+                                <path d="M1,5 L11,5"></path>
+                                <polyline points="8 1 12 5 8 9"></polyline>
+                                </svg>
+                            </li>
+                        </a>
+                        <a href="{% url 'cooviahorro' %}">
+                            <li class="cta">
+                                <span>Cooviahorros</span>
+                                <svg width="15px" height="10px" viewBox="0 0 13 10">
+                                    <path d="M1,5 L11,5"></path>
+                                    <polyline points="8 1 12 5 8 9"></polyline>
+                                </svg>
+                            </li>
+                        </a>
+                    </ul>
+                </div>
+            </div>
+            <div class="content-option">
+                <h3>Simuladores</h3>
+                <div>
+                    <ul class="links-opt">
+                        <a href="https://cdat.coovitel.coop" target="_blank">
+                            <li class="cta">
+                                <span>Simulador Cdat</span>
+                                <svg width="15px" height="10px" viewBox="0 0 13 10">
+                                    <path d="M1,5 L11,5"></path>
+                                    <polyline points="8 1 12 5 8 9"></polyline>
+                                </svg>
+                            </li>
+                        </a>
+                        <a href="https://cooviahorro.coovitel.coop" target="_blank">
+                            <li class="cta">
+                                <span>Simulador Cooviahorro</span>
+                                <svg width="15px" height="10px" viewBox="0 0 13 10">
+                                    <path d="M1,5 L11,5"></path>
+                                    <polyline points="8 1 12 5 8 9"></polyline>
+                                </svg>
+                            </li>
+                        </a>
+                    </ul>
+                </div>
+            </div>
         </div>
-    </div>
 {% endblock %}

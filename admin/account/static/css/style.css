@@ -55,7 +55,7 @@ body {
 aside {
     height: 100vh; /* Mantén esta línea para asegurar que el aside ocupe toda la altura disponible */
     grid-area: "aside";
-    background-color: var(--colorOne);
+    background-color: var(--colorLinks);
     position: sticky; /* Cambia a sticky para que se mantenga visible mientras se desplaza */
     top: 0; /* Especifica desde dónde debe comenzar a ser fijo */
 }
@@ -286,6 +286,7 @@ transform: translateX(-50%);
 
 .content {
     height: 100vh;
+    width: auto;
     display: flex;
     flex-direction: column;
     padding: 20px;

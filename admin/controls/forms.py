@@ -1,18 +1,56 @@
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth.models import User
 from django import forms
-from django.forms.widgets import PasswordInput, TextInput
+from .models import *
 
+TYPES_PERSON = [
+    ('NATURAL', 'NATURAL'),
+    ('JURIDICA', 'JURIDICA'),
+]
 
-# - Create/Register User
+TYPE_CDAT = [
+    ('ACTUAL', 'ACTUAL'),
+    ('CAMPAÑA', 'CAMPAÑA')
+]
 
-class CreateUserForm(UserCreationForm):
-    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), label="Usuario")
-    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}), label="Email")
-    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}), label="Contraseña")
-    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}), label="Confirme Contraseña")
-# - Authetication User
+class TasasCDATForm(forms.ModelForm):
+    """"""
+    person = forms.ChoiceField(
+        required=True,
+        widget=forms.RadioSelect,
+        choices=TYPES_PERSON,
+        label="Seleccione el tipo de persona a la cual aplicara el CDAT"
+    )
+    
+    type = forms.ChoiceField(
+        required=True,
+        widget=forms.RadioSelect,
+        choices=TYPE_CDAT,
+        label="Seleccione el tipo de CDAT"
+    )
+    
+    since = forms.CharField(widget=forms.TextInput(attrs={'oninput': "handleChange('id_since')"}),
+                            label="Monto minimo a aplicar")
+    until = forms.CharField(widget=forms.TextInput(attrs={'oninput': "handleChange('id_until')"}),
+                            label="Monto maximo a aplicar")
+    
+    class Meta():
+        model = TasasCDAT
+        fields = ['person', 'type', 'since', 'until', 'amountsince', 'amountuntil', 'tasa']
+        labels = {
+            'amountsince': 'Numero minimo de dias',
+            'amountuntil': 'Numero maximo de dias',
+            'tasa': 'Tasa a aplicar'
+        }
 
-class LoginForm(AuthenticationForm):
-    username = forms.CharField(widget=TextInput(attrs={'class': 'user-input'}), label="Usuario")
-    password = forms.CharField(widget=PasswordInput(), label="Contraseña")
+class TasasCooviahorroForm(forms.ModelForm):
+    """"""
+    amountMin = forms.CharField(widget=forms.TextInput(attrs={'oninput': "handleChange('id_amountMin')"}),
+                                label="Monto Minimo")
+
+    class Meta():
+        model = TasasCooviahorro
+        fields = ['type', 'amountMin', 'termMin', 'tasa']
+        labels = {
+            'type': 'Nombre del Cooviahorro',
+            'termMin': 'Plazo minimo en meses',
+            'tasa': 'Tasa',
+        }

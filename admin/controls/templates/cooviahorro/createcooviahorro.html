@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="types">
+        <h1 class="title-type">Nuevo Cooviahorro</h1>
+        <div class="buttons">
+            <a class="bts" href="{% url 'cooviahorro' %}"><h5>Volver</h5></a>
+        </div>
+        <form method="POST" class="form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="save" type="submit">Guardar</button>
+        </form>
+    </div>
+    <script>
+        function handleChange(idName) {
+            var inputElement = document.getElementById(idName);
+            inputElement.value = inputElement.value.replace(/\D/g, ''); // Elimina caracteres no numéricos
+            var inputValue = inputElement.value.replace('.', '').split("").reverse(); // Reversa el valor para facilitar la inserción de puntos
+            var newValue = '';
+            for (var i = 0; i < inputValue.length; i++) {
+                if (i % 3 == 0 && i!= 0) { // Agrega un punto cada tres dígitos, excepto al inicio
+                    newValue += '.';
+                }
+                newValue += inputValue[i];
+            }
+            inputElement.value = newValue.split("").reverse().join(""); // Revierte el valor y lo establece en el input
+        }
+    </script>
+
+{% endblock %}
