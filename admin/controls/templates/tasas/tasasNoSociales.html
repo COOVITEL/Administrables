@@ -4,30 +4,32 @@
 {% block content %}
 
     <div class="types">
-        <h1 class="title-type">Tasas de CDATS</h1>
+        <h1 class="title-type">Tasas segun el Pefil Asociado y Score</h1>
         <div class="buttons">
             <a class="bts" href="{% url 'admin' %}">Volver</a>
-            <a class="bts" href="{% url 'createcdat' %}">Nuevo</a>
+            <a class="bts" href="{% url 'tasascreatenosociales' %}">Nuevo</a>
         </div>
         <table>
             <tr>
-                <th>Persona</th>
-                <th>Tipo</th>
-                <th>Monto</th>
-                <th>Plazo</th>
-                <th>Tasa</th>
+                <th>Perfil</th>
+                <th>Rango Score</th>
+                <th>F.G.</th>
+                <th>Plazo Maximo</th>
+                <th>Garantía</th>
+                <th>Piso</th>
                 <th></th>
                 <th></th>
             </tr>
-            {% for cdat in cdats%}
+            {% for tasa in tasas%}
                 <tr>
-                    <td>{{cdat.person}}</td>
-                    <td>{{cdat.type}}</td>
-                    <td>{{cdat.since}} / {{ cdat.until }}</td>
-                    <td>{{cdat.amountsince}} / {{cdat.amountuntil}}</td>
-                    <td>{{cdat.tasa}}</td>
+                    <td>{{tasa.perfil}}</td>
+                    <td>>{{tasa.minScore}} y  <={{ tasa.maxScore }}</td>
+                    <td>{{tasa.fg}}</td>
+                    <td>{{tasa.plazo}}</td>
+                    <td>{{tasa.garantia}}</td>
+                    <td>{{tasa.piso}}</td>
                     <td class="tb">
-                        <a href="{% url 'updatecdat' cdat.id%}">
+                        <a href="{% url 'tasasupdatenosociales' tasa.id%}">
                             <svg class="image" xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24" fill="none">
                             <path d="M13 21H21" stroke="#323232" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M20.0651 7.39423L7.09967 20.4114C6.72438 20.7882 6.21446 21 5.68265 21H4.00383C3.44943 21 3 20.5466 3 19.9922V18.2987C3 17.7696 3.20962 17.2621 3.58297 16.8873L16.5517 3.86681C19.5632 1.34721 22.5747 4.87462 20.0651 7.39423Z" stroke="#323232" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -37,7 +39,7 @@
                         </a>
                     </td>
                     <td class="tb">
-                        <a onclick="return confirm('Esta seguro de eliminar este rango de cdat?')" href="{% url 'deletecdat' cdat.id %}">
+                        <a onclick="return confirm('Esta seguro de eliminar este rango de tasa?')" href="{% url 'tasasdeletenosociales' tasa.id %}">
                             <svg class="image" xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M779.5 1002.7h-535c-64.3 0-116.5-52.3-116.5-116.5V170.7h768v715.5c0 64.2-52.3 116.5-116.5 116.5zM213.3 256v630.1c0 17.2 14 31.2 31.2 31.2h534.9c17.2 0 31.2-14 31.2-31.2V256H213.3z" fill="#3688FF"/><path d="M917.3 256H106.7C83.1 256 64 236.9 64 213.3s19.1-42.7 42.7-42.7h810.7c23.6 0 42.7 19.1 42.7 42.7S940.9 256 917.3 256zM618.7 128H405.3c-23.6 0-42.7-19.1-42.7-42.7s19.1-42.7 42.7-42.7h213.3c23.6 0 42.7 19.1 42.7 42.7S642.2 128 618.7 128zM405.3 725.3c-23.6 0-42.7-19.1-42.7-42.7v-256c0-23.6 19.1-42.7 42.7-42.7S448 403 448 426.6v256c0 23.6-19.1 42.7-42.7 42.7zM618.7 725.3c-23.6 0-42.7-19.1-42.7-42.7v-256c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v256c-0.1 23.6-19.2 42.7-42.7 42.7z" fill="#5F6379"/></svg>
                         </a>
                     </td>

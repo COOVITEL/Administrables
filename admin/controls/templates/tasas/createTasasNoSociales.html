@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <div class="types">
+        <h1 class="title-type">Nueva Tasa segun el tipo de Afiliación y rango Score</h1>
+        <div class="buttons">
+            <a class="bts" href="{% url 'tasasnosociales' %}"><h5>Volver</h5></a>
+        </div>
+        <form method="POST" class="form form2">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="save" type="submit">Guardar</button>
+        </form>
+    </div>
+{% endblock %}

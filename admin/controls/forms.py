@@ -54,3 +54,41 @@ class TasasCooviahorroForm(forms.ModelForm):
             'termMin': 'Plazo minimo en meses',
             'tasa': 'Tasa',
         }
+
+class NoSocialesForm(forms.ModelForm):
+    """"""
+    class Meta():
+        model = NoSociales
+        fields = ['name', 'usura', 'descuentos', 'techoEA', 'techoNMV', 'plazo']
+        labels = {
+            'name': 'Nombre',
+            'usura': 'Tasa usura consumo',
+            'descuento': 'Puntos de Descuentos al Asociado',
+            'techoEA': 'Techo EA',
+            'techoNMV': 'Techo NMV',
+            'plazo': 'Plazo maximo de solicitud'
+        }
+
+class TypesAsociadoForm(forms.ModelForm):
+    """"""
+    class Meta():
+        model = TypeAsociado
+        fields = ['name']
+        labels = {
+            'name': 'Nombre del tipo de afiliación del asociado'
+        }
+
+class TasasNoSocialesForm(forms.ModelForm):
+    """"""
+    class Meta():
+        model = TasasNoSociales
+        fields = ['perfil', 'maxScore', 'minScore', 'fg', 'plazo', 'garantia', 'piso']
+        labels = {
+            'perfil': 'Tipo de perfil', 
+            'maxScore': 'Score Maximo',
+            'minScore': 'Score Minimo',
+            'fg': 'F.G.',
+            'plazo': 'Plazo Maximo',
+            'garantia': 'Garantía',
+            'piso': 'Piso'
+        }

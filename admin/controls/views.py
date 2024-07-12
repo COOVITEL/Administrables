@@ -73,11 +73,106 @@ def updatecooviahorro(request, id):
     return render(request, 'cooviahorro/updatecooviahorro.html', {'form': form})
 
 
-@login_required(login_url="login")
+@login_required
 def deletecooviahorro(request, id):
     cooviahoroo = get_object_or_404(TasasCooviahorro, id=id)
     cooviahoroo.delete()
     return redirect("cooviahorro")
+
+@login_required
+def noSociales(request):
+    nosociales = NoSociales.objects.all()
+    return render(request, 'noSociales/noSociales.html', {'nosociales': nosociales})
+
+@login_required
+def createNoSociales(request):
+    form = NoSocialesForm()
+    if request.method == 'POST':
+        form = NoSocialesForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('nosociales')
+    return render(request, 'noSociales/createNoSociales.html', {'form': form})
+
+@login_required
+def updateNoSociales(request, id):
+    nosocial = get_object_or_404(NoSociales, id=id)
+    form = NoSocialesForm(instance=nosocial)
+    if request.method == 'POST':
+        form = NoSocialesForm(request.POST, instance=nosocial)
+        if form.is_valid():
+            form.save()
+            return redirect('nosociales')
+    return render(request, 'noSociales/updateNoSociales.html', {'form': form})
+
+@login_required
+def deleteNoSociales(request, id):
+    nosocial = get_object_or_404(NoSociales, id=id)
+    nosocial.delete()
+    return redirect("nosociales")
+
+@login_required
+def typesAsociados(request):
+    asociados = TypeAsociado.objects.all()
+    form = TypesAsociadoForm()
+    if request.method == 'POST':
+        form = TypesAsociadoForm(request.POST)
+        form.save()
+        return redirect("asociados")
+    return render(request, "asociados/asociados.html", {
+        'asociados': asociados,
+        'form': form})
+
+@login_required
+def createTypesAsociados(request):
+    form = TypesAsociadoForm()
+    if request.method == 'POST':
+        form = TypesAsociadoForm(request.POST)
+        form.save()
+        return redirect("asociados")
+    return render(request, "asociados/createAsociado.html", {
+        'form': form})
+
+@login_required
+def deleteTypeAsociado(request, id):
+    asociado = get_object_or_404(TypeAsociado, id=id)
+    asociado.delete()
+    return redirect("asociados")
+
+
+
+
+@login_required
+def tasasNoSociales(request):
+    tasas = TasasNoSociales.objects.all()
+    return render(request, 'tasas/tasasNoSociales.html', {'tasas': tasas})
+
+@login_required
+def createTasasNoSociales(request):
+    form = TasasNoSocialesForm()
+    if request.method == 'POST':
+        form = TasasNoSocialesForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('tasasnosociales')
+    return render(request, 'tasas/createTasasNoSociales.html', {'form': form})
+
+@login_required
+def updateTasasNoSociales(request, id):
+    tasa = get_object_or_404(TasasNoSociales, id=id)
+    form = TasasNoSocialesForm(instance=tasa)
+    if request.method == 'POST':
+        form = TasasNoSocialesForm(request.POST, instance=tasa)
+        if form.is_valid():
+            form.save()
+            return redirect('tasasnosociales')
+    return render(request, 'tasas/updateTasasNoSociales.html', {'form': form})
+
+@login_required
+def deleteTasasNoSociales(request, id):
+    tasa = get_object_or_404(TasasNoSociales, id=id)
+    tasa.delete()
+    return redirect("tasasnosociales")
 
 class ApiCdat(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]

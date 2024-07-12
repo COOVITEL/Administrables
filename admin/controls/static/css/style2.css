@@ -38,8 +38,7 @@
 }
 
 .bts:hover {
-    transform: scale(1.1);
-    border: 1px solid var(--colorTwo);
+    background-color: #2c3870;
     transition: all .3s ease;
 }
 

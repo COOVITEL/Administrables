@@ -20,3 +20,30 @@ class TasasCooviahorro(models.Model):
     
     def __str__(self):
         return self.type
+
+class TypeAsociado(models.Model):
+    name = models.CharField(max_length=200)
+    
+    def __str__(self):
+        return f"{self.name}"
+
+class NoSociales(models.Model):
+    name = models.CharField(max_length=200)
+    usura = models.FloatField()
+    descuentos = models.FloatField()
+    techoEA = models.FloatField()
+    techoNMV = models.FloatField()
+    plazo = models.IntegerField()
+    
+    def __str__(self):
+        return f"{self.name} a un plazo de {self.plazo}"
+
+class TasasNoSociales(models.Model):
+    """"""
+    perfil = models.ForeignKey(TypeAsociado, on_delete=models.CASCADE)
+    maxScore = models.IntegerField()
+    minScore = models.IntegerField()
+    fg = models.FloatField()
+    plazo = models.IntegerField()
+    garantia = models.CharField(max_length=200)
+    piso = models.FloatField()
