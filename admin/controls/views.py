@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect ,get_object_or_404
 from .models import TasasCDAT, TasasCooviahorro
 from .forms import *
-from rest_framework import viewsets
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework import viewsets, status, views
 from rest_framework.permissions import IsAuthenticated
-from .serializer import CdatSerializer, CooviahorroSerializer
+from .serializer import *
 from django.contrib.auth.decorators import login_required
 
 
@@ -174,6 +176,92 @@ def deleteTasasNoSociales(request, id):
     tasa.delete()
     return redirect("tasasnosociales")
 
+@login_required
+def fidelizacion(request):
+    fidelizacion = Fidelizacion.objects.all()
+    return render(request, 'fidelizacion/fidelizacion.html', {'fidelizacion': fidelizacion})
+
+@login_required
+def createfidelizacion(request):
+    form = FidelizacionForm()
+    if request.method == 'POST':
+        form = FidelizacionForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('fidelizacion')
+    return render(request, 'fidelizacion/createfidelizacion.html', {'form': form})
+
+@login_required
+def updatefidelizacion(request, id):
+    fidelizacion = get_object_or_404(Fidelizacion, id=id)
+    form = FidelizacionForm(instance=fidelizacion)
+    if request.method == 'POST':
+        form = FidelizacionForm(request.POST, instance=fidelizacion)
+        if form.is_valid():
+            form.save()
+            return redirect('fidelizacion')
+    return render(request, 'fidelizacion/updatefidelizacion.html', {'form': form})
+
+@login_required
+def deletefidelizacion(request, id):
+    fidelizacion = get_object_or_404(Fidelizacion, id=id)
+    fidelizacion.delete()
+    return redirect('fidelizacion')
+
+@login_required
+def sociales(request):
+    social = Sociales.objects.all()
+    return render(request, 'sociales/sociales.html', {'social': social})
+
+@login_required
+def createsociales(request):
+    form = SolcialesForm()
+    if request.method == 'POST':
+        form = SolcialesForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('sociales')
+    return render(request, 'sociales/createsociales.html', {'form': form})
+
+@login_required
+def updatesociales(request, id):
+    social = get_object_or_404(Sociales, id=id)
+    form = SolcialesForm(instance=social)
+    if request.method == 'POST':
+        form = SolcialesForm(request.POST, instance=social)
+        if form.is_valid():
+            form.save()
+            return redirect('sociales')
+    return render(request, 'sociales/updatesociales.html', {'form': form})
+
+@login_required
+def deletesociales(request, id):
+    social = get_object_or_404(Sociales, id=id)
+    social.delete()
+    return redirect('sociales')
+
+@login_required
+def asociadosType(request):
+    asociados = AsociadoType.objects.all()
+    return render(request, 'asociadosType/asociados.html', {'asociados': asociados})
+
+@login_required
+def createasociadosType(request):
+    form = AsociadoTypeForm()
+    if request.method == 'POST':
+        form = AsociadoTypeForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('asociadostype')
+    return render(request, 'asociadosType/createasociados.html', {'form': form})
+
+@login_required
+def deleteasociadosType(request, id):
+    asociado = get_object_or_404(AsociadoType, id=id)
+    asociado.delete()
+    return redirect('asociados')
+    
+
 class ApiCdat(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     serializer_class =  CdatSerializer
@@ -184,3 +272,23 @@ class ApiCooviahorro(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     serializer_class =  CooviahorroSerializer
     queryset = TasasCooviahorro.objects.all()
+
+class SimuladorCreditoApiView(APIView):
+    # permission_classes = [IsAuthenticated]
+    
+    def get(self, request):
+        # Obtener datos de ApiCdat
+        noSociales = NoSocialesSerializer(NoSociales.objects.all(), many=True).data
+        sociales = SocialesSerializer(Sociales.objects.all(), many=True).data
+        fidelizacion = FidelizacionSerializer(Fidelizacion.objects.all(), many=True).data
+        tasasNoSociales = TasasSerializer(TasasNoSociales.objects.all(), many=True).data
+        
+        # Combinar datos
+        data = {
+            'nosociales': noSociales,
+            'sociales': sociales,
+            'fidelizacion': fidelizacion,
+            'tasasnosociales': tasasNoSociales
+        }
+        
+        return Response(data, status=status.HTTP_200_OK)

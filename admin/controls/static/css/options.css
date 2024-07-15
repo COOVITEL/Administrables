@@ -13,14 +13,14 @@
     height: auto;
     flex-direction: row;
     justify-content: space-around;
-    align-items: center;
+    align-items: start;
     margin-top: 20px;
 }
 
 .content-option {
     width: 40%;
     padding: 10px;
-    height: 70vh;
+    height: auto;
     border: 1px solid #c9c9c9;
     border-radius: 20px;
     display: flex;

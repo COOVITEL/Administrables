@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+
+{% block content %}
+    <div class="types">
+        <h1 class="title-type">Tasas Lineas Sociales</h1>
+        <div class="buttons">
+            <a class="bts" href="{% url 'admin' %}"><h5>Volver</h5></a>
+            <a class="bts" href="{% url 'createsociales' %}">Nuevo</a>
+        </div>
+        <table>
+            <tr>
+                <th>Nombre</th>
+                <th>6</th>
+                <th>12</th>
+                <th>24</th>
+                <th>36</th>
+                <th>48</th>
+                <th>60</th>
+                <th>72</th>
+                <th>84</th>
+                <th>Plazo Maximo</th>
+                <th></th>
+                <th></th>
+            </tr>
+            {% for soc in social %}
+                <tr>
+                    <td>{{soc.name}}</td>
+                    <td>{{soc.tasa6}}</td>
+                    <td>{{soc.tasa12}}</td>
+                    <td>{{soc.tasa24}}</td>
+                    <td>{{soc.tasa36}}</td>
+                    <td>{{soc.tasa48}}</td>
+                    <td>{{soc.tasa60}}</td>
+                    <td>{{soc.tasa72}}</td>
+                    <td>{{soc.tasa84}}</td>
+                    <td>{{soc.plazoMax}}</td>
+                    <td>
+                        <a href="{% url 'updatesociales' soc.id %}">
+                            <svg class="image" xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24" fill="none">
+                            <path d="M13 21H21" stroke="#323232" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M20.0651 7.39423L7.09967 20.4114C6.72438 20.7882 6.21446 21 5.68265 21H4.00383C3.44943 21 3 20.5466 3 19.9922V18.2987C3 17.7696 3.20962 17.2621 3.58297 16.8873L16.5517 3.86681C19.5632 1.34721 22.5747 4.87462 20.0651 7.39423Z" stroke="#323232" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M15.3096 5.30981L18.7273 8.72755" stroke="#323232" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path opacity="0.1" d="M18.556 8.90942L7.09967 20.4114C6.72438 20.7882 6.21446 21 5.68265 21H4.00383C3.44943 21 3 20.5466 3 19.9922V18.2987C3 17.7696 3.20962 17.2621 3.58297 16.8873L15.0647 5.35974C15.0742 5.4062 15.0969 5.45049 15.1329 5.48653L18.5506 8.90426C18.5524 8.90601 18.5542 8.90773 18.556 8.90942Z" fill="#323232"/>
+                            </svg>
+                        </a>
+                    </td>
+                    <td>
+                        <a onclick="return confirm('Esta seguro de eliminar este rango de Linea Social?')" href="{% url 'deletesociales' soc.id %}">
+                            <svg class="image" xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 1024 1024" class="icon" version="1.1"><path d="M779.5 1002.7h-535c-64.3 0-116.5-52.3-116.5-116.5V170.7h768v715.5c0 64.2-52.3 116.5-116.5 116.5zM213.3 256v630.1c0 17.2 14 31.2 31.2 31.2h534.9c17.2 0 31.2-14 31.2-31.2V256H213.3z" fill="#3688FF"/><path d="M917.3 256H106.7C83.1 256 64 236.9 64 213.3s19.1-42.7 42.7-42.7h810.7c23.6 0 42.7 19.1 42.7 42.7S940.9 256 917.3 256zM618.7 128H405.3c-23.6 0-42.7-19.1-42.7-42.7s19.1-42.7 42.7-42.7h213.3c23.6 0 42.7 19.1 42.7 42.7S642.2 128 618.7 128zM405.3 725.3c-23.6 0-42.7-19.1-42.7-42.7v-256c0-23.6 19.1-42.7 42.7-42.7S448 403 448 426.6v256c0 23.6-19.1 42.7-42.7 42.7zM618.7 725.3c-23.6 0-42.7-19.1-42.7-42.7v-256c0-23.6 19.1-42.7 42.7-42.7s42.7 19.1 42.7 42.7v256c-0.1 23.6-19.2 42.7-42.7 42.7z" fill="#5F6379"/></svg>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

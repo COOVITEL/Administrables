@@ -31,6 +31,21 @@ urlpatterns = [
     path("tasasdeletenosociales/<int:id>/", views.deleteTasasNoSociales, name="tasasdeletenosociales"),
     path("tasasnosociales/updatetasasnosociales/<int:id>/", views.updateTasasNoSociales, name="tasasupdatenosociales"),
     
+    path("fidelizacion/", views.fidelizacion, name="fidelizacion"),
+    path("createfidelizacion/", views.createfidelizacion, name="createfidelizacion"),
+    path("deletefidelizacion/<int:id>/", views.deletefidelizacion, name="deletefidelizacion"),
+    path("fidelizacion/updatefidelizacion/<int:id>/", views.updatefidelizacion, name="updatefidelizacion"),
+    
+    path("sociales/", views.sociales, name="sociales"),
+    path("createsociales/", views.createsociales, name="createsociales"),
+    path("deletesociales/<int:id>/", views.deletesociales, name="deletesociales"),
+    path("sociales/updatesociales/<int:id>/", views.updatesociales, name="updatesociales"),
+    
+    path("asociadotype/", views.asociadosType, name="asociadostype"),
+    path("createasociadotype/", views.createasociadosType, name="createasociadotype"),
+    path("deleteaosicadotype/<int:id>/", views.deleteasociadosType, name="deleteasociadotype"),
+   
     path("administrables/", views.Admin, name="admin"),
-    path("api/", include(router.urls))
+    path("api/", include(router.urls)),
+    path('api/simuladorcredito/', views.SimuladorCreditoApiView.as_view(), name='apisimuladorcredito'),
 ]
