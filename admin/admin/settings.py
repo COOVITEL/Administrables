@@ -141,8 +141,10 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Cors authoriation
-CORS_ALLOWED_ORIGINS = ['http://localhost:5173', 'https://cooviahorro.coovitel.coop', 'https://cdat.coovitel.coop', 'https://simuladorcdat.coovitel.coop']
-# 'https://cooviahorro.coovitel.coop/', 'https://cdat.coovitel.coop/'
+CORS_ALLOWED_ORIGINS = ['http://localhost:5173',
+                        'https://cooviahorro.coovitel.coop',
+                        'https://cdat.coovitel.coop',
+                        'https://simuladorcdat.coovitel.coop']
 
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',

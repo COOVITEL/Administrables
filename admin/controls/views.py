@@ -88,7 +88,7 @@ def deletecooviahorro(request, id):
 @login_required
 def noSociales(request):
     nosociales = NoSociales.objects.all()
-    return render(request, 'noSociales/noSociales.html', {'nosociales': nosociales})
+    return render(request, 'creditos/noSociales/noSociales.html', {'nosociales': nosociales})
 
 @login_required
 def createNoSociales(request):
@@ -98,7 +98,7 @@ def createNoSociales(request):
         if form.is_valid():
             form.save()
             return redirect('nosociales')
-    return render(request, 'noSociales/createNoSociales.html', {'form': form})
+    return render(request, 'creditos/noSociales/createNoSociales.html', {'form': form})
 
 @login_required
 def updateNoSociales(request, id):
@@ -109,7 +109,7 @@ def updateNoSociales(request, id):
         if form.is_valid():
             form.save()
             return redirect('nosociales')
-    return render(request, 'noSociales/updateNoSociales.html', {'form': form})
+    return render(request, 'creditos/noSociales/updateNoSociales.html', {'form': form})
 
 @login_required
 def deleteNoSociales(request, id):
@@ -125,7 +125,7 @@ def typesAsociados(request):
         form = TypesAsociadoForm(request.POST)
         form.save()
         return redirect("asociados")
-    return render(request, "asociados/asociados.html", {
+    return render(request, "creditos/asociados/asociados.html", {
         'asociados': asociados,
         'form': form})
 
@@ -136,7 +136,7 @@ def createTypesAsociados(request):
         form = TypesAsociadoForm(request.POST)
         form.save()
         return redirect("asociados")
-    return render(request, "asociados/createAsociado.html", {
+    return render(request, "creditos/asociados/createAsociado.html", {
         'form': form})
 
 @login_required
@@ -148,7 +148,7 @@ def deleteTypeAsociado(request, id):
 @login_required
 def tasasNoSociales(request):
     tasas = TasasNoSociales.objects.all()
-    return render(request, 'tasas/tasasNoSociales.html', {'tasas': tasas})
+    return render(request, 'creditos/tasas/tasasNoSociales.html', {'tasas': tasas})
 
 @login_required
 def createTasasNoSociales(request):
@@ -158,7 +158,7 @@ def createTasasNoSociales(request):
         if form.is_valid():
             form.save()
             return redirect('tasasnosociales')
-    return render(request, 'tasas/createTasasNoSociales.html', {'form': form})
+    return render(request, 'creditos/tasas/createTasasNoSociales.html', {'form': form})
 
 @login_required
 def updateTasasNoSociales(request, id):
@@ -169,7 +169,7 @@ def updateTasasNoSociales(request, id):
         if form.is_valid():
             form.save()
             return redirect('tasasnosociales')
-    return render(request, 'tasas/updateTasasNoSociales.html', {'form': form})
+    return render(request, 'creditos/tasas/updateTasasNoSociales.html', {'form': form})
 
 @login_required
 def deleteTasasNoSociales(request, id):
@@ -180,7 +180,7 @@ def deleteTasasNoSociales(request, id):
 @login_required
 def fidelizacion(request):
     fidelizacion = Fidelizacion.objects.all()
-    return render(request, 'fidelizacion/fidelizacion.html', {'fidelizacion': fidelizacion})
+    return render(request, 'creditos/fidelizacion/fidelizacion.html', {'fidelizacion': fidelizacion})
 
 @login_required
 def createfidelizacion(request):
@@ -190,7 +190,7 @@ def createfidelizacion(request):
         if form.is_valid():
             form.save()
             return redirect('fidelizacion')
-    return render(request, 'fidelizacion/createfidelizacion.html', {'form': form})
+    return render(request, 'creditos/fidelizacion/createfidelizacion.html', {'form': form})
 
 @login_required
 def updatefidelizacion(request, id):
@@ -201,7 +201,7 @@ def updatefidelizacion(request, id):
         if form.is_valid():
             form.save()
             return redirect('fidelizacion')
-    return render(request, 'fidelizacion/updatefidelizacion.html', {'form': form})
+    return render(request, 'creditos/fidelizacion/updatefidelizacion.html', {'form': form})
 
 @login_required
 def deletefidelizacion(request, id):
@@ -212,7 +212,7 @@ def deletefidelizacion(request, id):
 @login_required
 def sociales(request):
     social = Sociales.objects.all()
-    return render(request, 'sociales/sociales.html', {'social': social})
+    return render(request, 'creditos/sociales/sociales.html', {'social': social})
 
 @login_required
 def createsociales(request):
@@ -222,7 +222,7 @@ def createsociales(request):
         if form.is_valid():
             form.save()
             return redirect('sociales')
-    return render(request, 'sociales/createsociales.html', {'form': form})
+    return render(request, 'creditos/sociales/createsociales.html', {'form': form})
 
 @login_required
 def updatesociales(request, id):
@@ -233,7 +233,7 @@ def updatesociales(request, id):
         if form.is_valid():
             form.save()
             return redirect('sociales')
-    return render(request, 'sociales/updatesociales.html', {'form': form})
+    return render(request, 'creditos/sociales/updatesociales.html', {'form': form})
 
 @login_required
 def deletesociales(request, id):
@@ -244,7 +244,7 @@ def deletesociales(request, id):
 @login_required
 def asociadosType(request):
     asociados = AsociadoType.objects.all()
-    return render(request, 'asociadosType/asociados.html', {'asociados': asociados})
+    return render(request, 'creditos/asociadosType/asociados.html', {'asociados': asociados})
 
 @login_required
 def createasociadosType(request):
@@ -254,16 +254,13 @@ def createasociadosType(request):
         if form.is_valid():
             form.save()
             return redirect('asociadostype')
-    return render(request, 'asociadosType/createasociados.html', {'form': form})
+    return render(request, 'creditos/asociadosType/createasociados.html', {'form': form})
 
 @login_required
 def deleteasociadosType(request, id):
     asociado = get_object_or_404(AsociadoType, id=id)
     asociado.delete()
     return redirect('asociados')
-
-
-
 
 @login_required
 def ajustesScore(request):
@@ -297,6 +294,167 @@ def deleteAjustesScore(request, id):
     ajuste.delete()
     return redirect('ajustescore')
 
+@login_required
+def ajustesAporte(request):
+    ajustes = AjustesAportes.objects.all()
+    return render(request, 'creditos/ajustes/aporte/ajustesaporte.html', {'ajustes': ajustes})
+
+@login_required
+def createAjustesAporte(request):
+    form = AjustesAportesForm()
+    if request.method == 'POST':
+        form = AjustesAportesForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('ajusteaporte')
+    return render(request, 'creditos/ajustes/aporte/createajustesaporte.html', {'form': form})
+
+@login_required
+def updateAjustesAporte(request, id):
+    ajuste = get_object_or_404(AjustesAportes, id=id)
+    form = AjustesAportesForm(instance=ajuste)
+    if request.method == 'POST':
+        form = AjustesAportesForm(request.POST, instance=ajuste)
+        if form.is_valid():
+            form.save()
+            return redirect('ajusteaporte')
+    return render(request, 'creditos/ajustes/aporte/updateajustesaporte.html', {'form': form})
+
+@login_required
+def deleteAjustesAporte(request, id):
+    ajuste = get_object_or_404(AjustesAportes, id=id)
+    ajuste.delete()
+    return redirect('ajusteaporte')
+
+@login_required
+def ajustesPlazo(request):
+    ajustes = AjustesPlazo.objects.all()
+    return render(request, 'creditos/ajustes/plazo/ajustesplazo.html', {'ajustes': ajustes})
+
+@login_required
+def createAjustesPlazo(request):
+    form = AjustesPlazoForm()
+    if request.method == 'POST':
+        form = AjustesPlazoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('ajusteplazo')
+    return render(request, 'creditos/ajustes/plazo/createajustesplazo.html', {'form': form})
+
+@login_required
+def updateAjustesPlazo(request, id):
+    ajuste = get_object_or_404(AjustesPlazo, id=id)
+    form = AjustesPlazoForm(instance=ajuste)
+    if request.method == 'POST':
+        form = AjustesPlazoForm(request.POST, instance=ajuste)
+        if form.is_valid():
+            form.save()
+            return redirect('ajusteplazo')
+    return render(request, 'creditos/ajustes/plazo/updateajustesplazo.html', {'form': form})
+
+@login_required
+def deleteAjustesPlazo(request, id):
+    ajuste = get_object_or_404(AjustesPlazo, id=id)
+    ajuste.delete()
+    return redirect('ajusteplazo')
+
+@login_required
+def ajustesCDAT(request):
+    ajustes = AjustesCDAT.objects.all()
+    return render(request, 'creditos/ajustes/cdat/ajustescdat.html', {'ajustes': ajustes})
+
+@login_required
+def createAjustesCDAT(request):
+    form = AjustesCDATForm()
+    if request.method == 'POST':
+        form = AjustesCDATForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('ajustecdat')
+    return render(request, 'creditos/ajustes/cdat/createajustescdat.html', {'form': form})
+
+@login_required
+def updateAjustesCDAT(request, id):
+    ajuste = get_object_or_404(AjustesCDAT, id=id)
+    form = AjustesCDATForm(instance=ajuste)
+    if request.method == 'POST':
+        form = AjustesCDATForm(request.POST, instance=ajuste)
+        if form.is_valid():
+            form.save()
+            return redirect('ajustecdat')
+    return render(request, 'creditos/ajustes/cdat/updateajustescdat.html', {'form': form})
+
+@login_required
+def deleteAjustesCDAT(request, id):
+    ajuste = get_object_or_404(AjustesCDAT, id=id)
+    ajuste.delete()
+    return redirect('ajustecdat')
+
+
+
+@login_required
+def ajustesCooviahorro(request):
+    ajustes = AjustesCooviahorro.objects.all()
+    return render(request, 'creditos/ajustes/cooviahorro/ajustescooviahorro.html', {'ajustes': ajustes})
+
+@login_required
+def createAjustesCooviahorro(request):
+    form = AjustesCooviahorroForm()
+    if request.method == 'POST':
+        form = AjustesCooviahorroForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('ajustecooviahorro')
+    return render(request, 'creditos/ajustes/cooviahorro/createajustescooviahorro.html', {'form': form})
+
+@login_required
+def updateAjustesCooviahorro(request, id):
+    ajuste = get_object_or_404(AjustesCooviahorro, id=id)
+    form = AjustesCooviahorroForm(instance=ajuste)
+    if request.method == 'POST':
+        form = AjustesCooviahorroForm(request.POST, instance=ajuste)
+        if form.is_valid():
+            form.save()
+            return redirect('ajustecooviahorro')
+    return render(request, 'creditos/ajustes/cooviahorro/updateajustescooviahorro.html', {'form': form})
+
+@login_required
+def deleteAjustesCooviahorro(request, id):
+    ajuste = get_object_or_404(AjustesCooviahorro, id=id)
+    ajuste.delete()
+    return redirect('ajustecooviahorro')
+
+@login_required
+def descuentos(request):
+    descuentos = MaximoAjuste.objects.all()
+    return render(request, 'creditos/ajustes/descuentos/descuentos.html', {'descuentos': descuentos})
+
+@login_required
+def createDescuentos(request):
+    form = MaximoAjustesForm()
+    if request.method == 'POST':
+        form = MaximoAjustesForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('descuentos')
+    return render(request, 'creditos/ajustes/descuentos/createdescuentos.html', {'form': form})
+
+@login_required
+def updateDescuentos(request, id):
+    ajuste = get_object_or_404(MaximoAjuste, id=id)
+    form = MaximoAjustesForm(instance=ajuste)
+    if request.method == 'POST':
+        form = MaximoAjustesForm(request.POST, instance=ajuste)
+        if form.is_valid():
+            form.save()
+            return redirect('descuentos')
+    return render(request, 'creditos/ajustes/descuentos/updatedescuentos.html', {'form': form})
+
+@login_required
+def deleteDescuentos(request, id):
+    ajuste = get_object_or_404(MaximoAjuste, id=id)
+    ajuste.delete()
+    return redirect('descuentos')
 
 
 class ApiCdat(viewsets.ModelViewSet):
@@ -319,12 +477,28 @@ class SimuladorCreditoApiView(APIView):
         sociales = SocialesSerializer(Sociales.objects.all(), many=True).data
         fidelizacion = FidelizacionSerializer(Fidelizacion.objects.all(), many=True).data
         tasasNoSociales = TasasSerializer(TasasNoSociales.objects.all(), many=True).data
+        ajusteScore = AjustesScoreSerializer(AjustesScore.objects.all(), many=True).data
+        ajusteAporte = AjustesAportesSerializer(AjustesAportes.objects.all(), many=True).data
+        ajustePlazo = AjustesPlazoSerializer(AjustesPlazo.objects.all(), many=True).data
+        ajusteCdat = AjustesCdatSerializer(AjustesCDAT.objects.all(), many=True).data
+        ajusteCooviahorro = AjustesCooviahorroSerializer(AjustesCooviahorro.objects.all(), many=True).data
+        maximoAjuste = MaximoAjusteSerializer(MaximoAjuste.objects.all(), many=True).data
+        asociadoType = TypeAsociadoSerializer(TypeAsociado.objects.all(), many=True).data
         
         data = {
             'nosociales': noSociales,
             'sociales': sociales,
             'fidelizacion': fidelizacion,
-            'tasasnosociales': tasasNoSociales
+            'tasasnosociales': tasasNoSociales,
+            'maximoDescuento': maximoAjuste,
+            'tiposAsociados': asociadoType,
+            'descuentos': {
+                'score': ajusteScore,
+                'aporte': ajusteAporte,
+                'plazo': ajustePlazo,
+                'cdat': ajusteCdat,
+                'cooviahorro': ajusteCooviahorro
+            }
         }
         
         return Response(data, status=status.HTTP_200_OK)

@@ -86,26 +86,10 @@ class AsociadoType(models.Model):
     name = models.CharField(max_length=100)
 
 
-class MaximoAjusteScore(models.Model):
+class MaximoAjuste(models.Model):
     """"""
+    name = models.CharField(max_length=100, unique=True)
     value = models.IntegerField()
-
-class MaximoAjusteAporte(models.Model):
-    """"""
-    value = models.IntegerField()
-
-class MaximoAjustePlazo(models.Model):
-    """"""
-    value = models.IntegerField()
-
-class MaximoAjusteCDAT(models.Model):
-    """"""
-    value = models.IntegerField()
-
-class MaximoAjusteCooviahorro(models.Model):
-    """"""
-    value = models.IntegerField()
-
 
 class AjustesScore(models.Model):
     """"""
@@ -117,8 +101,8 @@ class AjustesScore(models.Model):
 class AjustesAportes(models.Model):
     """"""
     asociado = models.ForeignKey(TypeAsociado, on_delete=models.CASCADE)
-    aporteMin = models.IntegerField()
-    aporteMax = models.IntegerField()
+    aporteMin = models.CharField(max_length=200)
+    aporteMax = models.CharField(max_length=200)
     ajuste = models.IntegerField()
 
 class AjustesPlazo(models.Model):

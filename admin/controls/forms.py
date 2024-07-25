@@ -155,13 +155,15 @@ class AjustesScoreForm(forms.ModelForm):
 
 class AjustesAportesForm(forms.ModelForm):
     """"""
+    aporteMin = forms.CharField(widget=forms.TextInput(attrs={'oninput': "handleChange('id_aporteMin')"}),
+                            label="Monto minimo de aportes")
+    aporteMax = forms.CharField(widget=forms.TextInput(attrs={'oninput': "handleChange('id_aporteMax')"}),
+                            label="Monto maximo de aportes")
     class Meta():
         model = AjustesAportes
         fields = ['asociado', 'aporteMin', 'aporteMax', 'ajuste']
         labels = {
             'asociado': 'Ajuste dirigido a',
-            'aporteMin': 'Monto minimo de aportes',
-            'aporteMax': 'Monto maximo de aportes',
             'ajuste': 'Ajuste de tasa'
         }
 
@@ -201,4 +203,28 @@ class AjustesCooviahorroForm(forms.ModelForm):
         fields = ['montoMin', 'montoMax', 'ajuste']
         labels = {
             'ajuste': 'Ajuste de tasa'
+        }
+
+
+
+class MaximoAjustesForm(forms.ModelForm):
+    TYPES = [
+    ('Score', 'Score'),
+    ('Aportes', 'Aportes'),
+    ('Plazo', 'Plazo'),
+    ('Cdat', 'Cdat'),
+    ('Cooviahorro', 'Cooviahorro'),
+]
+    """"""
+    name = forms.ChoiceField(
+        required=True,
+        widget=forms.RadioSelect,
+        choices=TYPES,
+        label="Tipo de descuento"
+    )
+    class Meta:
+        model = MaximoAjuste
+        fields = ['name', 'value']
+        labels = {
+            'value': 'Porcentaje de descuento'
         }

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <div class="types">
+        <h1 class="title-type">Actualizacion Ajuste Cooviahorro</h1>
+        <div class="buttons">
+            <a class="bts" href="{% url 'ajustecooviahorro' %}"><h5>Volver</h5></a>
+        </div>
+        <form method="POST" class="form">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button onclick="return confirm('Esta seguro de actualizar este Ajuste Cooviahorro?')" class="save" type="submit">
+                Actualizar
+            </button>
+        </form>
+    </div>
+{% endblock %}
