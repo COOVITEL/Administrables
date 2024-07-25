@@ -17,6 +17,15 @@
     margin-top: 20px;
 }
 
+.opt2 {
+  display: flex;
+  height: auto;
+  flex-direction: row;
+  justify-content: start;
+  align-items: start;
+  margin-top: 20px;
+}
+
 .content-option {
     width: 40%;
     padding: 10px;
@@ -106,4 +115,13 @@
   .cta:active {
     transform: scale(1.1);
   }
-  
+
+.btn-back {
+  margin-right: 10px;
+  transition: all .3s ease;
+}
+
+.btn-back:hover {
+  transform: scale(1.2);
+  transition: all .3s ease;
+}

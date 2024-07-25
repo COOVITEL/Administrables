@@ -17,6 +17,16 @@
     margin-top: 20px;
 }
 
+.opt2 {
+  display: flex;
+  height: auto;
+  flex-direction: row;
+  justify-content: start;
+  align-items: start;
+  margin-top: 20px;
+  margin-left: 50px;
+}
+
 .content-option {
     width: 40%;
     padding: 10px;

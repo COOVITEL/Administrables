@@ -14,6 +14,10 @@ def Admin(request):
     return render(request, 'options.html')
 
 @login_required
+def creditos(request):
+    return render(request, 'creditos/controls.html')
+
+@login_required
 def Cdat(request):
     cdats = TasasCDAT.objects.all()
     return render(request, 'cdats/cdat.html', {'cdats': cdats})
@@ -141,9 +145,6 @@ def deleteTypeAsociado(request, id):
     asociado.delete()
     return redirect("asociados")
 
-
-
-
 @login_required
 def tasasNoSociales(request):
     tasas = TasasNoSociales.objects.all()
@@ -260,7 +261,43 @@ def deleteasociadosType(request, id):
     asociado = get_object_or_404(AsociadoType, id=id)
     asociado.delete()
     return redirect('asociados')
-    
+
+
+
+
+@login_required
+def ajustesScore(request):
+    ajustes = AjustesScore.objects.all()
+    return render(request, 'creditos/ajustes/score/ajustesscore.html', {'ajustes': ajustes})
+
+@login_required
+def createAjustesScore(request):
+    form = AjustesScoreForm()
+    if request.method == 'POST':
+        form = AjustesScoreForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('ajustescore')
+    return render(request, 'creditos/ajustes/score/createajustescore.html', {'form': form})
+
+@login_required
+def updateAjustesScore(request, id):
+    ajuste = get_object_or_404(AjustesScore, id=id)
+    form = AjustesScoreForm(instance=ajuste)
+    if request.method == 'POST':
+        form = AjustesScoreForm(request.POST, instance=ajuste)
+        if form.is_valid():
+            form.save()
+            return redirect('ajustescore')
+    return render(request, 'creditos/ajustes/score/updateajustescore.html', {'form': form})
+
+@login_required
+def deleteAjustesScore(request, id):
+    ajuste = get_object_or_404(AjustesScore, id=id)
+    ajuste.delete()
+    return redirect('ajustescore')
+
+
 
 class ApiCdat(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
@@ -283,7 +320,6 @@ class SimuladorCreditoApiView(APIView):
         fidelizacion = FidelizacionSerializer(Fidelizacion.objects.all(), many=True).data
         tasasNoSociales = TasasSerializer(TasasNoSociales.objects.all(), many=True).data
         
-        # Combinar datos
         data = {
             'nosociales': noSociales,
             'sociales': sociales,

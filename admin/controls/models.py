@@ -85,7 +85,57 @@ class AsociadoType(models.Model):
     """"""
     name = models.CharField(max_length=100)
 
+
+class MaximoAjusteScore(models.Model):
+    """"""
+    value = models.IntegerField()
+
+class MaximoAjusteAporte(models.Model):
+    """"""
+    value = models.IntegerField()
+
+class MaximoAjustePlazo(models.Model):
+    """"""
+    value = models.IntegerField()
+
+class MaximoAjusteCDAT(models.Model):
+    """"""
+    value = models.IntegerField()
+
+class MaximoAjusteCooviahorro(models.Model):
+    """"""
+    value = models.IntegerField()
+
+
 class AjustesScore(models.Model):
     """"""
-    pass
+    asociado = models.ForeignKey(TypeAsociado, on_delete=models.CASCADE)
+    scoreMin = models.IntegerField()
+    scoreMax = models.IntegerField()
+    ajuste = models.IntegerField()
     
+class AjustesAportes(models.Model):
+    """"""
+    asociado = models.ForeignKey(TypeAsociado, on_delete=models.CASCADE)
+    aporteMin = models.IntegerField()
+    aporteMax = models.IntegerField()
+    ajuste = models.IntegerField()
+
+class AjustesPlazo(models.Model):
+    """"""
+    asociado = models.ForeignKey(TypeAsociado, on_delete=models.CASCADE)
+    plazoMin = models.IntegerField()
+    plazoMax = models.IntegerField()
+    ajuste = models.IntegerField()
+
+class AjustesCDAT(models.Model):
+    """"""
+    montoMin = models.CharField(max_length=300)
+    montoMax = models.CharField(max_length=300)
+    ajuste = models.IntegerField()
+
+class AjustesCooviahorro(models.Model):
+    """"""
+    montoMin = models.CharField(max_length=300)
+    montoMax = models.CharField(max_length=300)
+    ajuste = models.IntegerField()

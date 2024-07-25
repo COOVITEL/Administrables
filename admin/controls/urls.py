@@ -9,6 +9,7 @@ router.register(r'apicooviahorro', views.ApiCooviahorro, 'apicooviahorro')
 urlpatterns = [
     path("cdats/", views.Cdat, name="cdats"),
     path("createcdat/", views.createCdat, name="createcdat"),
+    path("creditos/", views.creditos, name="creditos"),
     path("cdats/updatecdat/<int:id>/", views.updatecdat, name="updatecdat"),
     path("deletecdat/<int:id>/", views.deletecdat, name="deletecdat"),
     
@@ -44,7 +45,13 @@ urlpatterns = [
     path("asociadotype/", views.asociadosType, name="asociadostype"),
     path("createasociadotype/", views.createasociadosType, name="createasociadotype"),
     path("deleteaosicadotype/<int:id>/", views.deleteasociadosType, name="deleteasociadotype"),
-   
+
+    path("ajustes/ajustescore", views.ajustesScore, name="ajustescore"),
+    path("ajustes/create/ajustescore", views.createAjustesScore, name="createajustescore"),
+    path("ajustes/update/ajustescore/<int:id>", views.updateAjustesScore, name="updateajustescore"),
+    path("ajustes/delete/ajustescore/<int:id>", views.deleteAjustesScore, name="deleteajustescore"),
+    
+
     path("administrables/", views.Admin, name="admin"),
     path("api/", include(router.urls)),
     path('api/simuladorcredito/', views.SimuladorCreditoApiView.as_view(), name='apisimuladorcredito'),
