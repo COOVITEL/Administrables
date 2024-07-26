@@ -486,6 +486,7 @@ class SimuladorCreditoApiView(APIView):
         asociadoType = TypeAsociadoSerializer(TypeAsociado.objects.all(), many=True).data
         
         data = {
+            'salariominimo': 1462000,
             'nosociales': noSociales,
             'sociales': sociales,
             'fidelizacion': fidelizacion,
