@@ -1,5 +1,10 @@
 from rest_framework import serializers
 from .models import *
+from cdat.models import *
+from cooviahorro.models import *
+from credito.models import *
+from descuentos_Credito.models import *
+
 
 class CdatSerializer(serializers.ModelSerializer):
     class Meta:

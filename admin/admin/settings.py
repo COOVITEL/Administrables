@@ -37,6 +37,10 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'account.apps.AccountConfig',
+    'cdat.apps.CdatConfig',
+    'cooviahorro.apps.CooviahorroConfig',
+    'credito.apps.CreditoConfig',
+    'descuentos_Credito.apps.DescuentosCreditoConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
