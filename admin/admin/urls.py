@@ -8,5 +8,6 @@ urlpatterns = [
     path('', include('cooviahorro.urls')),
     path('', include('credito.urls')),
     path('', include('descuentos_Credito.urls')),
+    path('', include('rotativo.urls')),
     path('admin/', admin.site.urls),
 ]

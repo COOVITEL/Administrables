@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="types">
+        <h1 class="title-type">Nuevo Rotativo</h1>
+        <div class="buttons">
+            <a class="bts" href="{% url 'rotativos' %}"><h5>Volver</h5></a>
+        </div>
+        <form method="POST" class="form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="save" type="submit">Guardar</button>
+        </form>
+    </div>
+
+{% endblock %}

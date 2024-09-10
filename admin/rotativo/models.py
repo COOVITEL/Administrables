@@ -1,19 +1,7 @@
 from django.db import models
 
 
-class TypeAsociado(models.Model):
-    name = models.CharField(max_length=200)
-    
-    def __str__(self):
-        return f'Tipo de asociado: {self.name}'
-
-class TypesRiesgos(models.Model):
-    name = models.CharField(max_length=200)
-    
-    def __str__(self):
-        return f'Riesgo nivel: {self.name}'
-
-class Esecenarios(models.Model):
+class Escenarios(models.Model):
     name = models.CharField(max_length=200)
     salarioMin = models.CharField(max_length=200)
     salarioMax = models.CharField(max_length=200)
@@ -22,9 +10,9 @@ class Esecenarios(models.Model):
         return f'{self.name}'
 
 class Rotativo(models.Model):
-    escenario = models.ForeignKey(Esecenarios, on_delete=models.CASCADE)
-    riesgo = models.ForeignKey(TypesRiesgos, on_delete=models.CASCADE)
-    typeAsociado = models.ForeignKey(TypeAsociado, on_delete=models.CASCADE)
+    escenario = models.ForeignKey(Escenarios, on_delete=models.CASCADE)
+    riesgo = models.CharField(max_length=200)
+    typeAsociado = models.CharField(max_length=200)
     scoreMin = models.IntegerField()
     scoreMax = models.IntegerField()
     EA = models.FloatField()

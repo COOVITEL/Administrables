@@ -32,7 +32,6 @@ def updatecooviahorro(request, id):
             return redirect('cooviahorro')      
     return render(request, 'cooviahorro/updatecooviahorro.html', {'form': form})
 
-
 @login_required
 def deletecooviahorro(request, id):
     cooviahoroo = get_object_or_404(TasasCooviahorro, id=id)

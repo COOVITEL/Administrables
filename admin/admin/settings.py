@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'cooviahorro.apps.CooviahorroConfig',
     'credito.apps.CreditoConfig',
     'descuentos_Credito.apps.DescuentosCreditoConfig',
+    'rotativo.apps.RotativoConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
