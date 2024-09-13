@@ -8,10 +8,54 @@ from .forms import *
 def controlRotativos(request):
     return render(request, 'rotativos/controls.html')
 
+""" Vistas de los tipos de asociados para creditos rotativos"""
+@login_required
+def typesAsociadosRotativos(request):
+    typesAsociados = AsociadoRotativo.objects.all()
+    return render(request, 'rotativos/asociados/asociados.html', {'asociados': typesAsociados})
+
+@login_required
+def createTypeAsociado(request):
+    form = AsociadoRotativoForm()
+    if request.method == 'POST':
+        form = AsociadoRotativoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('asociadosrotativo')
+    return render(request, 'rotativos/asociados/createasociado.html', {'form': form})
+
+@login_required
+def updateTypeAsociado(request, id):
+    asociado = get_object_or_404(AsociadoRotativo, id=id)
+    form = AsociadoRotativoForm(instance=asociado)
+    if request.method == 'POST':
+        form = AsociadoRotativoForm(request.POST, instance=asociado)
+        if form.is_valid():
+            form.save()
+            return redirect('asociadosrotativo')
+    return render(request, 'rotativos/asociados/updateasociado.html', {'form': form})
+
+@login_required
+def deleteTypeAsociado(request, id):
+    asociado = get_object_or_404(AsociadoRotativo, id=id)
+    asociado.delete()
+    return redirect('asociadosrotativo')
+
+
+""" Vistas de los creditos rotativos"""
 @login_required
 def rotativos(request):
-    rotativos = Rotativo.objects.all()
-    return render(request, 'rotativos/rotativos.html', {'rotativos': rotativos})
+    pensionado = AsociadoRotativo.objects.get(name="Pensionado")
+    privado = AsociadoRotativo.objects.get(name="Empleado Privado")
+    publico = AsociadoRotativo.objects.get(name="Empleado Publico")
+    pensionados = Rotativo.objects.filter(typeAsociado=pensionado)
+    privados = Rotativo.objects.filter(typeAsociado=privado)
+    publicos = Rotativo.objects.filter(typeAsociado=publico)
+    return render(request, 'rotativos/rotativos/rotativos.html',
+                  {'types': [
+                      {'name': 'Pensionados', 'info': pensionados},
+                      {'name': 'Empleados Publicos', 'info': publicos},
+                      {'name': 'Empleados Privados', 'info': privados}]})
 
 @login_required
 def createRotativo(request):
@@ -21,7 +65,7 @@ def createRotativo(request):
         if form.is_valid():
             form.save()
             return redirect('rotativos')
-    return render(request, 'rotativos/createrotativo.html', {'form': form})
+    return render(request, 'rotativos/rotativos/createrotativo.html', {'form': form})
 
 @login_required
 def updateRotativo(request, id):
@@ -32,7 +76,7 @@ def updateRotativo(request, id):
         if form.is_valid():
             form.save()
             return redirect('rotativos')
-    return render(request, 'rotativos/updaterotativo.html')
+    return render(request, 'rotativos/rotativos/updaterotativo.html', {'form': form})
 
 @login_required
 def deleteRotativo(request, id):

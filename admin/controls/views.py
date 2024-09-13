@@ -1,11 +1,12 @@
-from django.shortcuts import render, redirect ,get_object_or_404
+from django.shortcuts import render
 from .forms import *
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework import viewsets, status, views
+from rest_framework import viewsets, status
 from rest_framework.permissions import IsAuthenticated
 from .serializer import *
 from django.contrib.auth.decorators import login_required
+from rotativo.serializer import *
 
 
 @login_required(login_url="login")
@@ -30,7 +31,7 @@ class ApiCooviahorro(viewsets.ModelViewSet):
     queryset = TasasCooviahorro.objects.all()
 
 class SimuladorCreditoApiView(APIView):
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     
     def get(self, request):
         # Obtener datos de ApiCdat
@@ -63,4 +64,22 @@ class SimuladorCreditoApiView(APIView):
             }
         }
         
+        return Response(data, status=status.HTTP_200_OK)
+
+
+class RotativoApi(APIView):
+    
+    permission_classes = [IsAuthenticated]
+    
+    def get(self, request):
+        
+        typesAsociados = AsociadosRotativoSerializer(AsociadoRotativo.objects.all(), many=True).data
+        escenarios = EscenariosSerializer(Escenarios.objects.all(), many=True).data
+        rotativos = RotativosSerializer(Rotativo.objects.all(), many=True).data
+        
+        data = {
+            'typesAsociados': typesAsociados,
+            'escenarios': escenarios,
+            'rotativos': rotativos
+        }
         return Response(data, status=status.HTTP_200_OK)

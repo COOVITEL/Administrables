@@ -11,4 +11,5 @@ urlpatterns = [
     path("administrables/", views.Admin, name="admin"),
     path("api/", include(router.urls)),
     path('api/simuladorcredito/', views.SimuladorCreditoApiView.as_view(), name='apisimuladorcredito'),
+    path('api/rotativos/', views.RotativoApi.as_view(), name="apirotativos")
 ]

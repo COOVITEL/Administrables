@@ -10,8 +10,8 @@
 
 .opt {
     display: flex;
+    flex-wrap: wrap;
     height: auto;
-    flex-direction: row;
     justify-content: space-around;
     align-items: start;
     margin-top: 20px;
@@ -24,7 +24,10 @@
   justify-content: start;
   align-items: start;
   margin-top: 20px;
-  margin-left: 50px;
+}
+
+.back-bt {
+  margin-right: 15px;
 }
 
 .content-option {
@@ -37,6 +40,12 @@
     flex-direction: column;
     align-items: center;
     background-color: #eeeeee;
+    transition: all 0.5s ease;
+    opacity: 1;
+    @starting-style {
+      opacity: 0;
+      transition: all 0.5s ease;
+    }
 }
 
 .content-option h3 {
@@ -116,4 +125,13 @@
   .cta:active {
     transform: scale(1.1);
   }
-  
+
+.btn-back {
+  margin-right: 10px;
+  transition: all .3s ease;
+}
+
+.btn-back:hover {
+  transform: scale(1.2);
+  transition: all .3s ease;
+}
