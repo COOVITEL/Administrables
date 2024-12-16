@@ -1,0 +1,25 @@
+from django.db import models
+
+class RegistrosSimulacionesCreditos(models.Model):
+    name = models.CharField(max_length=100)
+    document = models.IntegerField()
+    dateborn = models.DateTimeField()
+    dateafi = models.DateTimeField()
+    typeAsociado = models.CharField(max_length=100)
+    typeContract = models.CharField(max_length=100)
+    seniority = models.DateTimeField()
+    payForm = models.CharField(max_length=100)
+    score = models.IntegerField()
+    warranty = models.CharField(max_length=100)
+    salary = models.CharField(max_length=100)
+    others = models.CharField(max_length=100)
+    cuotasDes = models.CharField(max_length=100)
+    cuotasCen = models.CharField(max_length=100)
+    cooviahorro = models.CharField(max_length=100)
+    cdat = models.CharField(max_length=100)
+    aportes = models.CharField(max_length=100)
+    linea = models.CharField(max_length=100)
+    credit = models.CharField(max_length=100)
+    cuotas = models.CharField(max_length=100)
+    monto = models.CharField(max_length=100)
+

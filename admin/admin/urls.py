@@ -9,5 +9,6 @@ urlpatterns = [
     path('', include('credito.urls')),
     path('', include('descuentos_Credito.urls')),
     path('', include('rotativo.urls')),
+    path("api/", include("registros.urls")),
     path('admin/', admin.site.urls),
 ]
