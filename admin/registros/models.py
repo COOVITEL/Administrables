@@ -3,8 +3,8 @@ from django.db import models
 class RegistrosSimulacionesCreditos(models.Model):
     name = models.CharField(max_length=100)
     document = models.IntegerField()
-    dateborn = models.DateTimeField()
-    dateafi = models.DateTimeField()
+    dateborn = models.CharField(max_length=100)
+    dateafi = models.CharField(max_length=100)
     typeAsociado = models.CharField(max_length=100)
     typeContract = models.CharField(max_length=100)
     seniority = models.DateTimeField()
@@ -22,4 +22,6 @@ class RegistrosSimulacionesCreditos(models.Model):
     credit = models.CharField(max_length=100)
     cuotas = models.CharField(max_length=100)
     monto = models.CharField(max_length=100)
+    dateCreated = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    createdBy = models.CharField(max_length=200, null=True, blank=True)
 

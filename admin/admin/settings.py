@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'controls',
     'registros',
+    'asesores',
 ]
 
 MIDDLEWARE = [
@@ -164,3 +165,9 @@ EMAIL_HOST_USER = 'estebanclimb@gmail.com'
 EMAIL_HOST_PASSWORD = 'site mown gkdv dqmt'
 EMAIL_POST = 587
 EMAIL_USE_TLS = True
+
+# EMAIL_HOST = 'smtp.coovitel.coop'
+# EMAIL_HOST_USER = 'desarrollador2@coovitel.coop'
+# EMAIL_HOST_PASSWORD = 'igdk jhxs ckdz uchh'
+# EMAIL_POST = 587
+# EMAIL_USE_TLS = True
