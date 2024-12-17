@@ -6,8 +6,8 @@ class RegistrosSimulacionesCreditos(models.Model):
     dateborn = models.CharField(max_length=100)
     dateafi = models.CharField(max_length=100)
     typeAsociado = models.CharField(max_length=100)
-    typeContract = models.CharField(max_length=100)
-    seniority = models.DateTimeField()
+    typeContract = models.CharField(max_length=100, null=True, blank=True)
+    seniority = models.CharField(max_length=100, null=True, blank=True)
     payForm = models.CharField(max_length=100)
     score = models.IntegerField()
     warranty = models.CharField(max_length=100)
@@ -25,3 +25,11 @@ class RegistrosSimulacionesCreditos(models.Model):
     dateCreated = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     createdBy = models.CharField(max_length=200, null=True, blank=True)
 
+class RegistroSimulacionesCdat(models.Model):
+    nameAsociado = models.CharField(max_length=100)
+    typeCdat = models.CharField(max_length=100)
+    tasa = models.FloatField()
+    value = models.CharField(max_length=100)
+    plazo = models.IntegerField()
+    dateCreated = models.DateTimeField(auto_now_add=True)
+    createdBy = models.CharField(max_length=100)

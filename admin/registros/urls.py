@@ -6,5 +6,5 @@ router = routers.DefaultRouter()
 router.register(r"registros-creditos", RegistroCreditosView, "registros-creditos")
 
 urlpatterns = [
-    path("registros/", include(router.urls))
+    path("", include(router.urls))
 ]
