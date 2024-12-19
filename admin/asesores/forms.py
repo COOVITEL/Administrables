@@ -2,19 +2,12 @@ from django import forms
 from .models import *
 
 class SucursalForm(forms.ModelForm):
-    class Meta:
+    class Meta():
         model = Sucursal
-        fields = ["name"]
-        labels = {
-            "name": "Nombre Sucursal"
-        }
-
+        fields = ['name']
+        
 class AsesoresForm(forms.ModelForm):
-    class Meta:
+    class Meta():
         model = Asesores
-        fields = ["name", "document", "sucursal"]
-        labels = {
-            "name": "Nombre Asesor",
-            "document": "Numero de documento",
-            "sucursal": "Sucursal"
-        }
+        fields = ['name', 'document', 'sucursal']
+

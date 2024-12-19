@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Registro Sucursales
+{% endblock title %}
+
+{% block content %}        
+    <h1 class="title-asesores">Formulario Sucursal</h1>
+    <br>
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        
+        <button type="submit">Guardar</button>
+    </form>
+
+    <br>
+    <br>
+
+    <button type="submit" onclick="document.getElementById('sucursal-list-modal').style.display='block'">Ver Sucursales</button>
+
+    <div id="sucursal-list-modal" style="display:none; position:fixed; top:10%; left:10%; width:80%; height:80%; background:white; border:1px solid #ccc; padding:20px; overflow:auto; text-aling:center">
+        <h2>Lista de Sucursales</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for sucursal in sucursales %}
+                    <tr>
+                        <td>{{ sucursal.id }}</td>
+                        <td>{{ sucursal.name }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button type="submit" onclick="document.getElementById('sucursal-list-modal').style.display='none'">Cerrar</button>
+    </div>
+{% endblock content %}

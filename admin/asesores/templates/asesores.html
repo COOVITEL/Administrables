@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Registro Asesores
+{% endblock title %}
+
+{% block content %}        
+
+    <h1 class="title-asesores">Formulario Asesores</h1>
+
+    <br>
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <br>
+        <button type="submit">Guardar</button>
+    </form>
+
+    <br>
+    <br>
+
+    <button type="submit" onclick="document.getElementById('asesores-list-modal').style.display='block'">Ver Asesores</button>
+
+    <div id="asesores-list-modal" style="display:none; position:fixed; top:10%; left:10%; width:80%; height:80%; background:white; border:1px solid #ccc; padding:20px; overflow:auto;">
+        <h2>Lista de Asesores</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Documento</th>
+                    <th>Sucursal</th>
+                    <th>Fecha Creado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for asesor in asesores %}
+                    <tr>
+                        <td>{{ asesor.id }}</td>
+                        <td>{{ asesor.name }}</td>
+                        <td>{{ asesor.document }}</td>
+                        <td>{{ asesor.sucursal }}</td>
+                        <td>{{ asesor.dateCreated }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button type="submit" onclick="document.getElementById('asesores-list-modal').style.display='none'">Cerrar</button>
+    </div>
+{% endblock content %}
