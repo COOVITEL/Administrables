@@ -92,26 +92,27 @@
             document.getElementById('modal-overlay').style.display = 'block';
             document.body.style.overflow = 'hidden';
         }
-
+    
         function closeModal() {
             document.getElementById('asesores-list-modal').style.display = 'none';
+            document.getElementById('modal-overlay').style.display = 'none'; 
             document.body.style.overflow = 'auto';
         }
-
+    
         function openDeleteConfirmationModal(asesorId) {
             document.getElementById('delete-confirm-modal').style.display = 'block';
             document.getElementById('modal-overlay').style.display = 'block';
-            document.getElementById('delete-confirm-modal').dataset.asesorId = asesorId; // Guardar el ID del asesor para su eliminación.
+            document.getElementById('delete-confirm-modal').dataset.asesorId = asesorId; 
         }
-
+    
         function closeDeleteConfirmationModal() {
             document.getElementById('delete-confirm-modal').style.display = 'none';
-            document.getElementById('modal-overlay').style.display = 'block'; // Mantener el overlay activo.
+            document.getElementById('modal-overlay').style.display = 'none'; 
         }
-
+    
         function deleteAsesorConfirmed() {
             const asesorId = document.getElementById('delete-confirm-modal').dataset.asesorId;
-
+    
             fetch(`/eliminar-asesor/${asesorId}/`, {
                 method: 'DELETE',
                 headers: {
@@ -131,11 +132,10 @@
                 alert("Error de conexión al servidor.");
             });
         }
-
+    
         document.getElementById('asesores-list-modal').addEventListener('click', function(event) {
             event.stopPropagation();
         });
-        
-    </script>
+    </script>    
 {% endblock content %}
 
