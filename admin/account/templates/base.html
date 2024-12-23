@@ -15,6 +15,7 @@
         <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
         <link rel="stylesheet" type="text/css" href="{% static 'css/style2.css' %}"/>
         <link rel="stylesheet" type="text/css" href="{% static 'css/options.css' %}"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/asesores.css' %}"/>
     </head>
     <body>
         <aside>
@@ -58,6 +59,20 @@
                         <a class="links" href="{% url 'controlsRotativos' %}">
                             <p>
                                 Rotativos
+                            </p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="links" href="{% url 'asesoresList' %}">
+                            <p>
+                                Asesores
+                            </p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="links" href="{% url 'sucursalList' %}">
+                            <p>
+                                Sucursales
                             </p>
                         </a>
                     </li>

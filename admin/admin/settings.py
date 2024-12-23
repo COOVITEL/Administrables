@@ -160,6 +160,7 @@ REST_FRAMEWORK = {
     ],
 }
 
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'estebanclimb@gmail.com'
 EMAIL_HOST_PASSWORD = 'site mown gkdv dqmt'
