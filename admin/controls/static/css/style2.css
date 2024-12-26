@@ -98,6 +98,10 @@ tr:nth-child(2n) {
 
 .form p {
     padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .form p:nth-child(n+8) {
@@ -128,7 +132,8 @@ tr:nth-child(2n) {
 }
 
 .form input {
-    padding: 4px 8px;
+    margin: 0;
+    width: 500px;
     border-radius: 20px;
     border: 1px solid #7fccff;
 }

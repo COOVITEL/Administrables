@@ -18,7 +18,7 @@ class RegistrosSimulacionesCreditos(models.Model):
     cooviahorro = models.CharField(max_length=100)
     cdat = models.CharField(max_length=100)
     aportes = models.CharField(max_length=100)
-    linea = models.CharField(max_length=100)
+    # linea = models.CharField(max_length=100)
     credit = models.CharField(max_length=100)
     cuotas = models.CharField(max_length=100)
     monto = models.CharField(max_length=100)

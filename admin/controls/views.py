@@ -7,6 +7,7 @@ from rest_framework.permissions import IsAuthenticated
 from .serializer import *
 from django.contrib.auth.decorators import login_required
 from rotativo.serializer import *
+from asesores.models import *
 
 
 @login_required(login_url="login")
@@ -16,7 +17,6 @@ def Admin(request):
 @login_required
 def creditos(request):
     return render(request, 'creditos/controls.html')
-
 
 
 class ApiCdat(viewsets.ModelViewSet):
@@ -46,6 +46,7 @@ class SimuladorCreditoApiView(APIView):
         ajusteCooviahorro = AjustesCooviahorroSerializer(AjustesCooviahorro.objects.all(), many=True).data
         maximoAjuste = MaximoAjusteSerializer(MaximoAjuste.objects.all(), many=True).data
         asociadoType = TypeAsociadoSerializer(TypeAsociado.objects.all(), many=True).data
+        asesores = AsesoresSerializer(Asesores.objects.all(), many=True).data
         
         data = {
             'salariominimo': 1462000,
@@ -55,6 +56,7 @@ class SimuladorCreditoApiView(APIView):
             'tasasnosociales': tasasNoSociales,
             'maximoDescuento': maximoAjuste,
             'tiposAsociados': asociadoType,
+            'asesores': asesores,
             'descuentos': {
                 'score': ajusteScore,
                 'aporte': ajusteAporte,

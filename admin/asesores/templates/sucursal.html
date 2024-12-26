@@ -7,22 +7,7 @@
 {% block content %}
 <div id="alert-message" class="alert-message"></div>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const alertMessage = document.getElementById('alert-message');
 
-        {% if messages %}
-            {% for message in messages %}
-                alertMessage.textContent = "{{ message }}";
-                alertMessage.classList.add('show');
-
-                setTimeout(() => {
-                    alertMessage.classList.remove('show');
-                }, 3000); 
-            {% endfor %}
-        {% endif %}
-    });
-</script>
 <br>
 <br>
 <div class="types">
@@ -44,7 +29,7 @@
     </colgroup>
     <thead>
         <tr>
-            <th>ID</th>
+            <th>#</th>
             <th>Nombre</th>
             <th></th>
         </tr>
@@ -52,7 +37,7 @@
     <tbody>
         {% for sucursal in sucursales %}
         <tr style="background-color: {% cycle '#ffffff' '#f9f9f9' %}; height: 40px;">
-            <td style="padding: 8px; border-bottom: 1px solid #ddd;">{{ sucursal.id }}</td>
+            <td style="padding: 8px; border-bottom: 1px solid #ddd;">{{ forloop.counter }}</td>
             <td style="padding: 8px; border-bottom: 1px solid #ddd;">{{ sucursal.name }}</td>
             <td style="padding: 8px; border-bottom: 1px solid #ddd;">
                 <button type="button" onclick="openDeleteConfirmationModal({{ sucursal.id }})" style="background-color:#b1def1; color: black; border: none; padding: 5px 10px; cursor: pointer; border-radius: 4px;">
@@ -78,7 +63,7 @@
     </div>
 
     <!-- Formulario -->
-    <form method="POST" style="display: flex; flex-direction: column; gap: 15px;">
+    <form method="POST" class="form-created form-created-2">
         {% csrf_token %}
         {{ form.as_p }}
 
@@ -92,7 +77,7 @@
 
 <div id="modal-overlay" onclick="closeModal()" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0, 0, 0, 0.5); z-index:999;"></div>
 
-<div id="delete-confirm-modal" style="display:none; position:fixed; top:30%; left:30%; width:40%; background-color:#12171ad7; border:1px solid #ccc; padding:20px; z-index:1001; border-radius:8px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);">
+<div id="delete-confirm-modal" style="display:none; position:fixed; top:30%; left:30%; width:40%; background-color:#000000FF; border:1px solid #ccc; padding:20px; z-index:1001; border-radius:8px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);">
     <h3 style="text-align:center;color: white;">Confirmar Eliminación</h3>
     <br>
     <p style="text-align:center;color: white;">¿Estás seguro de que deseas eliminar esta Sucursal?</p>
@@ -149,5 +134,21 @@
             alert("Error de conexión al servidor.");
         });
     }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const alertMessage = document.getElementById('alert-message');
+
+        {% if messages %}
+            {% for message in messages %}
+                alertMessage.textContent = "{{ message }}";
+                alertMessage.classList.add('show');
+
+                setTimeout(() => {
+                    alertMessage.classList.remove('show');
+                }, 3000); 
+            {% endfor %}
+        {% endif %}
+    });
+    
 </script>
 {% endblock content %}

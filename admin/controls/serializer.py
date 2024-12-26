@@ -4,6 +4,7 @@ from cdat.models import *
 from cooviahorro.models import *
 from credito.models import *
 from descuentos_Credito.models import *
+from asesores.models import *
 
 
 class CdatSerializer(serializers.ModelSerializer):
@@ -71,3 +72,8 @@ class TypeAsociadoSerializer(serializers.ModelSerializer):
     class Meta:
         model = TypeAsociado
         fields = '__all__'
+
+class AsesoresSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Asesores
+        fields = ['name']

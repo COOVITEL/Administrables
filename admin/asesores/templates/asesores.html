@@ -36,7 +36,7 @@
         </button>
         <thead>
             <tr>
-                <th>ID</th>
+                <th>#</th>
                 <th>Nombre</th>
                 <th>Documento</th>
                 <th>Sucursal</th>
@@ -47,7 +47,7 @@
         <tbody>
             {% for asesor in asesores %}
                 <tr style="background-color: {% cycle '#ffffff' '#f9f9f9' %}; height: 40px;">
-                    <td style="padding: 8px; border-bottom: 1px solid #ddd;">{{ asesor.id }}</td>
+                    <td style="padding: 8px; border-bottom: 1px solid #ddd;">{{ forloop.counter }}</td>
                     <td style="padding: 8px; border-bottom: 1px solid #ddd;">{{ asesor.name }}</td>
                     <td style="padding: 8px; border-bottom: 1px solid #ddd;">{{ asesor.document }}</td>
                     <td style="padding: 8px; border-bottom: 1px solid #ddd;">{{ asesor.sucursal }}</td>
@@ -80,7 +80,7 @@
             <button type="button" onclick="closeModal()" style="background:none; border:none; font-size:30px; cursor:pointer; color:black;">&times;</button>
         </div>
     <br>
-    <form method="POST">
+    <form method="POST" class="form-created form-created-2">
         {% csrf_token %}
         {{ form.as_p }}
         <br>
