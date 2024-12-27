@@ -71,17 +71,19 @@ class SimuladorCreditoApiView(APIView):
 
 class RotativoApi(APIView):
     
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     
     def get(self, request):
         
         typesAsociados = AsociadosRotativoSerializer(AsociadoRotativo.objects.all(), many=True).data
         escenarios = EscenariosSerializer(Escenarios.objects.all(), many=True).data
         rotativos = RotativosSerializer(Rotativo.objects.all(), many=True).data
+        asesores = AsesoresSerializer(Asesores.objects.all(), many=True).data
         
         data = {
             'typesAsociados': typesAsociados,
             'escenarios': escenarios,
-            'rotativos': rotativos
+            'rotativos': rotativos,
+            'asesores': asesores,
         }
         return Response(data, status=status.HTTP_200_OK)
