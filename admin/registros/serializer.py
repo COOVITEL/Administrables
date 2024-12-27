@@ -10,3 +10,8 @@ class RegistrosSimulacionesCdatSerializer(serializers.ModelSerializer):
     class Meta:
         model = RegistroSimulacionesCdat
         fields = '__all__'
+
+class RegistrosSimulacionesRotativoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RegistroSimulacionRotativo
+        fields = '__all__'

@@ -18,7 +18,6 @@ class RegistrosSimulacionesCreditos(models.Model):
     cooviahorro = models.CharField(max_length=100)
     cdat = models.CharField(max_length=100)
     aportes = models.CharField(max_length=100)
-    # linea = models.CharField(max_length=100)
     credit = models.CharField(max_length=100)
     cuotas = models.CharField(max_length=100)
     monto = models.CharField(max_length=100)
@@ -33,3 +32,18 @@ class RegistroSimulacionesCdat(models.Model):
     plazo = models.IntegerField()
     dateCreated = models.DateTimeField(auto_now_add=True)
     createdBy = models.CharField(max_length=100)
+
+class RegistroSimulacionRotativo(models.Model):
+    nameAsociado = models.CharField(max_length=100)
+    document = models.IntegerField()
+    dateAfiliacion = models.CharField(max_length=100)
+    typeAsociado = models.CharField(max_length=100)
+    typeContract = models.CharField(max_length=100, null=True, blank=True)
+    pagaduria = models.CharField(max_length=100)
+    salary = models.CharField(max_length=100)
+    descuentos = models.CharField(max_length=100)
+    score = models.IntegerField()
+    monto = models.CharField(max_length=100)
+
+class RegistroSimulacionCooviahorro(models.Model):
+    pass
