@@ -5,6 +5,7 @@ from .views import *
 router = routers.DefaultRouter()
 router.register(r"registros-creditos", RegistroCreditosView, "registros-creditos")
 router.register(r"registros-rotativos", RegistroRotativoView, "registros-rotativos")
+router.register(r"registros-cooviahorro", RegistroCooviahorroView, "registros-cooviahorro")
 
 urlpatterns = [
     path("", include(router.urls))

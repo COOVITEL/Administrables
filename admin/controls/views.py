@@ -8,6 +8,8 @@ from .serializer import *
 from django.contrib.auth.decorators import login_required
 from rotativo.serializer import *
 from asesores.models import *
+from cooviahorro.models import *
+from cooviahorro.serializer import *
 
 
 @login_required(login_url="login")
@@ -25,10 +27,17 @@ class ApiCdat(viewsets.ModelViewSet):
     queryset = TasasCDAT.objects.all()
     
 
-class ApiCooviahorro(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
-    serializer_class =  CooviahorroSerializer
-    queryset = TasasCooviahorro.objects.all()
+class CooviahorroApiView(APIView):
+    # permission_classes = [IsAuthenticated]
+    def get(self, request):
+        registrosCooviahorro = CooviahorroSerializer(TasasCooviahorro.objects.all(), many=True).data
+        asesores = AsesoresSerializer(Asesores.objects.all(), many=True).data
+        
+        data = {
+            "registrosCooviahorro": registrosCooviahorro,
+            "asesores": asesores
+        }
+        return Response(data, status=status.HTTP_200_OK)
 
 class SimuladorCreditoApiView(APIView):
     permission_classes = [IsAuthenticated]

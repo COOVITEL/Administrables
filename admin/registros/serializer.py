@@ -15,3 +15,8 @@ class RegistrosSimulacionesRotativoSerializer(serializers.ModelSerializer):
     class Meta:
         model = RegistroSimulacionRotativo
         fields = '__all__'
+
+class RegistrosSimulacionesCooviahorroSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RegistroSimulacionCooviahorro
+        fields = '__all__'

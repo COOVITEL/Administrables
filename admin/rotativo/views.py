@@ -45,12 +45,14 @@ def deleteTypeAsociado(request, id):
 """ Vistas de los creditos rotativos"""
 @login_required
 def rotativos(request):
-    pensionado = AsociadoRotativo.objects.get(name="Pensionado")
-    privado = AsociadoRotativo.objects.get(name="Empleado Privado")
-    publico = AsociadoRotativo.objects.get(name="Empleado Publico")
+    pensionado = AsociadoRotativo.objects.filter(name="Pensionado").first()
+    privado = AsociadoRotativo.objects.filter(name="Empleado Privado").first()
+    publico = AsociadoRotativo.objects.filter(name="Empleado Publico").first()
+    
     pensionados = Rotativo.objects.filter(typeAsociado=pensionado)
     privados = Rotativo.objects.filter(typeAsociado=privado)
     publicos = Rotativo.objects.filter(typeAsociado=publico)
+
     return render(request, 'rotativos/rotativos/rotativos.html',
                   {'types': [
                       {'name': 'Pensionados', 'info': pensionados},

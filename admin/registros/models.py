@@ -44,6 +44,14 @@ class RegistroSimulacionRotativo(models.Model):
     descuentos = models.CharField(max_length=100)
     score = models.IntegerField()
     monto = models.CharField(max_length=100)
+    dateCreated = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    createdBy = models.CharField(max_length=100, blank=True, null=True)
 
 class RegistroSimulacionCooviahorro(models.Model):
-    pass
+    nameAsociado = models.CharField(max_length=100)
+    tipoCooviahorro = models.CharField(max_length=100)
+    valorAhorroMensual = models.CharField(max_length=100)
+    plazo = models.IntegerField()
+    dateCreated = models.DateTimeField(auto_now_add=True)
+    createdBy = models.CharField(max_length=100)
+

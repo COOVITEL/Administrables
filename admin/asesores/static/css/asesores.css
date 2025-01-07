@@ -38,7 +38,7 @@ input, textarea {
 }
   
   
-button[type="submit"] {
+.new-asesor {
     font-family:Georgia, 'Times New Roman', Times, serif;
     background-color: #2c3870;
     color: white;
