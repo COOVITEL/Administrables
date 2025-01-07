@@ -1,0 +1,62 @@
+:root {
+    --backColor: #fdfdfd;
+    --colorWhite: #fff;
+    --colorLinks: #007eb8;
+    --colorOne: #202d54;
+    --colorTwo: #2c3870;
+    --colorTwoLow: #2c387028;
+    --colorThree: #2d2e83;
+    --colorFour: #007eb8;
+}
+
+.pagination {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 50px;
+    border: 1px solid var(--colorOne);
+    cursor: pointer;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: var(--colorTwo);
+    list-style: none;
+    color: var(--colorWhite);
+}
+
+.page-actual {
+    background-color: var(--colorOne);
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 18px;
+    color: var(--colorWhite);
+    font-weight: 1000;
+}
+
+.page-actual a {
+    text-decoration: underline;
+    color: var(--colorWhite);
+}
+
+a {
+    text-decoration: none;
+    color: var(--colorWhite);
+}
+
+button {
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    background-color: #2c3870;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 0;
+    border-radius: 25px;
+    cursor: pointer;
+}
+  
+button:hover {
+    background-color: #202d54;
+}
