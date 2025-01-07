@@ -8,17 +8,13 @@
     position: relative;
     z-index: 1;
 }
-.form-created {
+form {
     width: 100%;
     max-width: 500px;
     margin: 0 auto;
     padding: 20px;
     background-color: #cdcdcf;
     border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
   
 label {
@@ -179,7 +175,7 @@ tr:nth-child(2n) {
     transition: all .3s ease-in-out;
 }
 
-.form-created-2 {
+.form {
     width: 90%;
     text-align: center;
     border: 1px solid var(--colorOne);
@@ -200,10 +196,6 @@ tr:nth-child(2n) {
 
 .form p {
     padding: 10px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
 }
 
 .form p:nth-child(n+8) {
@@ -234,7 +226,7 @@ tr:nth-child(2n) {
 }
 
 .form input {
-    margin: 0;
+    padding: 4px 8px;
     border-radius: 20px;
     border: 1px solid #7fccff;
 }
@@ -255,18 +247,4 @@ tr:nth-child(2n) {
     background-color: #006999;
     transform: rotateX(10deg);
     transition: all .3s ease;
-}
-
-.form-sucursal {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.set-select {
-    height: 30px;
-    font-size: 20px;
-    border-radius: 30px;
-    text-align: center;
 }

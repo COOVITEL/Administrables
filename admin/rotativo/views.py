@@ -48,6 +48,7 @@ def rotativos(request):
     pensionado = AsociadoRotativo.objects.get(name="Pensionado")
     privado = AsociadoRotativo.objects.get(name="Empleado Privado")
     publico = AsociadoRotativo.objects.get(name="Empleado Publico")
+    
     pensionados = Rotativo.objects.filter(typeAsociado=pensionado)
     privados = Rotativo.objects.filter(typeAsociado=privado)
     publicos = Rotativo.objects.filter(typeAsociado=publico)

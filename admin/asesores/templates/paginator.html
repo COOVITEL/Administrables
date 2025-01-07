@@ -1,0 +1,46 @@
+<!-- filepath: /c:/Users/LCABRERA/proyectosCoovitel/Administrables/admin/asesores/templates/paginator.html -->
+{% if paginator.num_pages > 1 %}
+    <div class="d-flex justify-content-center"> 
+        <ul class="pagination">
+            {% if asesores.has_previous %}
+                <button class="page-item d-none d-sm-block"><a class="page-link" href="?page={{ asesores.previous_page_number }}">Anterior</a></button>
+            {% endif %}
+
+            {% if paginator.num_pages < 7 %}
+                {% for page in paginator.page_range %}
+                    <li class="page-item {% if page == current_page.number %}page-actual{% endif %}">
+                        <a class="page-link" href="?page={{ page }}">{{ page }}</a>
+                    </li>        
+                {% endfor %}
+            {% else %}
+                {% for page in paginator.page_range %} 
+                    {% if page == current_page.number or asesores.previous_page_number == page or asesores.next_page_number == page %}
+                    <li class="page-item {% if page == current_page.number %}page-actual{% endif %}">
+                        <a class="page-link" href="?page={{ page }}">{{ page }}</a>
+                    </li>
+                    {% elif page == 1 %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page }}">{{ page }}</a>
+                        </li>
+                        {% if current_page.number > 3 %}
+                            <p>...</p>
+                        {% endif %}
+                    {% elif page == paginator.num_pages %}
+                        {% if current_page.number < paginator.num_pages %}
+                            <p>...</p>
+                        {% endif %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page }}">{{ page }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+
+            {% if asesores.has_next %}
+                <button class="page-item d-none d-sm-block">
+                    <a class="page-link" href="?page={{ asesores.next_page_number }}">Siguiente</a>
+                </button>
+            {% endif %}
+        </ul>
+    </div>
+{% endif %}
