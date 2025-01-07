@@ -45,7 +45,7 @@ a {
     color: var(--colorWhite);
 }
 
-button {
+/* button {
     font-family:Georgia, 'Times New Roman', Times, serif;
     background-color: #2c3870;
     color: white;
@@ -59,4 +59,4 @@ button {
   
 button:hover {
     background-color: #202d54;
-}
+} */

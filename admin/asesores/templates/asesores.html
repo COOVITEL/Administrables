@@ -6,102 +6,68 @@
 
 {% block content %}        
     <div id="alert-message" class="alert-message"></div>
-    
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const alertMessage = document.getElementById('alert-message');
-    
-            {% if messages %}
-                {% for message in messages %}
-                    alertMessage.textContent = "{{ message }}";
-                    alertMessage.classList.add('show');
-    
-                    setTimeout(() => {
-                        alertMessage.classList.remove('show');
-                    }, 3000); 
-                {% endfor %}
-            {% endif %}
-        });
-    </script>
 
     
-    <div class="types">
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+    <section class="types">
 
-    <table style="width:100%; text-align:center; font-size:20px;">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
         <h1 style="margin: 0; text-align:center;">Lista de Asesores</h1>
-    </div>
-        <button type="submit" class="new-asesor" onclick="openListModal()">
-            Nuevo asesor
-        </button> 
-        <br>
-        <form method="get" class="search-form" style="display: flex; align-items: center;">
-            <div style="position: relative; flex: 1;">
-                <input type="text" name="search" placeholder="Buscar por nombre o cédula  " 
-                       value="{{ search_query }}" class="search-input" 
-                       style="width: 101%; padding: 10px 600px 10px 10px; border-radius: 15px; border: 3px solid #ccc;">
-                <button type="submit" class="button-buscar" 
-                        style="position: absolute; right: 10px; top: 45%; transform: translateY(-50%); 
-                               background: none; border: none; cursor: pointer; padding: 5px;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" 
-                         stroke="#00008B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="11" cy="11" r="8"/>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-                    </svg>
+
+        <div class="nav-search">
+            <button type="submit" class="new-asesor" onclick="openListModal()">
+                Nuevo asesor
+            </button> 
+            <form method="get" class="search-form">
+                <input type="text" name="search" placeholder="Buscar por nombre o cédula" 
+                value="{{ search_query }}" class="search-input"/>
+                <button type="submit" class="search-button">
+                    {% include "icons/search.html" %}
                 </button>
-            </div>
-        </form>
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Nombre</th>
-                <th>Documento</th>
-                <th>Sucursal</th>
-                <th>Fecha Creado</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for asesor in asesores %}
-                <tr style="background-color: {% cycle '#ffffff' '#f9f9f9' %}; height: 40px;">
-                    <td style="padding: 8px; border-bottom: 1px solid #ddd;">{{ asesor.id}}</td>
-                    <td style="padding: 8px; border-bottom: 1px solid #ddd;">{{ asesor.name }}</td>
-                    <td style="padding: 8px; border-bottom: 1px solid #ddd;">{{ asesor.document }}</td>
-                    <td style="padding: 8px; border-bottom: 1px solid #ddd;">{{ asesor.sucursal }}</td>
-                    <td style="padding: 8px; border-bottom: 1px solid #ddd;">{{ asesor.dateCreated }}</td>
+            </form>
+        </div>
 
-                    <td style="padding: 8px; border-bottom: 1px solid #ddd;">
-                        <form method="POST">
-                            {% csrf_token %}
-                            <input type="hidden" name="form_id" value="form-update-{{asesor.id}}">
-                            <button type="submit" 
-                                    style="background-color:#b1def1; color: black; border: none; padding: 5px 10px; cursor: pointer; border-radius: 4px; font-family: Georgia, 'Times New Roman', Times, serif;">
-                                {% include "icons/edit.html" %}
-                            </button>
-                        </form>
-                    </td>
-
-                    <td style="padding: 8px; border-bottom: 1px solid #ddd;">
-                            <button type="button" onclick="openDeleteConfirmationModal({{ asesor.id }})" 
-                                    style="background-color:#b1def1; color: black; border: none; padding: 5px 10px; cursor: pointer; border-radius: 4px; font-family: Georgia, 'Times New Roman', Times, serif;">
-                                {% include "icons/delete.html" %}
-                            </button>
-                    </td>
-
-                
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Documento</th>
+                    <th>Sucursal</th>
+                    <th>Fecha Creado</th>
+                    <th></th>
                 </tr>
-            {% endfor %}
-        </tbody>
-       
-    </table>
-     {% include 'paginator.html' %}
-    </div>
+            </thead>
+            <tbody>
+                {% for asesor in asesores %}
+                    <tr style="background-color: {% cycle '#ffffff' '#f9f9f9' %};">
+                        <td style="padding: 2px; border-bottom: 1px solid #ddd;">{{ asesor.id}}</td>
+                        <td style="padding: 2px; border-bottom: 1px solid #ddd;">{{ asesor.name }}</td>
+                        <td style="padding: 2px; border-bottom: 1px solid #ddd;">{{ asesor.document }}</td>
+                        <td style="padding: 2px; border-bottom: 1px solid #ddd;">{{ asesor.sucursal }}</td>
+                        <td style="padding: 2px; border-bottom: 1px solid #ddd;">{{ asesor.dateCreated }}</td>
+
+                        <td style="padding: 2px; border-bottom: 1px solid #ddd;">
+                            <form method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="form_id" value="form-update-{{asesor.id}}">
+                                <button type="submit" class="update-button">
+                                    {% include "icons/edit.html" %}
+                                </button>
+                            </form>
+                        </td>
+
+                        <td style="padding: 2px; border-bottom: 1px solid #ddd;">
+                                <button type="button" onclick="openDeleteConfirmationModal({{ asesor.id }})" class="delete-button"> 
+                                    {% include "icons/delete.html" %}
+                                </button>
+                        </td>
+
+                    
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% include 'paginator.html' %}
+    </section>
    
     <div id="asesores-list-modal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); width: 400px; background:white; border:1px solid #ccc; padding:20px; border-radius:8px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); z-index:1000;">
         
@@ -109,16 +75,15 @@
             <h1 style="margin: 0; font-size: 30px;">Formulario Asesor</h1>
             <button type="button" onclick="closeModal()" style="background:none; border:none; font-size:30px; cursor:pointer; color:black;">&times;</button>
         </div>
-    <br>
-
-    <form method="POST" class="form-created form-created-2">
-        {% csrf_token %}
-        <input type="hidden" name="form_id" value="form-created-asesor">
-        {{ form.as_p }}
         <br>
-        <button type="submit">Guardar</button>
-    </form>
 
+        <form method="POST" class="form-created form-created-2">
+            {% csrf_token %}
+            <input type="hidden" name="form_id" value="form-created-asesor">
+            {{ form.as_p }}
+            <br>
+            <button type="submit">Guardar</button>
+        </form>
     </div>
 
     <div id="modal-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0, 0, 0, 0.5); z-index:999;" onclick="closeModal()"></div>
@@ -147,14 +112,28 @@
                 <br>
                 <button type="submit">Actualizar</button>
             </form>
-    </div>
+        </div>
     {% endif %}
 
 
     <div id="editModalOverlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0, 0, 0, 0.5); z-index:999;" onclick="closeEditModal()"></div>
-    
 
     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const alertMessage = document.getElementById('alert-message');
+    
+            {% if messages %}
+                {% for message in messages %}
+                    alertMessage.textContent = "{{ message }}";
+                    alertMessage.classList.add('show');
+    
+                    setTimeout(() => {
+                        alertMessage.classList.remove('show');
+                    }, 3000); 
+                {% endfor %}
+            {% endif %}
+        });
+
         function openEditModal() {
             document.getElementById('editAsesorModal').style.display = 'block';
         }

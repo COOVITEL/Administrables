@@ -1,19 +1,18 @@
 .content {
     margin: 50px;
-    height: 90vh;
-    display:flexbox;
+    height: auto;
+    display:flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     position: relative;
     z-index: 1;
 }
 form {
     width: 100%;
     max-width: 500px;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     padding: 20px;
-    background-color: #cdcdcf;
+    /* background-color: #cdcdcf; */
     border-radius: 8px;
 }
   
@@ -46,9 +45,9 @@ input, textarea {
     cursor: pointer;
 }
   
-button[type="submit"]:hover {
+/* button[type="submit"]:hover {
     background-color: #202d54;
-}
+} */
 
 .front h1 {
     text-align: center;
@@ -75,6 +74,7 @@ form p input {
 .recover {
     text-align: center;
 }
+
 .alert-message {
     position: fixed;
     top: 20px;
@@ -108,10 +108,9 @@ form p input {
 
 .types {
     width: 100%;
+    height: max-content;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 .title-type {
@@ -140,8 +139,8 @@ form p input {
     transition: all .3s ease;
 }
 
-table {
-    width: 90%;
+.table {
+    width: 100%;
     text-align: center;
     border: 1px solid var(--colorOne);
     border-radius: 20px;
@@ -181,7 +180,7 @@ tr:nth-child(2n) {
     border: 1px solid var(--colorOne);
     border-radius: 20px;
     padding: 10px;
-    margin: 20px 0px;
+    /* margin: 20px 0px; */
     box-shadow: #007eb8a1 0px 2px 4px 0px, #007eb8 0px 2px 16px 0px;
     transition: all 0.6s ease-in-out;
     opacity: 1;
@@ -247,4 +246,49 @@ tr:nth-child(2n) {
     background-color: #006999;
     transform: rotateX(10deg);
     transition: all .3s ease;
+}
+
+.nav-search {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.search-form {
+    display: flex;
+    height: 18px;
+    width: 400px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #007eb8;
+}
+
+.search-button {
+    background-color: transparent;
+    border: 0px solid transparent;
+    height: auto;
+}
+
+.search-input {
+    margin: 0px;
+    background-color: transparent;
+    border: 0px;
+}
+
+.search-input:focus {
+    overflow: hidden;
+    outline: none;
+}
+
+.update-button, .delete-button {
+    background-color:#b1def1;
+    color: black;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-family: Georgia,'Times New Roman', Times, serif;
 }
