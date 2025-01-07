@@ -29,6 +29,7 @@ def sucursalCreate(request):
 def asesorCreate(request):
     # Obtener parámetro de búsqueda
     search_query = request.GET.get('search', '').strip()
+    update = False
 
     # Obtener lista de asesores con filtro aplicado
     asesores = Asesores.objects.all()
@@ -55,37 +56,17 @@ def asesorCreate(request):
                 form.save()
                 messages.success(request, '¡Asesor registrado con éxito!')
                 return redirect('asesoresList')
-        elif formNum == "form-update-asesor":
-            print("Se esta actualizando")
-            id = 2
-            form = AsesoresForm(instance=Asesores.objects.get(id=id))
-            return render(
-                request, 
-                'asesores.html', 
-                {
-                    'form': form,
-                    'asesores': asesores, 
-                    'paginator': paginator, 
-                    'current_page': asesores,
-                    'search_query': search_query,
-                }
-            )
+        elif str(formNum).startswith("form-update-asesor"):
+            asesor = Asesores.objects.get(id=formNum.split("-")[-1])
+            form = AsesoresForm(request.POST, instance=asesor)
+            if form.is_valid():
+                form.save()
+                messages.success(request, '¡Asesor actualizado con éxito!')
+                return redirect('asesoresList') 
         else:
-            print("Se abrio el formulario para actualizar")
-            id = 2
-            form = AsesoresForm(instance=Asesores.objects.get(id=id))
-            return render(
-                request, 
-                'asesores.html', 
-                {
-                    'form': form,
-                    'update': True,
-                    'asesores': asesores, 
-                    'paginator': paginator, 
-                    'current_page': asesores,
-                    'search_query': search_query,
-                }
-            )
+            currentId = formNum.split("-")[-1]
+            update = True
+            form = AsesoresForm(instance=Asesores.objects.get(id=currentId))
     else:
         form = AsesoresForm()
 
@@ -94,6 +75,7 @@ def asesorCreate(request):
         'asesores.html', 
         {
             'form': form, 
+            'update': update,
             'asesores': asesores, 
             'paginator': paginator, 
             'current_page': asesores,
@@ -119,47 +101,4 @@ def eliminar_sucursal(request, sucursal_id):
         sucursal = get_object_or_404(Sucursal, id=sucursal_id)
         sucursal.delete()
         return JsonResponse({'message': 'Sucursal eliminada correctamente.'}, status=200)
-    return JsonResponse({'error': 'Método no permitido.'}, status=405)
-
-logger = logging.getLogger(__name__)
-@csrf_exempt
-@login_required
-def obtener_asesor(request, asesor_id):
-    try:
-        if request.method == 'GET':
-            logger.info(f"Solicitud para obtener asesor con ID: {asesor_id}")
-            asesor = get_object_or_404(Asesores, id=asesor_id)
-            logger.info(f"Asesor encontrado: {asesor}")
-            
-            if request.method == "POST":
-                pass
-            
-            return JsonResponse({
-                'name': asesor.name,
-                'document': asesor.document,
-                'sucursal': str(asesor.sucursal),  
-            }, status=200)
-        return JsonResponse({'error': 'Método no permitido.'}, status=405)
-    except Exception as e:
-        logger.error(f"Error al obtener asesor: {e}")
-        return JsonResponse({'error': 'Error interno del servidor.'}, status=500)
-    
-@csrf_exempt
-@login_required
-def editar_asesor(request, asesor_id):
-    if request.method == 'PUT':
-        asesor = get_object_or_404(Asesores, id=asesor_id)
-        try:
-            data = json.loads(request.body)  # Parsear el cuerpo de la solicitud JSON
-            for field, value in data.items():
-                if field == 'sucursal' and value:  # Manejo de campo relacional
-                    asesor.sucursal = get_object_or_404(Sucursal, id=value)
-                elif hasattr(asesor, field):  # Verificar si el campo existe en el modelo
-                    setattr(asesor, field, value)
-            asesor.save()
-            return JsonResponse({'message': 'Asesor se ha editado correctamente.'}, status=200)
-        except json.JSONDecodeError:
-            return JsonResponse({'error': 'Datos JSON inválidos.'}, status=400)
-        except Exception as e:
-            return JsonResponse({'error': f'Error al editar el asesor: {str(e)}'}, status=500)
     return JsonResponse({'error': 'Método no permitido.'}, status=405)

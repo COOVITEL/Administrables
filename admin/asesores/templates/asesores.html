@@ -79,7 +79,7 @@
                     <td style="padding: 8px; border-bottom: 1px solid #ddd;">
                         <form method="POST">
                             {% csrf_token %}
-                            <input type="hidden" name="form_id" value="form-update">
+                            <input type="hidden" name="form_id" value="form-update-{{asesor.id}}">
                             <button type="submit" 
                                     style="background-color:#b1def1; color: black; border: none; padding: 5px 10px; cursor: pointer; border-radius: 4px; font-family: Georgia, 'Times New Roman', Times, serif;">
                                 {% include "icons/edit.html" %}
@@ -142,13 +142,13 @@
             </div>
             <form method="POST" class="form-created form-created-2">
                 {% csrf_token %}
-                <input type="hidden" name="form_id" value="form-update-asesor">
+                <input type="hidden" name="form_id" value="form-update-asesor-{{form.instance.id}}">
                 {{ form.as_p }}
                 <br>
                 <button type="submit">Actualizar</button>
             </form>
     </div>
-    {% endif %}}
+    {% endif %}
 
 
     <div id="editModalOverlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0, 0, 0, 0.5); z-index:999;" onclick="closeEditModal()"></div>
@@ -208,61 +208,11 @@
         document.getElementById('asesores-list-modal').addEventListener('click', function(event) {
             event.stopPropagation();
         });
-        {% comment %} function openEditModal(asesorId) {
-            fetch(`/obtener-asesor/${asesorId}/`)
-                .then(response => {
-                    if (response.ok) {
-                        return response.json();
-                    }
-                    throw new Error("Error al obtener los datos del asesor.");
-                })
-                .then(data => {
-                    document.getElementById('edit-asesor-id').value = asesorId;
-                    document.getElementById('edit-name').value = data.name;
-                    document.getElementById('edit-document').value = data.document;
-                    document.getElementById('edit-sucursal').value = data.sucursal;
-                    document.getElementById('editAsesorModal').style.display = 'block';
-                    document.getElementById('editModalOverlay').style.display = 'block';
-                    document.body.style.overflow = 'hidden';
-                })
-                .catch(error => {
-                    console.error("Error al cargar los datos del asesor:", error);
-                    alert("No se pudieron cargar los datos del asesor.");
-                });
-        } {% endcomment %}
         
         function closeEditModal() {
             document.getElementById('editAsesorModal').style.display = 'none';
             document.getElementById('editModalOverlay').style.display = 'none';
             document.body.style.overflow = 'auto';
-        }
-        
-        function saveAsesorEdits() {
-            const asesorId = document.getElementById('edit-asesor-id').value;
-            const name = document.getElementById('edit-name').value;
-            const documentValue = document.getElementById('edit-document').value;
-            const sucursal = document.getElementById('edit-sucursal').value;
-        
-            fetch(`/editar-asesor/${asesorId}/`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': '{{ csrf_token }}',
-                },
-                body: JSON.stringify({ name, document: documentValue, sucursal }),
-            })
-                .then(response => {
-                    if (response.ok) {
-                        alert("Asesor editado correctamente.");
-                        location.reload();
-                    } else {
-                        alert("Error al editar el asesor.");
-                    }
-                })
-                .catch(error => {
-                    console.error("Error al guardar los cambios del asesor:", error);
-                    alert("Hubo un error al guardar los cambios.");
-                });
         }
 
     </script>    
