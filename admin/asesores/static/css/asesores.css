@@ -1,3 +1,4 @@
+
 .content {
     margin: 50px;
     height: auto;
@@ -8,7 +9,7 @@
     z-index: 1;
 }
 form {
-    width: 100%;
+    width: 100%; 
     max-width: 500px;
     /* margin: 0 auto; */
     padding: 20px;
@@ -45,9 +46,6 @@ input, textarea {
     cursor: pointer;
 }
   
-/* button[type="submit"]:hover {
-    background-color: #202d54;
-} */
 
 .front h1 {
     text-align: center;
@@ -96,15 +94,6 @@ form p input {
     opacity: 1;
 }
 
-:root {
-    --backColor: #fdfdfd;
-    --colorWhite: #fff;
-    --colorLinks: #007eb8;
-    --colorOne: #202d54;
-    --colorTwo: #2c3870;
-    --colorThree: #2d2e83;
-    --colorFour: #007eb8;
-}
 
 .types {
     width: 100%;
@@ -172,29 +161,6 @@ tr:nth-child(2n) {
 .image:hover {
     transform: scale(0.9);
     transition: all .3s ease-in-out;
-}
-
-.form {
-    width: 90%;
-    text-align: center;
-    border: 1px solid var(--colorOne);
-    border-radius: 20px;
-    padding: 10px;
-    /* margin: 20px 0px; */
-    box-shadow: #007eb8a1 0px 2px 4px 0px, #007eb8 0px 2px 16px 0px;
-    transition: all 0.6s ease-in-out;
-    opacity: 1;
-    transform: translateY(0);
-    @starting-style {
-        opacity: 0;
-        transform: translateY(-500px);
-        transition: all 0.6s ease-in-out;
-    }
-}
-
-
-.form p {
-    padding: 10px;
 }
 
 .form p:nth-child(n+8) {
@@ -291,4 +257,34 @@ tr:nth-child(2n) {
     cursor: pointer;
     border-radius: 4px;
     font-family: Georgia,'Times New Roman', Times, serif;
+}
+
+.form-created {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #cdcdcf;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.form-created-2 {
+    width: 90%;
+    text-align: center;
+    border: 1px solid var(--colorOne);
+    border-radius: 20px;
+    padding: 10px;
+    margin: 20px 0px;
+    box-shadow: #007eb8a1 0px 2px 4px 0px, #007eb8 0px 2px 16px 0px;
+    transition: all 0.6s ease-in-out;
+    opacity: 1;
+    transform: translateY(0);
+    @starting-style {
+        opacity: 0;
+        transform: translateY(-500px);
+        transition: all 0.6s ease-in-out;
+    }
 }

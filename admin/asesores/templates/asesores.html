@@ -10,8 +10,8 @@
     
     <section class="types">
 
-        <h1 style="margin: 0; text-align:center;">Lista de Asesores</h1>
-
+        <h1 style="margin: 0; text-align:center; padding: 2px">Lista de Asesores</h1>
+        <br>
         <div class="nav-search">
             <button type="submit" class="new-asesor" onclick="openListModal()">
                 Nuevo asesor
@@ -39,24 +39,24 @@
             <tbody>
                 {% for asesor in asesores %}
                     <tr style="background-color: {% cycle '#ffffff' '#f9f9f9' %};">
-                        <td style="padding: 2px; border-bottom: 1px solid #ddd;">{{ asesor.id}}</td>
+                        <td style="padding: 4px; border-bottom: 1px solid #ddd;">{{ asesor.id}}</td>
                         <td style="padding: 2px; border-bottom: 1px solid #ddd;">{{ asesor.name }}</td>
                         <td style="padding: 2px; border-bottom: 1px solid #ddd;">{{ asesor.document }}</td>
                         <td style="padding: 2px; border-bottom: 1px solid #ddd;">{{ asesor.sucursal }}</td>
                         <td style="padding: 2px; border-bottom: 1px solid #ddd;">{{ asesor.dateCreated }}</td>
 
-                        <td style="padding: 2px; border-bottom: 1px solid #ddd;">
+                        <td style=" border-bottom: 1px solid #ddd;">
                             <form method="POST">
                                 {% csrf_token %}
                                 <input type="hidden" name="form_id" value="form-update-{{asesor.id}}">
                                 <button type="submit" class="update-button">
                                     {% include "icons/edit.html" %}
-                                </button>
+                            </button>
                             </form>
                         </td>
 
-                        <td style="padding: 2px; border-bottom: 1px solid #ddd;">
-                                <button type="button" onclick="openDeleteConfirmationModal({{ asesor.id }})" class="delete-button"> 
+                        <td style="padding: 10px; border-bottom: 1px solid #ddd">
+                                <button type="button" onclick="openDeleteConfirmationModal({{ asesor.id }})" class="delete-button" > 
                                     {% include "icons/delete.html" %}
                                 </button>
                         </td>
@@ -100,6 +100,7 @@
     </div>
 
     {% if update %}  
+    <div>
         <div id="editAsesorModal" style="display:block; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); width: 400px; background:white; border:1px solid #ccc; padding:20px; border-radius:8px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); z-index:1000;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
                 <h1 style="margin: 0; font-size: 30px;">Editar Asesor</h1>
@@ -113,6 +114,7 @@
                 <button type="submit">Actualizar</button>
             </form>
         </div>
+    </div>
     {% endif %}
 
 
