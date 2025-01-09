@@ -23,6 +23,9 @@ class RegistrosSimulacionesCreditos(models.Model):
     monto = models.CharField(max_length=100)
     dateCreated = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     createdBy = models.CharField(max_length=200, null=True, blank=True)
+    
+    def __str__(self) -> str:
+        return f"{self.name} - {self.credit}"
 
 class RegistroSimulacionesCdat(models.Model):
     nameAsociado = models.CharField(max_length=100)

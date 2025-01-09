@@ -40,7 +40,7 @@ class CooviahorroApiView(APIView):
         return Response(data, status=status.HTTP_200_OK)
 
 class SimuladorCreditoApiView(APIView):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     
     def get(self, request):
         # Obtener datos de ApiCdat
@@ -55,7 +55,7 @@ class SimuladorCreditoApiView(APIView):
         ajusteCooviahorro = AjustesCooviahorroSerializer(AjustesCooviahorro.objects.all(), many=True).data
         maximoAjuste = MaximoAjusteSerializer(MaximoAjuste.objects.all(), many=True).data
         asociadoType = TypeAsociadoSerializer(TypeAsociado.objects.all(), many=True).data
-        asesores = AsesoresSerializer(Asesores.objects.all(), many=True).data
+        asesores = AsesoresSerializer(Asesores.objects.all().order_by("name"), many=True).data
         
         data = {
             'salariominimo': 1462000,
@@ -87,7 +87,7 @@ class RotativoApi(APIView):
         typesAsociados = AsociadosRotativoSerializer(AsociadoRotativo.objects.all(), many=True).data
         escenarios = EscenariosSerializer(Escenarios.objects.all(), many=True).data
         rotativos = RotativosSerializer(Rotativo.objects.all(), many=True).data
-        asesores = AsesoresSerializer(Asesores.objects.all(), many=True).data
+        asesores = AsesoresSerializer(Asesores.objects.all().order_by("name"), many=True).data
         
         data = {
             'typesAsociados': typesAsociados,

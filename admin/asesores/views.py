@@ -8,8 +8,6 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator
 from django.db.models import Q
-import logging
-import json
 
 @login_required
 def sucursalCreate(request):
@@ -40,7 +38,7 @@ def asesorCreate(request):
 
     # Configuración de paginación
     page = request.GET.get('page', 1)
-    paginator = Paginator(asesores, 5)
+    paginator = Paginator(asesores, 2)
     try:
         asesores = paginator.page(page)
     except Exception as e:

@@ -3,7 +3,9 @@
     <div class="d-flex justify-content-center"> 
         <ul class="pagination">
             {% if asesores.has_previous %}
-                <button class="page-item d-none d-sm-block"><a class="page-link" href="?page={{ asesores.previous_page_number }}">Anterior</a></button>
+                <a class="page-link" href="?page={{ asesores.previous_page_number }}">
+                    {% include "icons/before.html" %}
+                </a>
             {% endif %}
 
             {% if paginator.num_pages < 7 %}
@@ -37,9 +39,9 @@
             {% endif %}
 
             {% if asesores.has_next %}
-                <button class="page-item d-none d-sm-block">
-                    <a class="page-link" href="?page={{ asesores.next_page_number }}">Siguiente</a>
-                </button>
+                <a class="page-link" href="?page={{ asesores.next_page_number }}">
+                    {% include "icons/next.html" %}
+                </a>
             {% endif %}
         </ul>
     </div>
