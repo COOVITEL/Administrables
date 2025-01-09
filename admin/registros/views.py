@@ -3,10 +3,11 @@ from rest_framework.permissions import IsAuthenticated
 from django.shortcuts import render
 from rest_framework import viewsets
 from .serializer import (
-    RegistrosSimulacionesCooviahorroSerializer,
+    # RegistrosSimulacionesCooviahorroSerializer,
     RegistrosSimulacionesCreditoSerializer,
-    RegistrosSimulacionesCdatSerializer,
-    RegistrosSimulacionesRotativoSerializer)
+    # RegistrosSimulacionesCdatSerializer,
+    # RegistrosSimulacionesRotativoSerializer)
+)
 from .models import (
     RegistroSimulacionCooviahorro,
     RegistroSimulacionRotativo,
@@ -24,21 +25,21 @@ class RegistroCreditosView(viewsets.ModelViewSet):
     http_method_names = ["post"]
 
 
-class RegistroCdatView(viewsets.ModelViewSet):
-    serializer_class = RegistrosSimulacionesCdatSerializer
-    queryset = RegistroSimulacionesCdat.objects.all()
-    http_method_names = ["post"]
+# class RegistroCdatView(viewsets.ModelViewSet):
+#     serializer_class = RegistrosSimulacionesCdatSerializer
+#     queryset = RegistroSimulacionesCdat.objects.all()
+#     http_method_names = ["post"]
 
 
-class RegistroRotativoView(viewsets.ModelViewSet):
-    # permission_classes = [IsAuthenticated]
-    serializer_class = RegistrosSimulacionesRotativoSerializer
-    queryset = RegistroSimulacionRotativo.objects.all()
-    # http_method_names = ["post"]
+# class RegistroRotativoView(viewsets.ModelViewSet):
+#     permission_classes = [IsAuthenticated]
+#     serializer_class = RegistrosSimulacionesRotativoSerializer
+#     queryset = RegistroSimulacionRotativo.objects.all()
+#     http_method_names = ["post"]
 
 
-class RegistroCooviahorroView(viewsets.ModelViewSet):
-    # permission_classes = [IsAuthenticated]
-    serializer_class = RegistrosSimulacionesCooviahorroSerializer
-    queryset = RegistroSimulacionCooviahorro.objects.all()
-    # http_method_names = ["post"]
+# class RegistroCooviahorroView(viewsets.ModelViewSet):
+#     permission_classes = [IsAuthenticated]
+#     serializer_class = RegistrosSimulacionesCooviahorroSerializer
+#     queryset = RegistroSimulacionCooviahorro.objects.all()
+#     http_method_names = ["post"]

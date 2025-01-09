@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.timezone import localtime
 
 class RegistrosSimulacionesCreditos(models.Model):
     name = models.CharField(max_length=100)
@@ -21,11 +22,11 @@ class RegistrosSimulacionesCreditos(models.Model):
     credit = models.CharField(max_length=100)
     cuotas = models.CharField(max_length=100)
     monto = models.CharField(max_length=100)
-    dateCreated = models.DateTimeField(auto_now_add=True, null=True, blank=True)
-    createdBy = models.CharField(max_length=200, null=True, blank=True)
+    dateCreated = models.DateTimeField(auto_now_add=True)
+    createdBy = models.CharField(max_length=200)
     
     def __str__(self) -> str:
-        return f"{self.name} - {self.credit}"
+        return f"{self.name} - {self.credit} - {localtime(self.dateCreated)}"
 
 class RegistroSimulacionesCdat(models.Model):
     nameAsociado = models.CharField(max_length=100)

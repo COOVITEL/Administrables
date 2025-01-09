@@ -34,6 +34,13 @@
     font-size: 18px;
     color: var(--colorOne);
     font-weight: 700;
+
+    @starting-style {
+        color: var(--colorWhite);
+        padding: 0px;
+        background-color: var(--colorTwoLow);
+        transition: all 0.6s ease-in-out;
+    }
 }
 
 .page-actual a {
@@ -41,6 +48,6 @@
 }
 
 a {
-        text-decoration: none;
-        color: var(--colorWhite);
+    text-decoration: none;
+    color: var(--colorWhite);
 }
