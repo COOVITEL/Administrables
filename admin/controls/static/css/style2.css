@@ -105,6 +105,12 @@ tr:nth-child(2n) {
     align-items: center;
 }
 
+.form input {
+    padding: 4px 8px;
+    border-radius: 20px;
+    border: 1px solid #7fccff;
+}
+
 .form p:nth-child(n+8) {
     border-bottom: 2px solid #dbdbdb;
 }
@@ -132,12 +138,6 @@ tr:nth-child(2n) {
     cursor: pointer;
 }
 
-.form input {
-    margin: 0;
-    width: 500px;
-    border-radius: 20px;
-    border: 1px solid #7fccff;
-}
 
 .save {
     margin-top: 10px;

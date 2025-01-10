@@ -14,6 +14,7 @@
     flex-direction: row;
     gap: 10px;
     justify-content: center;
+    align-items: center;
     margin-top: 20px;
     padding: 10px 20px;
     font-size: 16px;
@@ -27,36 +28,26 @@
 }
 
 .page-actual {
-    background-color: var(--colorOne);
+    background-color: var(--colorWhite);
     border-radius: 10px;
-    padding: 10px;
+    padding: 0px 10px 20px 10px;
     font-size: 18px;
-    color: var(--colorWhite);
-    font-weight: 1000;
+    color: var(--colorOne);
+    font-weight: 700;
+
+    @starting-style {
+        color: var(--colorWhite);
+        padding: 0px;
+        background-color: var(--colorTwoLow);
+        transition: all 0.6s ease-in-out;
+    }
 }
 
 .page-actual a {
-    text-decoration: underline;
-    color: var(--colorWhite);
+    color: var(--colorOne);
 }
 
 a {
     text-decoration: none;
     color: var(--colorWhite);
 }
-
-/* button {
-    font-family:Georgia, 'Times New Roman', Times, serif;
-    background-color: #2c3870;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border: 0;
-    border-radius: 25px;
-    cursor: pointer;
-}
-  
-button:hover {
-    background-color: #202d54;
-} */

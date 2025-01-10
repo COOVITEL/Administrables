@@ -8,8 +8,6 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator
 from django.db.models import Q
-import logging
-import json
 
 @login_required
 def sucursalCreate(request):
@@ -40,12 +38,15 @@ def asesorCreate(request):
 
     # Configuración de paginación
     page = request.GET.get('page', 1)
-    paginator = Paginator(asesores, 5)
+    paginator = Paginator(asesores, 2)
     try:
         asesores = paginator.page(page)
     except Exception as e:
         messages.error(request, 'Error al paginar los asesores: {}'.format(e))
         asesores = paginator.page(1)
+
+    formEmpty = AsesoresForm()
+    form = AsesoresForm()
 
     # Procesar formulario de creación de asesor
     if request.method == 'POST':
@@ -56,6 +57,7 @@ def asesorCreate(request):
                 form.save()
                 messages.success(request, '¡Asesor registrado con éxito!')
                 return redirect('asesoresList')
+
         elif str(formNum).startswith("form-update-asesor"):
             asesor = Asesores.objects.get(id=formNum.split("-")[-1])
             form = AsesoresForm(request.POST, instance=asesor)
@@ -67,14 +69,13 @@ def asesorCreate(request):
             currentId = formNum.split("-")[-1]
             update = True
             form = AsesoresForm(instance=Asesores.objects.get(id=currentId))
-    else:
-        form = AsesoresForm()
 
     return render(
         request, 
         'asesores.html', 
         {
-            'form': form, 
+            'form': form,
+            'formEmpty': formEmpty,
             'update': update,
             'asesores': asesores, 
             'paginator': paginator, 
