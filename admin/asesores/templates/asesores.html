@@ -14,11 +14,11 @@
         <h1 class="title-h1">Lista de Asesores</h1>
         <br>
         <div class="nav-search">
-            <button type="submit" class="new-asesor" onclick="openListModal()">
+            <button type="submit" class="buttons-close-modal" onclick="openListModal()">
                 Nuevo asesor
             </button> 
             <form method="get" class="search-form">
-                <input class="search-asesor" type="text" name="search" placeholder="Buscar por nombre o cédula" 
+                <input type="text" name="search" placeholder="Buscar por nombre o cédula" 
                 value="{{ search_query }}" class="search-input"/>
                 <button type="submit" class="search-button">
                     {% include "icons/search.html" %}
@@ -82,6 +82,7 @@
             {% csrf_token %}
             <input type="hidden" name="form_id" value="form-created-asesor">
             {{ form.as_p }}
+            <br>
             <button class="buttons-close-modal" type="submit">Guardar</button>
         </form>
     </div>
@@ -100,18 +101,17 @@
     </div>
 
     {% if update %}
-
         <div id="modal-overlay-edit" class="modal-overlay-edit" onclick="closeModalEdit()"></div>
 
         <div id="editAsesorModal" class="edit-modal">
             <div class="header-edit-modal">
                 <h1 class="title-h1">Editar Asesor</h1>
             </div>
-            <br>
             <form method="POST" class="form-created form-created-2">
                 {% csrf_token %}
                 <input type="hidden" name="form_id" value="form-update-asesor-{{form.instance.id}}">
                 {{ form.as_p }}
+                <br>
                 <button class="buttons-close-modal" type="submit">Actualizar</button>
             </form>
         </div>

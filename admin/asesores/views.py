@@ -38,7 +38,7 @@ def asesorCreate(request):
 
     # Configuración de paginación
     page = request.GET.get('page', 1)
-    paginator = Paginator(asesores, 2)
+    paginator = Paginator(asesores, 5)
     try:
         asesores = paginator.page(page)
     except Exception as e:
