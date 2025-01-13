@@ -3,7 +3,7 @@
     <div class="d-flex justify-content-center"> 
         <ul class="pagination">
             {% if asesores.has_previous %}
-                <button class="buttons-close-modal"><a class="page-link" href="?page={{ asesores.previous_page_number }}">Anterior</a></button>
+                <button class="buttons-paginator"><a class="page-link" href="?page={{ asesores.previous_page_number }}">Anterior</a></button>
 
             {% endif %}
 
@@ -39,7 +39,7 @@
 
             {% if asesores.has_next %}
 
-                <button class="buttons-close-modal">
+                <button class="buttons-paginator">
                     <a class="page-link" href="?page={{ asesores.next_page_number }}">Siguiente</a>
                 </button>
             {% endif %}
